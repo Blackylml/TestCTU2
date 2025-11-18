@@ -69,7 +69,7 @@
 
     <div class="flex">
         <!-- Sidebar -->
-        <aside class="w-64 card shadow-lg min-h-screen">
+        <aside class="hidden md:block md:w-64 card shadow-lg min-h-screen">
             <div class="p-6">
                 <div class="flex items-center space-x-3 mb-6 pb-6 border-b" style="border-color: var(--border-color)">
                     <div class="w-12 h-12 rounded-full flex items-center justify-center bg-gradient-custom">
@@ -106,7 +106,7 @@
         </aside>
 
         <!-- Main Content -->
-        <main class="flex-1 p-4 md:p-8 ml-0 md:ml-0">
+        <main class="flex-1 p-3 md:p-8 w-full">
             <!-- Welcome Section -->
             <div class="mb-6 md:mb-8">
                 <h1 class="text-2xl md:text-3xl font-bold mb-2">Bienvenido, Usuario</h1>
@@ -204,54 +204,54 @@
                 </div>
                 <div class="p-4 md:p-6">
                     <!-- Placeholder para quinielas recientes -->
-                    <div class="space-y-4">
-                        <div class="flex items-center justify-between p-4 border rounded-lg hover:shadow-md transition" style="border-color: var(--border-color)">
-                            <div class="flex items-center space-x-4">
-                                <div class="bg-gradient-custom w-12 h-12 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-futbol text-white"></i>
+                    <div class="space-y-3 md:space-y-4">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between p-3 md:p-4 border rounded-lg hover:shadow-md transition" style="border-color: var(--border-color)">
+                            <div class="flex items-center space-x-3 md:space-x-4 mb-3 md:mb-0">
+                                <div class="bg-gradient-custom w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-futbol text-white text-sm md:text-base"></i>
                                 </div>
-                                <div>
-                                    <p class="font-semibold">Quiniela Liga MX - Jornada 15</p>
-                                    <p class="text-sm opacity-70">Fecha límite: 20/10/2024 18:00</p>
+                                <div class="flex-1 min-w-0">
+                                    <p class="font-semibold text-sm md:text-base truncate">Quiniela Liga MX - Jornada 15</p>
+                                    <p class="text-xs md:text-sm opacity-70">Fecha límite: 20/10/2024 18:00</p>
                                 </div>
                             </div>
-                            <div class="flex items-center space-x-4">
-                                <span class="px-3 py-1 bg-secondary bg-opacity-20 text-secondary rounded-full text-sm font-medium">Pendiente</span>
-                                <button class="btn-primary text-white px-4 py-2 rounded-lg">
+                            <div class="flex items-center justify-between md:justify-end space-x-2 md:space-x-4">
+                                <span class="px-2 md:px-3 py-1 bg-secondary bg-opacity-20 text-secondary rounded-full text-xs md:text-sm font-medium">Pendiente</span>
+                                <button class="btn-primary text-white px-3 md:px-4 py-1.5 md:py-2 rounded-lg text-xs md:text-sm">
                                     Ver Detalles
                                 </button>
                             </div>
                         </div>
-                        <div class="flex items-center justify-between p-4 border rounded-lg hover:shadow-md transition" style="border-color: var(--border-color)">
-                            <div class="flex items-center space-x-4">
-                                <div class="bg-gradient-custom w-12 h-12 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-football-ball text-white"></i>
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between p-3 md:p-4 border rounded-lg hover:shadow-md transition" style="border-color: var(--border-color)">
+                            <div class="flex items-center space-x-3 md:space-x-4 mb-3 md:mb-0">
+                                <div class="bg-gradient-custom w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-football-ball text-white text-sm md:text-base"></i>
                                 </div>
-                                <div>
-                                    <p class="font-semibold">Quiniela NFL - Semana 7</p>
-                                    <p class="text-sm opacity-70">Finalizada - 12 aciertos de 16</p>
+                                <div class="flex-1 min-w-0">
+                                    <p class="font-semibold text-sm md:text-base truncate">Quiniela NFL - Semana 7</p>
+                                    <p class="text-xs md:text-sm opacity-70">Finalizada - 12 aciertos de 16</p>
                                 </div>
                             </div>
-                            <div class="flex items-center space-x-4">
-                                <span class="px-3 py-1 bg-primary bg-opacity-20 text-primary rounded-full text-sm font-medium">Finalizada</span>
-                                <button class="btn-primary text-white px-4 py-2 rounded-lg">
+                            <div class="flex items-center justify-between md:justify-end space-x-2 md:space-x-4">
+                                <span class="px-2 md:px-3 py-1 bg-primary bg-opacity-20 text-primary rounded-full text-xs md:text-sm font-medium">Finalizada</span>
+                                <button class="btn-primary text-white px-3 md:px-4 py-1.5 md:py-2 rounded-lg text-xs md:text-sm">
                                     Ver Detalles
                                 </button>
                             </div>
                         </div>
-                        <div class="flex items-center justify-between p-4 border rounded-lg hover:shadow-md transition" style="border-color: var(--border-color)">
-                            <div class="flex items-center space-x-4">
-                                <div class="bg-gradient-custom w-12 h-12 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-basketball-ball text-white"></i>
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between p-3 md:p-4 border rounded-lg hover:shadow-md transition" style="border-color: var(--border-color)">
+                            <div class="flex items-center space-x-3 md:space-x-4 mb-3 md:mb-0">
+                                <div class="bg-gradient-custom w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-basketball-ball text-white text-sm md:text-base"></i>
                                 </div>
-                                <div>
-                                    <p class="font-semibold">Quiniela NBA - Temporada Regular</p>
-                                    <p class="text-sm opacity-70">En progreso - 8 aciertos de 10</p>
+                                <div class="flex-1 min-w-0">
+                                    <p class="font-semibold text-sm md:text-base truncate">Quiniela NBA - Temporada Regular</p>
+                                    <p class="text-xs md:text-sm opacity-70">En progreso - 8 aciertos de 10</p>
                                 </div>
                             </div>
-                            <div class="flex items-center space-x-4">
-                                <span class="px-3 py-1 bg-secondary bg-opacity-20 text-secondary rounded-full text-sm font-medium">En Progreso</span>
-                                <button class="btn-primary text-white px-4 py-2 rounded-lg">
+                            <div class="flex items-center justify-between md:justify-end space-x-2 md:space-x-4">
+                                <span class="px-2 md:px-3 py-1 bg-secondary bg-opacity-20 text-secondary rounded-full text-xs md:text-sm font-medium">En Progreso</span>
+                                <button class="btn-primary text-white px-3 md:px-4 py-1.5 md:py-2 rounded-lg text-xs md:text-sm">
                                     Ver Detalles
                                 </button>
                             </div>
