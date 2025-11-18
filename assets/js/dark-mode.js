@@ -6,17 +6,26 @@ class DarkModeManager {
   }
 
   init() {
-    // Cargar preferencia guardada
+    // Sincronizar con la clase aplicada por el script inline
     const savedMode = localStorage.getItem(this.darkModeKey);
+    const isDarkFromInline = document.documentElement.classList.contains('dark-mode');
 
-    if (savedMode === 'dark') {
-      this.enableDarkMode();
-    } else if (savedMode === 'light') {
-      this.disableDarkMode();
-    } else {
-      // Detectar preferencia del sistema
-      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    // Si el script inline ya aplicó dark-mode, sincronizar con body
+    if (isDarkFromInline && !document.body.classList.contains('dark-mode')) {
+      document.body.classList.add('dark-mode');
+    }
+
+    // Si no hay clase aplicada, verificar preferencias
+    if (!isDarkFromInline) {
+      if (savedMode === 'dark') {
         this.enableDarkMode();
+      } else if (savedMode === 'light') {
+        this.disableDarkMode();
+      } else {
+        // Detectar preferencia del sistema
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          this.enableDarkMode();
+        }
       }
     }
 
@@ -54,6 +63,7 @@ class DarkModeManager {
   }
 
   enableDarkMode() {
+    document.documentElement.classList.add('dark-mode');
     document.body.classList.add('dark-mode');
     localStorage.setItem(this.darkModeKey, 'dark');
     this.updateToggleButton();
@@ -61,6 +71,7 @@ class DarkModeManager {
   }
 
   disableDarkMode() {
+    document.documentElement.classList.remove('dark-mode');
     document.body.classList.remove('dark-mode');
     localStorage.setItem(this.darkModeKey, 'light');
     this.updateToggleButton();

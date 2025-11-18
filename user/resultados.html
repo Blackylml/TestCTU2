@@ -21,6 +21,15 @@
             }
         }
     </script>
+    <!-- Prevenir parpadeo de modo oscuro -->
+    <script>
+        (function() {
+            const darkMode = localStorage.getItem('quinielaPro_darkMode');
+            if (darkMode === 'dark' || (!darkMode && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark-mode');
+            }
+        })();
+    </script>
 </head>
 <body class="min-h-screen">
     <!-- Navigation -->
@@ -334,6 +343,7 @@
     </div>
 
     <script src="../assets/js/user.js"></script>
+    <script src="../assets/js/mobile-menu.js"></script>
     <script src="../assets/js/dark-mode.js"></script>
 </body>
 </html>
