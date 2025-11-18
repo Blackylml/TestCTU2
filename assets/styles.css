@@ -162,21 +162,23 @@ a:hover {
     font-size: 1.2rem;
   }
 
-  /* Sidebar móvil */
+  /* Sidebar móvil - MEJORADO */
   .mobile-sidebar {
-    position: fixed;
+    position: fixed !important;
     top: 0;
-    left: -100%;
-    width: 80%;
+    left: -100% !important;
+    width: 80% !important;
     max-width: 300px;
     height: 100vh;
     z-index: 999;
     transition: left 0.3s ease;
     overflow-y: auto;
+    background-color: var(--bg-card);
+    box-shadow: 2px 0 10px var(--shadow);
   }
 
   .mobile-sidebar.active {
-    left: 0;
+    left: 0 !important;
   }
 
   /* Overlay para el sidebar móvil */
@@ -258,6 +260,74 @@ a:hover {
   /* Ocultar texto largo en móviles */
   .hide-on-mobile {
     display: none;
+  }
+
+  /* Mejorar cards en móviles */
+  .mobile-card-compact {
+    padding: 1rem !important;
+  }
+
+  /* Botones responsive */
+  .mobile-btn-block {
+    display: block;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  /* Tabla responsive */
+  .mobile-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Esconder columnas menos importantes en móviles */
+  .hide-mobile {
+    display: none !important;
+  }
+
+  /* Texto truncado en móviles */
+  .mobile-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* Stack vertical en móviles */
+  .mobile-stack {
+    flex-direction: column !important;
+  }
+
+  /* Espaciado reducido en móviles */
+  .mobile-spacing-sm {
+    margin-bottom: 0.75rem !important;
+  }
+
+  /* Items de lista más compactos */
+  .mobile-list-item {
+    padding: 0.75rem !important;
+    font-size: 0.875rem;
+  }
+
+  /* Navegación responsive */
+  nav .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Ajustar márgenes de main content para evitar overlap */
+  main {
+    margin-top: 0 !important;
+  }
+
+  /* Mejorar forms en móviles */
+  input, select, textarea {
+    font-size: 16px !important; /* Prevenir zoom en iOS */
+  }
+
+  /* Modal responsive */
+  .modal-content {
+    width: 95% !important;
+    margin: 1rem auto !important;
   }
 }
 
