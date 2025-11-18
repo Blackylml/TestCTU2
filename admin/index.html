@@ -4,30 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Administrador - QuinielaPro</title>
+    <!-- Script para evitar el flash blanco - se carga ANTES que todo -->
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Transiciones suaves para el cambio de tema */
+        * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+    </style>
 </head>
-<body class="bg-gray-100 min-h-screen">
+<body class="bg-gray-100 dark:bg-gray-900 min-h-screen">
     <!-- Navigation -->
-    <nav class="bg-gradient-to-r from-purple-600 to-pink-700 text-white shadow-lg">
-        <div class="container mx-auto px-6 py-4">
+    <nav class="bg-gradient-to-r from-purple-600 to-pink-700 dark:from-gray-800 dark:to-gray-900 text-white shadow-lg">
+        <div class="container mx-auto px-4 md:px-6 py-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-4">
+                    <!-- Mobile menu button -->
+                    <button id="mobileMenuBtn" class="lg:hidden text-white hover:text-purple-200 transition">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
                     <a href="../index.html" class="flex items-center space-x-2 hover:opacity-80 transition">
-                        <i class="fas fa-trophy text-2xl"></i>
-                        <span class="text-xl font-bold">QuinielaPro Admin</span>
+                        <i class="fas fa-trophy text-xl md:text-2xl"></i>
+                        <span class="text-lg md:text-xl font-bold">QuinielaPro Admin</span>
                     </a>
                 </div>
-                <div class="flex items-center space-x-6">
-                    <a href="#" class="hover:text-purple-200 transition">
+                <div class="flex items-center space-x-2 md:space-x-6">
+                    <!-- Dark mode toggle -->
+                    <button id="themeToggle" class="p-2 hover:bg-white hover:bg-opacity-10 rounded-lg transition">
+                        <i class="fas fa-moon dark:hidden text-lg"></i>
+                        <i class="fas fa-sun hidden dark:block text-lg"></i>
+                    </button>
+                    <a href="#" class="hidden md:flex hover:text-purple-200 dark:hover:text-purple-300 transition">
                         <i class="fas fa-user-shield mr-2"></i>
                         <span>Admin</span>
                     </a>
-                    <a href="#" class="hover:text-purple-200 transition">
+                    <a href="#" class="hidden md:flex hover:text-purple-200 dark:hover:text-purple-300 transition">
                         <i class="fas fa-cog mr-2"></i>
                         <span>Configuración</span>
                     </a>
-                    <a href="../index.html" class="hover:text-purple-200 transition">
+                    <a href="../index.html" class="hidden md:flex hover:text-purple-200 dark:hover:text-purple-300 transition">
                         <i class="fas fa-sign-out-alt mr-2"></i>
                         <span>Salir</span>
                     </a>
@@ -36,41 +65,49 @@
         </div>
     </nav>
 
-    <div class="flex">
+    <div class="flex relative">
+        <!-- Mobile Sidebar Overlay -->
+        <div id="sidebarOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden hidden"></div>
+
         <!-- Sidebar -->
-        <aside class="w-64 bg-white shadow-lg min-h-screen">
+        <aside id="sidebar" class="fixed lg:static inset-y-0 left-0 transform -translate-x-full lg:translate-x-0 w-64 bg-white dark:bg-gray-800 shadow-lg min-h-screen z-50 transition-transform duration-300">
             <div class="p-6">
-                <div class="flex items-center space-x-3 mb-6 pb-6 border-b">
-                    <div class="bg-purple-100 w-12 h-12 rounded-full flex items-center justify-center">
-                        <i class="fas fa-user-shield text-purple-600 text-xl"></i>
+                <!-- Close button for mobile -->
+                <button id="closeSidebar" class="lg:hidden absolute top-4 right-4 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+
+                <div class="flex items-center space-x-3 mb-6 pb-6 border-b border-gray-200 dark:border-gray-700">
+                    <div class="bg-purple-100 dark:bg-purple-900 w-12 h-12 rounded-full flex items-center justify-center">
+                        <i class="fas fa-user-shield text-purple-600 dark:text-purple-400 text-xl"></i>
                     </div>
                     <div>
-                        <p class="font-semibold text-gray-800">Admin</p>
-                        <p class="text-sm text-gray-500">Administrador</p>
+                        <p class="font-semibold text-gray-800 dark:text-white">Admin</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Administrador</p>
                     </div>
                 </div>
                 <nav class="space-y-2">
-                    <a href="index.html" class="flex items-center space-x-3 bg-purple-50 text-purple-600 px-4 py-3 rounded-lg transition">
+                    <a href="index.html" class="flex items-center space-x-3 bg-purple-50 dark:bg-purple-900 text-purple-600 dark:text-purple-400 px-4 py-3 rounded-lg transition">
                         <i class="fas fa-home"></i>
                         <span class="font-medium">Dashboard</span>
                     </a>
-                    <a href="crear-quiniela.html" class="flex items-center space-x-3 text-gray-700 hover:bg-gray-50 px-4 py-3 rounded-lg transition">
+                    <a href="crear-quiniela.html" class="flex items-center space-x-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 px-4 py-3 rounded-lg transition">
                         <i class="fas fa-plus-circle"></i>
                         <span>Crear Quiniela</span>
                     </a>
-                    <a href="gestionar-quinielas.html" class="flex items-center space-x-3 text-gray-700 hover:bg-gray-50 px-4 py-3 rounded-lg transition">
+                    <a href="gestionar-quinielas.html" class="flex items-center space-x-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 px-4 py-3 rounded-lg transition">
                         <i class="fas fa-list"></i>
                         <span>Gestionar Quinielas</span>
                     </a>
-                    <a href="ingresar-resultados.html" class="flex items-center space-x-3 text-gray-700 hover:bg-gray-50 px-4 py-3 rounded-lg transition">
+                    <a href="ingresar-resultados.html" class="flex items-center space-x-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 px-4 py-3 rounded-lg transition">
                         <i class="fas fa-check-square"></i>
                         <span>Ingresar Resultados</span>
                     </a>
-                    <a href="usuarios.html" class="flex items-center space-x-3 text-gray-700 hover:bg-gray-50 px-4 py-3 rounded-lg transition">
+                    <a href="usuarios.html" class="flex items-center space-x-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 px-4 py-3 rounded-lg transition">
                         <i class="fas fa-users"></i>
                         <span>Usuarios</span>
                     </a>
-                    <a href="reportes.html" class="flex items-center space-x-3 text-gray-700 hover:bg-gray-50 px-4 py-3 rounded-lg transition">
+                    <a href="reportes.html" class="flex items-center space-x-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 px-4 py-3 rounded-lg transition">
                         <i class="fas fa-chart-bar"></i>
                         <span>Reportes</span>
                     </a>
@@ -79,96 +116,96 @@
         </aside>
 
         <!-- Main Content -->
-        <main class="flex-1 p-8">
+        <main class="flex-1 p-4 md:p-8 w-full lg:w-auto">
             <!-- Header -->
-            <div class="mb-8">
-                <h1 class="text-3xl font-bold text-gray-800 mb-2">Dashboard de Administración</h1>
-                <p class="text-gray-600">Gestiona y monitorea todas las quinielas del sistema</p>
+            <div class="mb-6 md:mb-8">
+                <h1 class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-2">Dashboard de Administración</h1>
+                <p class="text-gray-600 dark:text-gray-400">Gestiona y monitorea todas las quinielas del sistema</p>
             </div>
 
             <!-- Stats Cards -->
-            <div class="grid md:grid-cols-4 gap-6 mb-8">
-                <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-blue-500">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-6 md:mb-8">
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow dark:shadow-gray-700 p-4 md:p-6 border-l-4 border-blue-500 dark:border-blue-400">
                     <div class="flex items-center justify-between mb-4">
                         <div>
-                            <p class="text-gray-500 text-sm mb-1">Quinielas Activas</p>
-                            <p class="text-3xl font-bold text-gray-800">12</p>
-                            <p class="text-xs text-green-500 mt-1">+3 esta semana</p>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm mb-1">Quinielas Activas</p>
+                            <p class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white">12</p>
+                            <p class="text-xs text-green-500 dark:text-green-400 mt-1">+3 esta semana</p>
                         </div>
-                        <div class="bg-blue-100 w-14 h-14 rounded-full flex items-center justify-center">
-                            <i class="fas fa-file-alt text-blue-600 text-2xl"></i>
+                        <div class="bg-blue-100 dark:bg-blue-900 w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center">
+                            <i class="fas fa-file-alt text-blue-600 dark:text-blue-400 text-xl md:text-2xl"></i>
                         </div>
                     </div>
                 </div>
-                <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-green-500">
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow dark:shadow-gray-700 p-4 md:p-6 border-l-4 border-green-500 dark:border-green-400">
                     <div class="flex items-center justify-between mb-4">
                         <div>
-                            <p class="text-gray-500 text-sm mb-1">Usuarios Registrados</p>
-                            <p class="text-3xl font-bold text-gray-800">1,248</p>
-                            <p class="text-xs text-green-500 mt-1">+52 esta semana</p>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm mb-1">Usuarios Registrados</p>
+                            <p class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white">1,248</p>
+                            <p class="text-xs text-green-500 dark:text-green-400 mt-1">+52 esta semana</p>
                         </div>
-                        <div class="bg-green-100 w-14 h-14 rounded-full flex items-center justify-center">
-                            <i class="fas fa-users text-green-600 text-2xl"></i>
+                        <div class="bg-green-100 dark:bg-green-900 w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center">
+                            <i class="fas fa-users text-green-600 dark:text-green-400 text-xl md:text-2xl"></i>
                         </div>
                     </div>
                 </div>
-                <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-yellow-500">
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow dark:shadow-gray-700 p-4 md:p-6 border-l-4 border-yellow-500 dark:border-yellow-400">
                     <div class="flex items-center justify-between mb-4">
                         <div>
-                            <p class="text-gray-500 text-sm mb-1">Ingresos Totales</p>
-                            <p class="text-3xl font-bold text-gray-800">$45,320</p>
-                            <p class="text-xs text-green-500 mt-1">+12% vs mes anterior</p>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm mb-1">Ingresos Totales</p>
+                            <p class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white">$45,320</p>
+                            <p class="text-xs text-green-500 dark:text-green-400 mt-1">+12% vs mes anterior</p>
                         </div>
-                        <div class="bg-yellow-100 w-14 h-14 rounded-full flex items-center justify-center">
-                            <i class="fas fa-dollar-sign text-yellow-600 text-2xl"></i>
+                        <div class="bg-yellow-100 dark:bg-yellow-900 w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center">
+                            <i class="fas fa-dollar-sign text-yellow-600 dark:text-yellow-400 text-xl md:text-2xl"></i>
                         </div>
                     </div>
                 </div>
-                <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-purple-500">
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow dark:shadow-gray-700 p-4 md:p-6 border-l-4 border-purple-500 dark:border-purple-400">
                     <div class="flex items-center justify-between mb-4">
                         <div>
-                            <p class="text-gray-500 text-sm mb-1">Premios Distribuidos</p>
-                            <p class="text-3xl font-bold text-gray-800">$28,750</p>
-                            <p class="text-xs text-gray-500 mt-1">Esta semana: $5,200</p>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm mb-1">Premios Distribuidos</p>
+                            <p class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white">$28,750</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Esta semana: $5,200</p>
                         </div>
-                        <div class="bg-purple-100 w-14 h-14 rounded-full flex items-center justify-center">
-                            <i class="fas fa-trophy text-purple-600 text-2xl"></i>
+                        <div class="bg-purple-100 dark:bg-purple-900 w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center">
+                            <i class="fas fa-trophy text-purple-600 dark:text-purple-400 text-xl md:text-2xl"></i>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Quick Actions -->
-            <div class="grid md:grid-cols-3 gap-6 mb-8">
-                <a href="crear-quiniela.html" class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-6 text-white transform hover:scale-105 transition duration-300">
-                    <div class="flex items-center space-x-4">
-                        <div class="bg-white bg-opacity-20 w-16 h-16 rounded-full flex items-center justify-center">
-                            <i class="fas fa-plus-circle text-3xl"></i>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
+                <a href="crear-quiniela.html" class="bg-gradient-to-br from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700 rounded-xl shadow dark:shadow-gray-700 p-4 md:p-6 text-white transform hover:scale-105 transition duration-300">
+                    <div class="flex items-center space-x-3 md:space-x-4">
+                        <div class="bg-white bg-opacity-20 w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center">
+                            <i class="fas fa-plus-circle text-2xl md:text-3xl"></i>
                         </div>
                         <div>
-                            <h3 class="text-xl font-bold mb-1">Crear Quiniela</h3>
+                            <h3 class="text-lg md:text-xl font-bold mb-1">Crear Quiniela</h3>
                             <p class="text-blue-100 text-sm">Nueva competencia</p>
                         </div>
                     </div>
                 </a>
-                <a href="ingresar-resultados.html" class="bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-lg p-6 text-white transform hover:scale-105 transition duration-300">
-                    <div class="flex items-center space-x-4">
-                        <div class="bg-white bg-opacity-20 w-16 h-16 rounded-full flex items-center justify-center">
-                            <i class="fas fa-check-square text-3xl"></i>
+                <a href="ingresar-resultados.html" class="bg-gradient-to-br from-green-500 to-green-600 dark:from-green-600 dark:to-green-700 rounded-xl shadow dark:shadow-gray-700 p-4 md:p-6 text-white transform hover:scale-105 transition duration-300">
+                    <div class="flex items-center space-x-3 md:space-x-4">
+                        <div class="bg-white bg-opacity-20 w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center">
+                            <i class="fas fa-check-square text-2xl md:text-3xl"></i>
                         </div>
                         <div>
-                            <h3 class="text-xl font-bold mb-1">Ingresar Resultados</h3>
+                            <h3 class="text-lg md:text-xl font-bold mb-1">Ingresar Resultados</h3>
                             <p class="text-green-100 text-sm">Actualizar marcadores</p>
                         </div>
                     </div>
                 </a>
-                <a href="reportes.html" class="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl shadow-lg p-6 text-white transform hover:scale-105 transition duration-300">
-                    <div class="flex items-center space-x-4">
-                        <div class="bg-white bg-opacity-20 w-16 h-16 rounded-full flex items-center justify-center">
-                            <i class="fas fa-chart-bar text-3xl"></i>
+                <a href="reportes.html" class="bg-gradient-to-br from-purple-500 to-purple-600 dark:from-purple-600 dark:to-purple-700 rounded-xl shadow dark:shadow-gray-700 p-4 md:p-6 text-white transform hover:scale-105 transition duration-300">
+                    <div class="flex items-center space-x-3 md:space-x-4">
+                        <div class="bg-white bg-opacity-20 w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center">
+                            <i class="fas fa-chart-bar text-2xl md:text-3xl"></i>
                         </div>
                         <div>
-                            <h3 class="text-xl font-bold mb-1">Ver Reportes</h3>
+                            <h3 class="text-lg md:text-xl font-bold mb-1">Ver Reportes</h3>
                             <p class="text-purple-100 text-sm">Estadísticas completas</p>
                         </div>
                     </div>
@@ -176,109 +213,109 @@
             </div>
 
             <!-- Recent Activity & Quinielas -->
-            <div class="grid md:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                 <!-- Recent Quinielas -->
-                <div class="bg-white rounded-xl shadow-lg">
-                    <div class="p-6 border-b">
-                        <h2 class="text-xl font-bold text-gray-800">Quinielas Recientes</h2>
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow dark:shadow-gray-700">
+                    <div class="p-4 md:p-6 border-b border-gray-200 dark:border-gray-700">
+                        <h2 class="text-lg md:text-xl font-bold text-gray-800 dark:text-white">Quinielas Recientes</h2>
                     </div>
-                    <div class="p-6">
-                        <div class="space-y-4">
-                            <div class="flex items-center justify-between p-4 border rounded-lg hover:shadow-md transition">
-                                <div class="flex items-center space-x-4">
-                                    <div class="bg-blue-100 w-12 h-12 rounded-lg flex items-center justify-center">
-                                        <i class="fas fa-futbol text-blue-600"></i>
+                    <div class="p-4 md:p-6">
+                        <div class="space-y-3 md:space-y-4">
+                            <div class="flex items-center justify-between p-3 md:p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:shadow-md dark:hover:shadow-gray-700 transition">
+                                <div class="flex items-center space-x-3 md:space-x-4">
+                                    <div class="bg-blue-100 dark:bg-blue-900 w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-futbol text-blue-600 dark:text-blue-400"></i>
                                     </div>
                                     <div>
-                                        <p class="font-semibold text-gray-800">Liga MX - Jornada 15</p>
-                                        <p class="text-sm text-gray-500">85 participantes</p>
+                                        <p class="font-semibold text-gray-800 dark:text-white text-sm md:text-base">Liga MX - Jornada 15</p>
+                                        <p class="text-xs md:text-sm text-gray-500 dark:text-gray-400">85 participantes</p>
                                     </div>
                                 </div>
-                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Activa</span>
+                                <span class="px-2 md:px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-400 rounded-full text-xs md:text-sm font-medium">Activa</span>
                             </div>
-                            <div class="flex items-center justify-between p-4 border rounded-lg hover:shadow-md transition">
-                                <div class="flex items-center space-x-4">
-                                    <div class="bg-green-100 w-12 h-12 rounded-lg flex items-center justify-center">
-                                        <i class="fas fa-football-ball text-green-600"></i>
+                            <div class="flex items-center justify-between p-3 md:p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:shadow-md dark:hover:shadow-gray-700 transition">
+                                <div class="flex items-center space-x-3 md:space-x-4">
+                                    <div class="bg-green-100 dark:bg-green-900 w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-football-ball text-green-600 dark:text-green-400"></i>
                                     </div>
                                     <div>
-                                        <p class="font-semibold text-gray-800">NFL - Semana 8</p>
-                                        <p class="text-sm text-gray-500">142 participantes</p>
+                                        <p class="font-semibold text-gray-800 dark:text-white text-sm md:text-base">NFL - Semana 8</p>
+                                        <p class="text-xs md:text-sm text-gray-500 dark:text-gray-400">142 participantes</p>
                                     </div>
                                 </div>
-                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Activa</span>
+                                <span class="px-2 md:px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-400 rounded-full text-xs md:text-sm font-medium">Activa</span>
                             </div>
-                            <div class="flex items-center justify-between p-4 border rounded-lg hover:shadow-md transition">
-                                <div class="flex items-center space-x-4">
-                                    <div class="bg-purple-100 w-12 h-12 rounded-lg flex items-center justify-center">
-                                        <i class="fas fa-basketball-ball text-purple-600"></i>
+                            <div class="flex items-center justify-between p-3 md:p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:shadow-md dark:hover:shadow-gray-700 transition">
+                                <div class="flex items-center space-x-3 md:space-x-4">
+                                    <div class="bg-purple-100 dark:bg-purple-900 w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-basketball-ball text-purple-600 dark:text-purple-400"></i>
                                     </div>
                                     <div>
-                                        <p class="font-semibold text-gray-800">NBA - Jornada 3</p>
-                                        <p class="text-sm text-gray-500">98 participantes</p>
+                                        <p class="font-semibold text-gray-800 dark:text-white text-sm md:text-base">NBA - Jornada 3</p>
+                                        <p class="text-xs md:text-sm text-gray-500 dark:text-gray-400">98 participantes</p>
                                     </div>
                                 </div>
-                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">En Progreso</span>
+                                <span class="px-2 md:px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-400 rounded-full text-xs md:text-sm font-medium">En Progreso</span>
                             </div>
                         </div>
                     </div>
-                    <div class="p-6 bg-gray-50 border-t">
-                        <a href="gestionar-quinielas.html" class="text-purple-600 hover:text-purple-700 font-medium">
+                    <div class="p-4 md:p-6 bg-gray-50 dark:bg-gray-700 border-t border-gray-200 dark:border-gray-700">
+                        <a href="gestionar-quinielas.html" class="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-medium">
                             Ver todas las quinielas <i class="fas fa-arrow-right ml-2"></i>
                         </a>
                     </div>
                 </div>
 
                 <!-- Recent Activity -->
-                <div class="bg-white rounded-xl shadow-lg">
-                    <div class="p-6 border-b">
-                        <h2 class="text-xl font-bold text-gray-800">Actividad Reciente</h2>
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow dark:shadow-gray-700">
+                    <div class="p-4 md:p-6 border-b border-gray-200 dark:border-gray-700">
+                        <h2 class="text-lg md:text-xl font-bold text-gray-800 dark:text-white">Actividad Reciente</h2>
                     </div>
-                    <div class="p-6">
-                        <div class="space-y-4">
-                            <div class="flex items-start space-x-4">
-                                <div class="bg-green-100 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0">
-                                    <i class="fas fa-user-plus text-green-600"></i>
+                    <div class="p-4 md:p-6">
+                        <div class="space-y-3 md:space-y-4">
+                            <div class="flex items-start space-x-3 md:space-x-4">
+                                <div class="bg-green-100 dark:bg-green-900 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-user-plus text-green-600 dark:text-green-400"></i>
                                 </div>
                                 <div class="flex-1">
-                                    <p class="text-sm text-gray-800"><span class="font-semibold">María González</span> se registró en el sistema</p>
-                                    <p class="text-xs text-gray-500">Hace 5 minutos</p>
+                                    <p class="text-sm text-gray-800 dark:text-white"><span class="font-semibold">María González</span> se registró en el sistema</p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400">Hace 5 minutos</p>
                                 </div>
                             </div>
-                            <div class="flex items-start space-x-4">
-                                <div class="bg-blue-100 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0">
-                                    <i class="fas fa-shopping-cart text-blue-600"></i>
+                            <div class="flex items-start space-x-3 md:space-x-4">
+                                <div class="bg-blue-100 dark:bg-blue-900 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-shopping-cart text-blue-600 dark:text-blue-400"></i>
                                 </div>
                                 <div class="flex-1">
-                                    <p class="text-sm text-gray-800"><span class="font-semibold">Juan Pérez</span> compró una quiniela</p>
-                                    <p class="text-xs text-gray-500">Hace 12 minutos</p>
+                                    <p class="text-sm text-gray-800 dark:text-white"><span class="font-semibold">Juan Pérez</span> compró una quiniela</p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400">Hace 12 minutos</p>
                                 </div>
                             </div>
-                            <div class="flex items-start space-x-4">
-                                <div class="bg-yellow-100 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0">
-                                    <i class="fas fa-trophy text-yellow-600"></i>
+                            <div class="flex items-start space-x-3 md:space-x-4">
+                                <div class="bg-yellow-100 dark:bg-yellow-900 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-trophy text-yellow-600 dark:text-yellow-400"></i>
                                 </div>
                                 <div class="flex-1">
-                                    <p class="text-sm text-gray-800">Premio de <span class="font-semibold">$2,500</span> distribuido</p>
-                                    <p class="text-xs text-gray-500">Hace 1 hora</p>
+                                    <p class="text-sm text-gray-800 dark:text-white">Premio de <span class="font-semibold">$2,500</span> distribuido</p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400">Hace 1 hora</p>
                                 </div>
                             </div>
-                            <div class="flex items-start space-x-4">
-                                <div class="bg-purple-100 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0">
-                                    <i class="fas fa-check text-purple-600"></i>
+                            <div class="flex items-start space-x-3 md:space-x-4">
+                                <div class="bg-purple-100 dark:bg-purple-900 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-check text-purple-600 dark:text-purple-400"></i>
                                 </div>
                                 <div class="flex-1">
-                                    <p class="text-sm text-gray-800">Resultados actualizados para <span class="font-semibold">NFL - Semana 6</span></p>
-                                    <p class="text-xs text-gray-500">Hace 2 horas</p>
+                                    <p class="text-sm text-gray-800 dark:text-white">Resultados actualizados para <span class="font-semibold">NFL - Semana 6</span></p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400">Hace 2 horas</p>
                                 </div>
                             </div>
-                            <div class="flex items-start space-x-4">
-                                <div class="bg-red-100 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0">
-                                    <i class="fas fa-clock text-red-600"></i>
+                            <div class="flex items-start space-x-3 md:space-x-4">
+                                <div class="bg-red-100 dark:bg-red-900 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-clock text-red-600 dark:text-red-400"></i>
                                 </div>
                                 <div class="flex-1">
-                                    <p class="text-sm text-gray-800">Quiniela <span class="font-semibold">Liga MX J14</span> cerrada</p>
-                                    <p class="text-xs text-gray-500">Hace 3 horas</p>
+                                    <p class="text-sm text-gray-800 dark:text-white">Quiniela <span class="font-semibold">Liga MX J14</span> cerrada</p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400">Hace 3 horas</p>
                                 </div>
                             </div>
                         </div>

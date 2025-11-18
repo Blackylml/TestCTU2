@@ -3,21 +3,78 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log('QuinielaPro Admin Panel - Loaded');
-    
+
+    // Inicializar funcionalidad de modo oscuro
+    initializeDarkMode();
+
+    // Inicializar menú móvil
+    initializeMobileMenu();
+
     // Placeholder: Aquí se implementarán las funciones de administrador
     // - Crear quinielas
     // - Gestionar quinielas
     // - Ingresar resultados
     // - Administrar usuarios
     // - Generar reportes
-    
+
     initializeAdminPanel();
 });
+
+// Funcionalidad del modo oscuro
+function initializeDarkMode() {
+    const themeToggle = document.getElementById('themeToggle');
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', function() {
+            const html = document.documentElement;
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+            if (newTheme === 'dark') {
+                html.classList.add('dark');
+            } else {
+                html.classList.remove('dark');
+            }
+
+            localStorage.setItem('theme', newTheme);
+        });
+    }
+}
+
+// Funcionalidad del menú móvil
+function initializeMobileMenu() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+    const closeSidebar = document.getElementById('closeSidebar');
+
+    if (mobileMenuBtn && sidebar && sidebarOverlay) {
+        // Abrir menú
+        mobileMenuBtn.addEventListener('click', function() {
+            sidebar.classList.remove('-translate-x-full');
+            sidebarOverlay.classList.remove('hidden');
+        });
+
+        // Cerrar menú con botón X
+        if (closeSidebar) {
+            closeSidebar.addEventListener('click', function() {
+                sidebar.classList.add('-translate-x-full');
+                sidebarOverlay.classList.add('hidden');
+            });
+        }
+
+        // Cerrar menú con overlay
+        sidebarOverlay.addEventListener('click', function() {
+            sidebar.classList.add('-translate-x-full');
+            sidebarOverlay.classList.add('hidden');
+        });
+    }
+}
 
 function initializeAdminPanel() {
     // Simulación de datos para desarrollo
     console.log('Inicializando panel de administración...');
-    
+
     // Placeholder: Aquí se conectarán los servicios backend
     // TODO: Implementar llamadas a API de administración
 }

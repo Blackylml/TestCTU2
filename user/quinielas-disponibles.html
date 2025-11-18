@@ -4,31 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quinielas Disponibles - QuinielaPro</title>
+    <!-- Script para evitar el flash blanco - se carga ANTES que todo -->
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Transiciones suaves para el cambio de tema */
+        * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+    </style>
 </head>
-<body class="bg-gray-100 min-h-screen">
+<body class="bg-gray-100 dark:bg-gray-900 min-h-screen">
     <!-- Navigation -->
-    <nav class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-lg">
-        <div class="container mx-auto px-6 py-4">
+    <nav class="bg-gradient-to-r from-blue-600 to-indigo-700 dark:from-gray-800 dark:to-gray-900 text-white shadow-lg">
+        <div class="container mx-auto px-4 md:px-6 py-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-4">
+                    <!-- Mobile menu button -->
+                    <button id="mobileMenuBtn" class="lg:hidden text-white hover:text-blue-200 transition">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
                     <a href="../index.html" class="flex items-center space-x-2 hover:opacity-80 transition">
-                        <i class="fas fa-trophy text-2xl"></i>
-                        <span class="text-xl font-bold">QuinielaPro</span>
+                        <i class="fas fa-trophy text-xl md:text-2xl"></i>
+                        <span class="text-lg md:text-xl font-bold">QuinielaPro</span>
                     </a>
                 </div>
-                <div class="flex items-center space-x-6">
-                    <a href="#" class="hover:text-blue-200 transition">
+                <div class="flex items-center space-x-2 md:space-x-6">
+                    <!-- Dark mode toggle -->
+                    <button id="themeToggle" class="p-2 hover:bg-white hover:bg-opacity-10 rounded-lg transition">
+                        <i class="fas fa-moon dark:hidden text-lg"></i>
+                        <i class="fas fa-sun hidden dark:block text-lg"></i>
+                    </button>
+                    <a href="#" class="hidden md:flex hover:text-blue-200 dark:hover:text-blue-300 transition">
                         <i class="fas fa-user mr-2"></i>
                         <span>Mi Perfil</span>
                     </a>
-                    <a href="#" class="hover:text-blue-200 transition">
-                        <i class="fas fa-bell mr-2"></i>
-                        <span>Notificaciones</span>
-                        <span class="bg-red-500 text-xs rounded-full px-2 py-1 ml-1">3</span>
+                    <a href="#" class="hover:text-blue-200 dark:hover:text-blue-300 transition relative">
+                        <i class="fas fa-bell text-lg md:text-base"></i>
+                        <span class="hidden md:inline ml-2">Notificaciones</span>
+                        <span class="absolute -top-1 -right-1 md:static bg-red-500 text-xs rounded-full px-1.5 md:px-2 py-0.5 md:py-1 md:ml-1">3</span>
                     </a>
-                    <a href="../index.html" class="hover:text-blue-200 transition">
+                    <a href="../index.html" class="hidden md:flex hover:text-blue-200 dark:hover:text-blue-300 transition">
                         <i class="fas fa-sign-out-alt mr-2"></i>
                         <span>Salir</span>
                     </a>
@@ -37,37 +66,45 @@
         </div>
     </nav>
 
-    <div class="flex">
+    <div class="flex relative">
+        <!-- Mobile Sidebar Overlay -->
+        <div id="sidebarOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden hidden"></div>
+
         <!-- Sidebar -->
-        <aside class="w-64 bg-white shadow-lg min-h-screen">
+        <aside id="sidebar" class="fixed lg:static inset-y-0 left-0 transform -translate-x-full lg:translate-x-0 w-64 bg-white dark:bg-gray-800 shadow-lg min-h-screen z-50 transition-transform duration-300">
             <div class="p-6">
-                <div class="flex items-center space-x-3 mb-6 pb-6 border-b">
-                    <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center">
-                        <i class="fas fa-user text-blue-600 text-xl"></i>
+                <!-- Close button for mobile -->
+                <button id="closeSidebar" class="lg:hidden absolute top-4 right-4 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+
+                <div class="flex items-center space-x-3 mb-6 pb-6 border-b border-gray-200 dark:border-gray-700">
+                    <div class="bg-blue-100 dark:bg-blue-900 w-12 h-12 rounded-full flex items-center justify-center">
+                        <i class="fas fa-user text-blue-600 dark:text-blue-400 text-xl"></i>
                     </div>
                     <div>
-                        <p class="font-semibold text-gray-800">Usuario Demo</p>
-                        <p class="text-sm text-gray-500">usuario@email.com</p>
+                        <p class="font-semibold text-gray-800 dark:text-white">Usuario Demo</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">usuario@email.com</p>
                     </div>
                 </div>
                 <nav class="space-y-2">
-                    <a href="index.html" class="flex items-center space-x-3 text-gray-700 hover:bg-gray-50 px-4 py-3 rounded-lg transition">
+                    <a href="index.html" class="flex items-center space-x-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 px-4 py-3 rounded-lg transition">
                         <i class="fas fa-home"></i>
                         <span>Inicio</span>
                     </a>
-                    <a href="quinielas-disponibles.html" class="flex items-center space-x-3 bg-blue-50 text-blue-600 px-4 py-3 rounded-lg transition">
+                    <a href="quinielas-disponibles.html" class="flex items-center space-x-3 bg-blue-50 dark:bg-blue-900 text-blue-600 dark:text-blue-400 px-4 py-3 rounded-lg transition">
                         <i class="fas fa-list"></i>
                         <span class="font-medium">Quinielas Disponibles</span>
                     </a>
-                    <a href="mis-quinielas.html" class="flex items-center space-x-3 text-gray-700 hover:bg-gray-50 px-4 py-3 rounded-lg transition">
+                    <a href="mis-quinielas.html" class="flex items-center space-x-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 px-4 py-3 rounded-lg transition">
                         <i class="fas fa-file-alt"></i>
                         <span>Mis Quinielas</span>
                     </a>
-                    <a href="resultados.html" class="flex items-center space-x-3 text-gray-700 hover:bg-gray-50 px-4 py-3 rounded-lg transition">
+                    <a href="resultados.html" class="flex items-center space-x-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 px-4 py-3 rounded-lg transition">
                         <i class="fas fa-chart-line"></i>
                         <span>Resultados</span>
                     </a>
-                    <a href="historial.html" class="flex items-center space-x-3 text-gray-700 hover:bg-gray-50 px-4 py-3 rounded-lg transition">
+                    <a href="historial.html" class="flex items-center space-x-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 px-4 py-3 rounded-lg transition">
                         <i class="fas fa-history"></i>
                         <span>Historial</span>
                     </a>
@@ -76,18 +113,18 @@
         </aside>
 
         <!-- Main Content -->
-        <main class="flex-1 p-8">
-            <div class="mb-8">
-                <h1 class="text-3xl font-bold text-gray-800 mb-2">Quinielas Disponibles</h1>
-                <p class="text-gray-600">Explora y compra las quinielas activas</p>
+        <main class="flex-1 p-4 md:p-8 w-full lg:w-auto">
+            <div class="mb-6 md:mb-8">
+                <h1 class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-2">Quinielas Disponibles</h1>
+                <p class="text-gray-600 dark:text-gray-400">Explora y compra las quinielas activas</p>
             </div>
 
             <!-- Filters -->
-            <div class="bg-white rounded-xl shadow p-6 mb-8">
-                <div class="grid md:grid-cols-4 gap-4">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow dark:shadow-gray-700 p-4 md:p-6 mb-6 md:mb-8">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-3 md:gap-4">
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Deporte</label>
-                        <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Deporte</label>
+                        <select class="w-full px-3 md:px-4 py-2 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent">
                             <option>Todos</option>
                             <option>Fútbol</option>
                             <option>NFL</option>
@@ -96,8 +133,8 @@
                         </select>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Estado</label>
-                        <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Estado</label>
+                        <select class="w-full px-3 md:px-4 py-2 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent">
                             <option>Todos</option>
                             <option>Próximas</option>
                             <option>En Progreso</option>
@@ -105,8 +142,8 @@
                         </select>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Precio</label>
-                        <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Precio</label>
+                        <select class="w-full px-3 md:px-4 py-2 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent">
                             <option>Todos</option>
                             <option>$0 - $50</option>
                             <option>$50 - $100</option>
@@ -114,7 +151,7 @@
                         </select>
                     </div>
                     <div class="flex items-end">
-                        <button class="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                        <button class="w-full bg-blue-600 dark:bg-blue-700 text-white px-3 md:px-4 py-2 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition">
                             <i class="fas fa-search mr-2"></i>
                             Buscar
                         </button>
@@ -123,37 +160,37 @@
             </div>
 
             <!-- Quinielas Grid -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                 <!-- Quiniela Card 1 -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
-                    <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-6 text-white">
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg dark:shadow-gray-700 overflow-hidden transform hover:scale-105 transition duration-300">
+                    <div class="bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700 p-4 md:p-6 text-white">
                         <div class="flex items-center justify-between mb-2">
-                            <span class="text-sm font-medium">Liga MX</span>
-                            <i class="fas fa-futbol text-2xl"></i>
+                            <span class="text-xs md:text-sm font-medium">Liga MX</span>
+                            <i class="fas fa-futbol text-xl md:text-2xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-2">Jornada 15</h3>
-                        <p class="text-blue-100 text-sm">Temporada 2024</p>
+                        <h3 class="text-lg md:text-xl font-bold mb-2">Jornada 15</h3>
+                        <p class="text-blue-100 text-xs md:text-sm">Temporada 2024</p>
                     </div>
-                    <div class="p-6">
-                        <div class="space-y-3 mb-6">
-                            <div class="flex items-center justify-between text-sm">
-                                <span class="text-gray-600">Partidos:</span>
-                                <span class="font-semibold text-gray-800">9</span>
+                    <div class="p-4 md:p-6">
+                        <div class="space-y-2 md:space-y-3 mb-4 md:mb-6">
+                            <div class="flex items-center justify-between text-xs md:text-sm">
+                                <span class="text-gray-600 dark:text-gray-400">Partidos:</span>
+                                <span class="font-semibold text-gray-800 dark:text-white">9</span>
                             </div>
-                            <div class="flex items-center justify-between text-sm">
-                                <span class="text-gray-600">Premio:</span>
-                                <span class="font-semibold text-green-600">$5,000</span>
+                            <div class="flex items-center justify-between text-xs md:text-sm">
+                                <span class="text-gray-600 dark:text-gray-400">Premio:</span>
+                                <span class="font-semibold text-green-600 dark:text-green-400">$5,000</span>
                             </div>
-                            <div class="flex items-center justify-between text-sm">
-                                <span class="text-gray-600">Precio:</span>
-                                <span class="font-semibold text-gray-800">$100</span>
+                            <div class="flex items-center justify-between text-xs md:text-sm">
+                                <span class="text-gray-600 dark:text-gray-400">Precio:</span>
+                                <span class="font-semibold text-gray-800 dark:text-white">$100</span>
                             </div>
-                            <div class="flex items-center justify-between text-sm">
-                                <span class="text-gray-600">Cierra:</span>
-                                <span class="font-semibold text-red-600">20/10/24 18:00</span>
+                            <div class="flex items-center justify-between text-xs md:text-sm">
+                                <span class="text-gray-600 dark:text-gray-400">Cierra:</span>
+                                <span class="font-semibold text-red-600 dark:text-red-400">20/10/24 18:00</span>
                             </div>
                         </div>
-                        <button class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
+                        <button class="w-full bg-blue-600 dark:bg-blue-700 text-white py-2 md:py-3 rounded-lg font-semibold hover:bg-blue-700 dark:hover:bg-blue-600 transition text-sm md:text-base">
                             <i class="fas fa-shopping-cart mr-2"></i>
                             Comprar Quiniela
                         </button>
@@ -161,35 +198,35 @@
                 </div>
 
                 <!-- Quiniela Card 2 -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
-                    <div class="bg-gradient-to-r from-green-500 to-green-600 p-6 text-white">
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg dark:shadow-gray-700 overflow-hidden transform hover:scale-105 transition duration-300">
+                    <div class="bg-gradient-to-r from-green-500 to-green-600 dark:from-green-600 dark:to-green-700 p-4 md:p-6 text-white">
                         <div class="flex items-center justify-between mb-2">
-                            <span class="text-sm font-medium">NFL</span>
-                            <i class="fas fa-football-ball text-2xl"></i>
+                            <span class="text-xs md:text-sm font-medium">NFL</span>
+                            <i class="fas fa-football-ball text-xl md:text-2xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-2">Semana 8</h3>
-                        <p class="text-green-100 text-sm">Temporada 2024</p>
+                        <h3 class="text-lg md:text-xl font-bold mb-2">Semana 8</h3>
+                        <p class="text-green-100 text-xs md:text-sm">Temporada 2024</p>
                     </div>
-                    <div class="p-6">
-                        <div class="space-y-3 mb-6">
-                            <div class="flex items-center justify-between text-sm">
-                                <span class="text-gray-600">Partidos:</span>
-                                <span class="font-semibold text-gray-800">16</span>
+                    <div class="p-4 md:p-6">
+                        <div class="space-y-2 md:space-y-3 mb-4 md:mb-6">
+                            <div class="flex items-center justify-between text-xs md:text-sm">
+                                <span class="text-gray-600 dark:text-gray-400">Partidos:</span>
+                                <span class="font-semibold text-gray-800 dark:text-white">16</span>
                             </div>
-                            <div class="flex items-center justify-between text-sm">
-                                <span class="text-gray-600">Premio:</span>
-                                <span class="font-semibold text-green-600">$10,000</span>
+                            <div class="flex items-center justify-between text-xs md:text-sm">
+                                <span class="text-gray-600 dark:text-gray-400">Premio:</span>
+                                <span class="font-semibold text-green-600 dark:text-green-400">$10,000</span>
                             </div>
-                            <div class="flex items-center justify-between text-sm">
-                                <span class="text-gray-600">Precio:</span>
-                                <span class="font-semibold text-gray-800">$150</span>
+                            <div class="flex items-center justify-between text-xs md:text-sm">
+                                <span class="text-gray-600 dark:text-gray-400">Precio:</span>
+                                <span class="font-semibold text-gray-800 dark:text-white">$150</span>
                             </div>
-                            <div class="flex items-center justify-between text-sm">
-                                <span class="text-gray-600">Cierra:</span>
-                                <span class="font-semibold text-red-600">22/10/24 12:00</span>
+                            <div class="flex items-center justify-between text-xs md:text-sm">
+                                <span class="text-gray-600 dark:text-gray-400">Cierra:</span>
+                                <span class="font-semibold text-red-600 dark:text-red-400">22/10/24 12:00</span>
                             </div>
                         </div>
-                        <button class="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition">
+                        <button class="w-full bg-green-600 dark:bg-green-700 text-white py-2 md:py-3 rounded-lg font-semibold hover:bg-green-700 dark:hover:bg-green-600 transition text-sm md:text-base">
                             <i class="fas fa-shopping-cart mr-2"></i>
                             Comprar Quiniela
                         </button>
@@ -197,35 +234,35 @@
                 </div>
 
                 <!-- Quiniela Card 3 -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
-                    <div class="bg-gradient-to-r from-purple-500 to-purple-600 p-6 text-white">
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg dark:shadow-gray-700 overflow-hidden transform hover:scale-105 transition duration-300">
+                    <div class="bg-gradient-to-r from-purple-500 to-purple-600 dark:from-purple-600 dark:to-purple-700 p-4 md:p-6 text-white">
                         <div class="flex items-center justify-between mb-2">
-                            <span class="text-sm font-medium">NBA</span>
-                            <i class="fas fa-basketball-ball text-2xl"></i>
+                            <span class="text-xs md:text-sm font-medium">NBA</span>
+                            <i class="fas fa-basketball-ball text-xl md:text-2xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-2">Jornada 3</h3>
-                        <p class="text-purple-100 text-sm">Temporada 2024-2025</p>
+                        <h3 class="text-lg md:text-xl font-bold mb-2">Jornada 3</h3>
+                        <p class="text-purple-100 text-xs md:text-sm">Temporada 2024-2025</p>
                     </div>
-                    <div class="p-6">
-                        <div class="space-y-3 mb-6">
-                            <div class="flex items-center justify-between text-sm">
-                                <span class="text-gray-600">Partidos:</span>
-                                <span class="font-semibold text-gray-800">12</span>
+                    <div class="p-4 md:p-6">
+                        <div class="space-y-2 md:space-y-3 mb-4 md:mb-6">
+                            <div class="flex items-center justify-between text-xs md:text-sm">
+                                <span class="text-gray-600 dark:text-gray-400">Partidos:</span>
+                                <span class="font-semibold text-gray-800 dark:text-white">12</span>
                             </div>
-                            <div class="flex items-center justify-between text-sm">
-                                <span class="text-gray-600">Premio:</span>
-                                <span class="font-semibold text-green-600">$7,500</span>
+                            <div class="flex items-center justify-between text-xs md:text-sm">
+                                <span class="text-gray-600 dark:text-gray-400">Premio:</span>
+                                <span class="font-semibold text-green-600 dark:text-green-400">$7,500</span>
                             </div>
-                            <div class="flex items-center justify-between text-sm">
-                                <span class="text-gray-600">Precio:</span>
-                                <span class="font-semibold text-gray-800">$120</span>
+                            <div class="flex items-center justify-between text-xs md:text-sm">
+                                <span class="text-gray-600 dark:text-gray-400">Precio:</span>
+                                <span class="font-semibold text-gray-800 dark:text-white">$120</span>
                             </div>
-                            <div class="flex items-center justify-between text-sm">
-                                <span class="text-gray-600">Cierra:</span>
-                                <span class="font-semibold text-red-600">23/10/24 19:00</span>
+                            <div class="flex items-center justify-between text-xs md:text-sm">
+                                <span class="text-gray-600 dark:text-gray-400">Cierra:</span>
+                                <span class="font-semibold text-red-600 dark:text-red-400">23/10/24 19:00</span>
                             </div>
                         </div>
-                        <button class="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition">
+                        <button class="w-full bg-purple-600 dark:bg-purple-700 text-white py-2 md:py-3 rounded-lg font-semibold hover:bg-purple-700 dark:hover:bg-purple-600 transition text-sm md:text-base">
                             <i class="fas fa-shopping-cart mr-2"></i>
                             Comprar Quiniela
                         </button>
@@ -233,35 +270,35 @@
                 </div>
 
                 <!-- Quiniela Card 4 -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
-                    <div class="bg-gradient-to-r from-red-500 to-red-600 p-6 text-white">
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg dark:shadow-gray-700 overflow-hidden transform hover:scale-105 transition duration-300">
+                    <div class="bg-gradient-to-r from-red-500 to-red-600 dark:from-red-600 dark:to-red-700 p-4 md:p-6 text-white">
                         <div class="flex items-center justify-between mb-2">
-                            <span class="text-sm font-medium">Champions League</span>
-                            <i class="fas fa-futbol text-2xl"></i>
+                            <span class="text-xs md:text-sm font-medium">Champions League</span>
+                            <i class="fas fa-futbol text-xl md:text-2xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-2">Fase de Grupos</h3>
-                        <p class="text-red-100 text-sm">Jornada 3</p>
+                        <h3 class="text-lg md:text-xl font-bold mb-2">Fase de Grupos</h3>
+                        <p class="text-red-100 text-xs md:text-sm">Jornada 3</p>
                     </div>
-                    <div class="p-6">
-                        <div class="space-y-3 mb-6">
-                            <div class="flex items-center justify-between text-sm">
-                                <span class="text-gray-600">Partidos:</span>
-                                <span class="font-semibold text-gray-800">8</span>
+                    <div class="p-4 md:p-6">
+                        <div class="space-y-2 md:space-y-3 mb-4 md:mb-6">
+                            <div class="flex items-center justify-between text-xs md:text-sm">
+                                <span class="text-gray-600 dark:text-gray-400">Partidos:</span>
+                                <span class="font-semibold text-gray-800 dark:text-white">8</span>
                             </div>
-                            <div class="flex items-center justify-between text-sm">
-                                <span class="text-gray-600">Premio:</span>
-                                <span class="font-semibold text-green-600">$15,000</span>
+                            <div class="flex items-center justify-between text-xs md:text-sm">
+                                <span class="text-gray-600 dark:text-gray-400">Premio:</span>
+                                <span class="font-semibold text-green-600 dark:text-green-400">$15,000</span>
                             </div>
-                            <div class="flex items-center justify-between text-sm">
-                                <span class="text-gray-600">Precio:</span>
-                                <span class="font-semibold text-gray-800">$200</span>
+                            <div class="flex items-center justify-between text-xs md:text-sm">
+                                <span class="text-gray-600 dark:text-gray-400">Precio:</span>
+                                <span class="font-semibold text-gray-800 dark:text-white">$200</span>
                             </div>
-                            <div class="flex items-center justify-between text-sm">
-                                <span class="text-gray-600">Cierra:</span>
-                                <span class="font-semibold text-red-600">24/10/24 14:00</span>
+                            <div class="flex items-center justify-between text-xs md:text-sm">
+                                <span class="text-gray-600 dark:text-gray-400">Cierra:</span>
+                                <span class="font-semibold text-red-600 dark:text-red-400">24/10/24 14:00</span>
                             </div>
                         </div>
-                        <button class="w-full bg-red-600 text-white py-3 rounded-lg font-semibold hover:bg-red-700 transition">
+                        <button class="w-full bg-red-600 dark:bg-red-700 text-white py-2 md:py-3 rounded-lg font-semibold hover:bg-red-700 dark:hover:bg-red-600 transition text-sm md:text-base">
                             <i class="fas fa-shopping-cart mr-2"></i>
                             Comprar Quiniela
                         </button>
@@ -269,35 +306,35 @@
                 </div>
 
                 <!-- Quiniela Card 5 -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
-                    <div class="bg-gradient-to-r from-yellow-500 to-yellow-600 p-6 text-white">
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg dark:shadow-gray-700 overflow-hidden transform hover:scale-105 transition duration-300">
+                    <div class="bg-gradient-to-r from-yellow-500 to-yellow-600 dark:from-yellow-600 dark:to-yellow-700 p-4 md:p-6 text-white">
                         <div class="flex items-center justify-between mb-2">
-                            <span class="text-sm font-medium">MLB</span>
-                            <i class="fas fa-baseball-ball text-2xl"></i>
+                            <span class="text-xs md:text-sm font-medium">MLB</span>
+                            <i class="fas fa-baseball-ball text-xl md:text-2xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-2">World Series</h3>
-                        <p class="text-yellow-100 text-sm">Playoffs 2024</p>
+                        <h3 class="text-lg md:text-xl font-bold mb-2">World Series</h3>
+                        <p class="text-yellow-100 text-xs md:text-sm">Playoffs 2024</p>
                     </div>
-                    <div class="p-6">
-                        <div class="space-y-3 mb-6">
-                            <div class="flex items-center justify-between text-sm">
-                                <span class="text-gray-600">Partidos:</span>
-                                <span class="font-semibold text-gray-800">7</span>
+                    <div class="p-4 md:p-6">
+                        <div class="space-y-2 md:space-y-3 mb-4 md:mb-6">
+                            <div class="flex items-center justify-between text-xs md:text-sm">
+                                <span class="text-gray-600 dark:text-gray-400">Partidos:</span>
+                                <span class="font-semibold text-gray-800 dark:text-white">7</span>
                             </div>
-                            <div class="flex items-center justify-between text-sm">
-                                <span class="text-gray-600">Premio:</span>
-                                <span class="font-semibold text-green-600">$12,000</span>
+                            <div class="flex items-center justify-between text-xs md:text-sm">
+                                <span class="text-gray-600 dark:text-gray-400">Premio:</span>
+                                <span class="font-semibold text-green-600 dark:text-green-400">$12,000</span>
                             </div>
-                            <div class="flex items-center justify-between text-sm">
-                                <span class="text-gray-600">Precio:</span>
-                                <span class="font-semibold text-gray-800">$180</span>
+                            <div class="flex items-center justify-between text-xs md:text-sm">
+                                <span class="text-gray-600 dark:text-gray-400">Precio:</span>
+                                <span class="font-semibold text-gray-800 dark:text-white">$180</span>
                             </div>
-                            <div class="flex items-center justify-between text-sm">
-                                <span class="text-gray-600">Cierra:</span>
-                                <span class="font-semibold text-red-600">25/10/24 20:00</span>
+                            <div class="flex items-center justify-between text-xs md:text-sm">
+                                <span class="text-gray-600 dark:text-gray-400">Cierra:</span>
+                                <span class="font-semibold text-red-600 dark:text-red-400">25/10/24 20:00</span>
                             </div>
                         </div>
-                        <button class="w-full bg-yellow-600 text-white py-3 rounded-lg font-semibold hover:bg-yellow-700 transition">
+                        <button class="w-full bg-yellow-600 dark:bg-yellow-700 text-white py-2 md:py-3 rounded-lg font-semibold hover:bg-yellow-700 dark:hover:bg-yellow-600 transition text-sm md:text-base">
                             <i class="fas fa-shopping-cart mr-2"></i>
                             Comprar Quiniela
                         </button>
@@ -305,35 +342,35 @@
                 </div>
 
                 <!-- Quiniela Card 6 -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
-                    <div class="bg-gradient-to-r from-indigo-500 to-indigo-600 p-6 text-white">
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg dark:shadow-gray-700 overflow-hidden transform hover:scale-105 transition duration-300">
+                    <div class="bg-gradient-to-r from-indigo-500 to-indigo-600 dark:from-indigo-600 dark:to-indigo-700 p-4 md:p-6 text-white">
                         <div class="flex items-center justify-between mb-2">
-                            <span class="text-sm font-medium">La Liga</span>
-                            <i class="fas fa-futbol text-2xl"></i>
+                            <span class="text-xs md:text-sm font-medium">La Liga</span>
+                            <i class="fas fa-futbol text-xl md:text-2xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-2">Jornada 10</h3>
-                        <p class="text-indigo-100 text-sm">Temporada 2024-2025</p>
+                        <h3 class="text-lg md:text-xl font-bold mb-2">Jornada 10</h3>
+                        <p class="text-indigo-100 text-xs md:text-sm">Temporada 2024-2025</p>
                     </div>
-                    <div class="p-6">
-                        <div class="space-y-3 mb-6">
-                            <div class="flex items-center justify-between text-sm">
-                                <span class="text-gray-600">Partidos:</span>
-                                <span class="font-semibold text-gray-800">10</span>
+                    <div class="p-4 md:p-6">
+                        <div class="space-y-2 md:space-y-3 mb-4 md:mb-6">
+                            <div class="flex items-center justify-between text-xs md:text-sm">
+                                <span class="text-gray-600 dark:text-gray-400">Partidos:</span>
+                                <span class="font-semibold text-gray-800 dark:text-white">10</span>
                             </div>
-                            <div class="flex items-center justify-between text-sm">
-                                <span class="text-gray-600">Premio:</span>
-                                <span class="font-semibold text-green-600">$8,000</span>
+                            <div class="flex items-center justify-between text-xs md:text-sm">
+                                <span class="text-gray-600 dark:text-gray-400">Premio:</span>
+                                <span class="font-semibold text-green-600 dark:text-green-400">$8,000</span>
                             </div>
-                            <div class="flex items-center justify-between text-sm">
-                                <span class="text-gray-600">Precio:</span>
-                                <span class="font-semibold text-gray-800">$130</span>
+                            <div class="flex items-center justify-between text-xs md:text-sm">
+                                <span class="text-gray-600 dark:text-gray-400">Precio:</span>
+                                <span class="font-semibold text-gray-800 dark:text-white">$130</span>
                             </div>
-                            <div class="flex items-center justify-between text-sm">
-                                <span class="text-gray-600">Cierra:</span>
-                                <span class="font-semibold text-red-600">26/10/24 15:00</span>
+                            <div class="flex items-center justify-between text-xs md:text-sm">
+                                <span class="text-gray-600 dark:text-gray-400">Cierra:</span>
+                                <span class="font-semibold text-red-600 dark:text-red-400">26/10/24 15:00</span>
                             </div>
                         </div>
-                        <button class="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition">
+                        <button class="w-full bg-indigo-600 dark:bg-indigo-700 text-white py-2 md:py-3 rounded-lg font-semibold hover:bg-indigo-700 dark:hover:bg-indigo-600 transition text-sm md:text-base">
                             <i class="fas fa-shopping-cart mr-2"></i>
                             Comprar Quiniela
                         </button>
