@@ -162,8 +162,8 @@ a:hover {
     font-size: 1.2rem;
   }
 
-  /* Sidebar móvil - MEJORADO */
-  .mobile-sidebar {
+  /* Sidebar responsive */
+  aside {
     position: fixed !important;
     top: 0;
     left: -100% !important;
@@ -177,8 +177,13 @@ a:hover {
     box-shadow: 2px 0 10px var(--shadow);
   }
 
-  .mobile-sidebar.active {
+  aside.active {
     left: 0 !important;
+  }
+
+  /* Clase mobile-sidebar (agregada por JS) */
+  .mobile-sidebar {
+    /* Estilos ya aplicados arriba a aside */
   }
 
   /* Overlay para el sidebar móvil */
@@ -203,8 +208,8 @@ a:hover {
   /* Botón hamburguesa */
   .hamburger-btn {
     position: fixed;
-    top: 20px;
-    left: 20px;
+    top: 75px; /* Debajo de la navegación */
+    left: 15px;
     z-index: 1001;
     background: var(--color-primary);
     border: none;
@@ -331,7 +336,30 @@ a:hover {
   }
 }
 
-/* Estilos para tablets */
+/* Estilos para tablets y desktop */
+@media (min-width: 768px) {
+  /* Resetear sidebar para desktop */
+  aside {
+    position: static !important;
+    left: auto !important;
+    width: 16rem !important; /* w-64 */
+    max-width: none !important;
+    height: auto !important;
+    min-height: 100vh;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1) !important;
+  }
+
+  /* Ocultar botón hamburguesa en desktop */
+  .hamburger-btn {
+    display: none !important;
+  }
+
+  /* Ocultar overlay en desktop */
+  .sidebar-overlay {
+    display: none !important;
+  }
+}
+
 @media (min-width: 769px) and (max-width: 1024px) {
   .dark-mode-toggle {
     width: 48px;
