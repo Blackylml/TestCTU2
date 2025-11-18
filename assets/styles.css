@@ -1,0 +1,149 @@
+/* Paleta de colores personalizada */
+:root {
+  /* Modo claro */
+  --color-primary: #CF0A0A;        /* Rojo */
+  --color-secondary: #DC5F00;      /* Naranja */
+  --color-dark: #000000;           /* Negro */
+  --color-light: #EEEEEE;          /* Gris claro */
+
+  /* Variables de tema claro */
+  --bg-primary: #EEEEEE;
+  --bg-secondary: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --text-primary: #000000;
+  --text-secondary: #333333;
+  --text-muted: #666666;
+  --border-color: #DDDDDD;
+  --shadow: rgba(0, 0, 0, 0.1);
+}
+
+/* Modo oscuro */
+.dark-mode {
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #000000;
+  --bg-card: #2a2a2a;
+  --text-primary: #EEEEEE;
+  --text-secondary: #DDDDDD;
+  --text-muted: #AAAAAA;
+  --border-color: #404040;
+  --shadow: rgba(207, 10, 10, 0.2);
+}
+
+/* Estilos globales */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Toggle de modo oscuro */
+.dark-mode-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  background: var(--color-primary);
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 6px var(--shadow);
+  transition: all 0.3s ease;
+}
+
+.dark-mode-toggle:hover {
+  background: var(--color-secondary);
+  transform: scale(1.1);
+}
+
+.dark-mode-toggle i {
+  color: white;
+  font-size: 1.5rem;
+}
+
+/* Estilos para cards */
+.card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 10px 20px var(--shadow);
+}
+
+/* Botones principales */
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+}
+
+/* Header */
+header {
+  background-color: var(--bg-secondary);
+  border-bottom: 2px solid var(--color-primary);
+  transition: background-color 0.3s ease;
+}
+
+/* Footer */
+footer {
+  background-color: var(--color-dark);
+  color: var(--color-light);
+}
+
+.dark-mode footer {
+  background-color: #0a0a0a;
+}
+
+/* Enlaces */
+a {
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--color-primary) !important;
+}
+
+/* Íconos de características */
+.feature-icon {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: white;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Utilidades personalizadas para Tailwind */
+.bg-gradient-custom {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+}
+
+.text-gradient-custom {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
