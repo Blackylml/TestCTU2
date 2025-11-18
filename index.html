@@ -6,20 +6,35 @@
     <title>Quinielas - Sistema de Gestión</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#CF0A0A',
+                        secondary: '#DC5F00',
+                        dark: '#000000',
+                        light: '#EEEEEE',
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+<body class="min-h-screen">
     <!-- Header -->
-    <header class="bg-white shadow-lg">
+    <header class="shadow-lg">
         <nav class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-2">
-                    <i class="fas fa-trophy text-3xl text-indigo-600"></i>
-                    <h1 class="text-2xl font-bold text-gray-800">QuinielaPro</h1>
+                    <i class="fas fa-trophy text-3xl text-primary"></i>
+                    <h1 class="text-2xl font-bold">QuinielaPro</h1>
                 </div>
                 <div class="flex space-x-4">
-                    <a href="#" class="text-gray-600 hover:text-indigo-600 transition">Inicio</a>
-                    <a href="#" class="text-gray-600 hover:text-indigo-600 transition">Acerca de</a>
-                    <a href="#" class="text-gray-600 hover:text-indigo-600 transition">Contacto</a>
+                    <a href="#" class="transition opacity-70 hover:opacity-100">Inicio</a>
+                    <a href="#" class="transition opacity-70 hover:opacity-100">Acerca de</a>
+                    <a href="#" class="transition opacity-70 hover:opacity-100">Contacto</a>
                 </div>
             </div>
         </nav>
@@ -28,73 +43,73 @@
     <!-- Main Content -->
     <main class="container mx-auto px-6 py-12">
         <!-- Hero Section -->
-        <div class="text-center mb-16">
-            <h2 class="text-5xl font-bold text-gray-800 mb-4">Bienvenido a QuinielaPro</h2>
-            <p class="text-xl text-gray-600 mb-8">La mejor plataforma para gestionar y participar en quinielas deportivas</p>
+        <div class="text-center mb-16 fade-in">
+            <h2 class="text-5xl font-bold mb-4">Bienvenido a QuinielaPro</h2>
+            <p class="text-xl opacity-80 mb-8">La mejor plataforma para gestionar y participar en quinielas deportivas</p>
         </div>
 
         <!-- Cards Section -->
         <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <!-- Usuario Card -->
-            <div class="bg-white rounded-2xl shadow-xl p-8 transform hover:scale-105 transition duration-300">
+            <div class="card rounded-2xl shadow-xl p-8 transform hover:scale-105 transition duration-300">
                 <div class="text-center mb-6">
-                    <div class="bg-gradient-to-br from-blue-500 to-indigo-600 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                    <div class="bg-gradient-custom w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
                         <i class="fas fa-user text-4xl text-white"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-2">Usuario</h3>
-                    <p class="text-gray-600">Compra, llena y consulta tus quinielas</p>
+                    <h3 class="text-2xl font-bold mb-2">Usuario</h3>
+                    <p class="opacity-75">Compra, llena y consulta tus quinielas</p>
                 </div>
                 <ul class="space-y-3 mb-6">
-                    <li class="flex items-center text-gray-700">
-                        <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                    <li class="flex items-center">
+                        <i class="fas fa-check-circle text-primary mr-3"></i>
                         Ver quinielas disponibles
                     </li>
-                    <li class="flex items-center text-gray-700">
-                        <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                    <li class="flex items-center">
+                        <i class="fas fa-check-circle text-primary mr-3"></i>
                         Comprar y llenar quinielas
                     </li>
-                    <li class="flex items-center text-gray-700">
-                        <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                    <li class="flex items-center">
+                        <i class="fas fa-check-circle text-primary mr-3"></i>
                         Consultar resultados
                     </li>
-                    <li class="flex items-center text-gray-700">
-                        <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                    <li class="flex items-center">
+                        <i class="fas fa-check-circle text-primary mr-3"></i>
                         Ver mis quinielas
                     </li>
                 </ul>
-                <a href="user/index.html" class="block w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-center py-3 rounded-lg font-semibold hover:from-blue-600 hover:to-indigo-700 transition shadow-lg">
+                <a href="user/index.html" class="btn-primary block w-full text-white text-center py-3 rounded-lg font-semibold shadow-lg">
                     Acceder como Usuario
                 </a>
             </div>
 
             <!-- Administrador Card -->
-            <div class="bg-white rounded-2xl shadow-xl p-8 transform hover:scale-105 transition duration-300">
+            <div class="card rounded-2xl shadow-xl p-8 transform hover:scale-105 transition duration-300">
                 <div class="text-center mb-6">
-                    <div class="bg-gradient-to-br from-purple-500 to-pink-600 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                    <div class="bg-gradient-custom w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
                         <i class="fas fa-user-shield text-4xl text-white"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-2">Administrador</h3>
-                    <p class="text-gray-600">Crea y gestiona quinielas</p>
+                    <h3 class="text-2xl font-bold mb-2">Administrador</h3>
+                    <p class="opacity-75">Crea y gestiona quinielas</p>
                 </div>
                 <ul class="space-y-3 mb-6">
-                    <li class="flex items-center text-gray-700">
-                        <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                    <li class="flex items-center">
+                        <i class="fas fa-check-circle text-secondary mr-3"></i>
                         Crear nuevas quinielas
                     </li>
-                    <li class="flex items-center text-gray-700">
-                        <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                    <li class="flex items-center">
+                        <i class="fas fa-check-circle text-secondary mr-3"></i>
                         Gestionar partidos
                     </li>
-                    <li class="flex items-center text-gray-700">
-                        <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                    <li class="flex items-center">
+                        <i class="fas fa-check-circle text-secondary mr-3"></i>
                         Ingresar resultados
                     </li>
-                    <li class="flex items-center text-gray-700">
-                        <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                    <li class="flex items-center">
+                        <i class="fas fa-check-circle text-secondary mr-3"></i>
                         Ver estadísticas
                     </li>
                 </ul>
-                <a href="admin/index.html" class="block w-full bg-gradient-to-r from-purple-500 to-pink-600 text-white text-center py-3 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-700 transition shadow-lg">
+                <a href="admin/index.html" class="btn-primary block w-full text-white text-center py-3 rounded-lg font-semibold shadow-lg">
                     Acceder como Administrador
                 </a>
             </div>
@@ -103,41 +118,44 @@
         <!-- Features Section -->
         <div class="mt-20 grid md:grid-cols-3 gap-8">
             <div class="text-center">
-                <div class="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                    <i class="fas fa-shield-alt text-2xl text-indigo-600"></i>
+                <div class="card w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                    <i class="fas fa-shield-alt text-2xl text-primary"></i>
                 </div>
-                <h4 class="text-lg font-semibold text-gray-800 mb-2">Seguro y Confiable</h4>
-                <p class="text-gray-600">Tus datos y transacciones están protegidos</p>
+                <h4 class="text-lg font-semibold mb-2">Seguro y Confiable</h4>
+                <p class="opacity-75">Tus datos y transacciones están protegidos</p>
             </div>
             <div class="text-center">
-                <div class="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                    <i class="fas fa-clock text-2xl text-indigo-600"></i>
+                <div class="card w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                    <i class="fas fa-clock text-2xl text-secondary"></i>
                 </div>
-                <h4 class="text-lg font-semibold text-gray-800 mb-2">Resultados en Tiempo Real</h4>
-                <p class="text-gray-600">Consulta los resultados al instante</p>
+                <h4 class="text-lg font-semibold mb-2">Resultados en Tiempo Real</h4>
+                <p class="opacity-75">Consulta los resultados al instante</p>
             </div>
             <div class="text-center">
-                <div class="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                    <i class="fas fa-mobile-alt text-2xl text-indigo-600"></i>
+                <div class="card w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                    <i class="fas fa-mobile-alt text-2xl text-primary"></i>
                 </div>
-                <h4 class="text-lg font-semibold text-gray-800 mb-2">Diseño Responsivo</h4>
-                <p class="text-gray-600">Accede desde cualquier dispositivo</p>
+                <h4 class="text-lg font-semibold mb-2">Diseño Responsivo</h4>
+                <p class="opacity-75">Accede desde cualquier dispositivo</p>
             </div>
         </div>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white mt-20">
+    <footer class="mt-20">
         <div class="container mx-auto px-6 py-8">
             <div class="text-center">
                 <p>&copy; 2024 QuinielaPro. Todos los derechos reservados.</p>
                 <div class="mt-4 space-x-4">
-                    <a href="#" class="text-gray-400 hover:text-white transition">Términos y Condiciones</a>
-                    <a href="#" class="text-gray-400 hover:text-white transition">Política de Privacidad</a>
-                    <a href="#" class="text-gray-400 hover:text-white transition">Soporte</a>
+                    <a href="#" class="opacity-70 hover:opacity-100 transition">Términos y Condiciones</a>
+                    <a href="#" class="opacity-70 hover:opacity-100 transition">Política de Privacidad</a>
+                    <a href="#" class="opacity-70 hover:opacity-100 transition">Soporte</a>
                 </div>
             </div>
         </div>
     </footer>
+
+    <!-- Dark Mode Script -->
+    <script src="assets/js/dark-mode.js"></script>
 </body>
 </html>
