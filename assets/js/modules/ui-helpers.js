@@ -17,7 +17,8 @@ const UIHelpers = {
         if (!container) {
             container = document.createElement('div');
             container.id = 'notifications-container';
-            container.className = 'fixed top-4 right-4 z-50 space-y-2';
+            container.className = 'fixed top-4 right-4 space-y-2';
+            container.style.zIndex = '1030'; /* Jerarquía: por encima del navbar (1020) */
             document.body.appendChild(container);
         }
 
@@ -70,7 +71,8 @@ const UIHelpers = {
     mostrarConfirmacion(titulo, mensaje, onConfirm, onCancel = null) {
         // Crear overlay
         const overlay = document.createElement('div');
-        overlay.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center';
+        overlay.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center';
+        overlay.style.zIndex = '1040'; /* Jerarquía: por encima de navbar (1020) y toasts (1030) */
         overlay.id = 'modal-overlay';
 
         // Crear modal
@@ -126,7 +128,8 @@ const UIHelpers = {
 
         const loader = document.createElement('div');
         loader.id = 'global-loader';
-        loader.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center';
+        loader.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center';
+        loader.style.zIndex = '1050'; /* Jerarquía: máxima prioridad, por encima de todo */
 
         loader.innerHTML = `
             <div class="bg-white dark:bg-gray-800 rounded-lg p-6 flex flex-col items-center gap-4">
