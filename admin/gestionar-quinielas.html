@@ -81,48 +81,91 @@
     <div class="flex">
         <!-- Sidebar -->
         <aside class="card shadow-lg min-h-screen flex flex-col">
-            <div class="p-6">
-                <div class="flex items-center space-x-3 mb-6 pb-6 border-b">
-                    <div class="bg-purple-100 w-12 h-12 rounded-full flex items-center justify-center">
-                        <i class="fas fa-user-shield text-purple-600 text-xl"></i>
-                    </div>
-                    <div>
-                        <p class="font-semibold text-gray-800">Admin</p>
-                        <p class="text-sm text-gray-500">Administrador</p>
+            <div class="p-5 md:p-6">
+                <!-- Admin Profile Section -->
+                <div class="sidebar-profile">
+                    <div class="flex items-center space-x-3">
+                        <div class="sidebar-profile-avatar w-14 h-14 rounded-full flex items-center justify-center bg-gradient-custom shadow-lg">
+                            <i class="fas fa-user-shield text-white text-xl"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="font-bold text-base truncate">Admin</p>
+                            <p class="text-xs opacity-70 truncate">admin@quinielapro.com</p>
+                            <span class="inline-block mt-1 px-2 py-0.5 text-xs font-semibold bg-gradient-custom text-white rounded-full">
+                                Administrador
+                            </span>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Divider -->
+                <div class="sidebar-divider"></div>
+
+                <!-- Main Navigation -->
                 <nav class="space-y-2">
-                    <a href="index.html" class="flex items-center space-x-3 text-gray-700 hover:bg-gray-50 px-4 py-3 rounded-lg transition">
-                        <i class="fas fa-home"></i>
-                        <span>Dashboard</span>
+                    <a href="index.html" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg group">
+                        <i class="fas fa-home text-lg w-5 opacity-70 group-hover:opacity-100"></i>
+                        <span class="font-medium">Dashboard</span>
                     </a>
-                    <a href="crear-quiniela.html" class="flex items-center space-x-3 text-gray-700 hover:bg-gray-50 px-4 py-3 rounded-lg transition">
-                        <i class="fas fa-plus-circle"></i>
-                        <span>Crear Quiniela</span>
+                    <a href="crear-quiniela.html" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg group">
+                        <i class="fas fa-plus-circle text-lg w-5 opacity-70 group-hover:opacity-100"></i>
+                        <span class="font-medium">Crear Quiniela</span>
                     </a>
-                    <a href="gestionar-quinielas.html" class="flex items-center space-x-3 bg-purple-50 text-purple-600 px-4 py-3 rounded-lg transition">
-                        <i class="fas fa-list"></i>
+                    <a href="gestionar-quinielas.html" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg bg-gradient-custom text-white">
+                        <i class="fas fa-list text-lg w-5"></i>
                         <span class="font-medium">Gestionar Quinielas</span>
+                        <span class="ml-auto text-xs px-2 py-0.5 bg-primary bg-opacity-10 text-primary rounded-full font-semibold">
+                            12
+                        </span>
                     </a>
-                    <a href="ingresar-resultados.html" class="flex items-center space-x-3 text-gray-700 hover:bg-gray-50 px-4 py-3 rounded-lg transition">
-                        <i class="fas fa-check-square"></i>
-                        <span>Ingresar Resultados</span>
+                    <a href="ingresar-resultados.html" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg group">
+                        <i class="fas fa-check-square text-lg w-5 opacity-70 group-hover:opacity-100"></i>
+                        <span class="font-medium">Ingresar Resultados</span>
+                        <span class="ml-auto text-xs px-2 py-0.5 bg-secondary bg-opacity-10 text-secondary rounded-full font-semibold">
+                            3
+                        </span>
                     </a>
-                    <a href="usuarios.html" class="flex items-center space-x-3 text-gray-700 hover:bg-gray-50 px-4 py-3 rounded-lg transition">
-                        <i class="fas fa-users"></i>
-                        <span>Usuarios</span>
+                    <a href="usuarios.html" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg group">
+                        <i class="fas fa-users text-lg w-5 opacity-70 group-hover:opacity-100"></i>
+                        <span class="font-medium">Usuarios</span>
                     </a>
-                    <a href="reportes.html" class="flex items-center space-x-3 text-gray-700 hover:bg-gray-50 px-4 py-3 rounded-lg transition">
-                        <i class="fas fa-chart-bar"></i>
-                        <span>Reportes</span>
+                    <a href="reportes.html" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg group">
+                        <i class="fas fa-chart-bar text-lg w-5 opacity-70 group-hover:opacity-100"></i>
+                        <span class="font-medium">Reportes</span>
                     </a>
                 </nav>
+
+                <!-- Divider -->
+                <div class="sidebar-divider"></div>
+
+                <!-- Quick Stats -->
+                <div class="space-y-3">
+                    <p class="sidebar-section-title">Panel de Control</p>
+                    <div class="flex items-center justify-between px-3 py-2 rounded-lg" style="background: var(--bg-primary);">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 rounded-lg bg-gradient-custom flex items-center justify-center">
+                                <i class="fas fa-file-alt text-white text-sm"></i>
+                            </div>
+                            <span class="text-sm font-medium">Activas</span>
+                        </div>
+                        <span class="text-sm font-bold text-gradient-custom">12</span>
+                    </div>
+                    <div class="flex items-center justify-between px-3 py-2 rounded-lg" style="background: var(--bg-primary);">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 rounded-lg bg-gradient-custom flex items-center justify-center">
+                                <i class="fas fa-users text-white text-sm"></i>
+                            </div>
+                            <span class="text-sm font-medium">Usuarios</span>
+                        </div>
+                        <span class="text-sm font-bold text-gradient-custom">1,248</span>
+                    </div>
+                </div>
             </div>
 
             <!-- Sidebar Footer -->
             <div class="mt-auto p-5 md:p-6 border-t" style="border-color: var(--border-color)">
                 <!-- Dark Mode Toggle -->
-                <button class="dark-mode-toggle-sidebar w-full flex items-center justify-between px-4 py-3 rounded-lg hover:bg-opacity-10 hover:bg-primary transition group">
+                <button class="dark-mode-toggle-sidebar w-full flex items-center justify-between px-4 py-3 rounded-lg">
                     <div class="flex items-center space-x-3">
                         <i class="fas fa-moon text-lg w-5"></i>
                         <span class="font-medium">Modo Oscuro</span>

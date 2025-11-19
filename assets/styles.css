@@ -199,14 +199,153 @@ a:hover {
 /* Mejorar estilos de nav-items */
 .nav-item {
   position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.nav-item:not(.active):hover {
+.nav-item:not(.bg-gradient-custom):hover {
+  transform: translateX(8px);
+  background: linear-gradient(90deg, rgba(207, 10, 10, 0.08), rgba(220, 95, 0, 0.08));
+  box-shadow: 0 2px 8px var(--shadow);
+}
+
+.nav-item:not(.bg-gradient-custom):hover i {
+  transform: scale(1.15);
+  transition: transform 0.3s ease;
+}
+
+.nav-item.bg-gradient-custom {
+  box-shadow: 0 4px 16px rgba(207, 10, 10, 0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-item.bg-gradient-custom::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+/* Sidebar scrollable */
+aside {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) var(--border-color);
+}
+
+aside::-webkit-scrollbar {
+  width: 6px;
+}
+
+aside::-webkit-scrollbar-track {
+  background: var(--border-color);
+  border-radius: 10px;
+}
+
+aside::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--color-primary), var(--color-secondary));
+  border-radius: 10px;
+}
+
+aside::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+
+/* Mejorar sección de perfil en sidebar */
+.sidebar-profile {
+  position: relative;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(207, 10, 10, 0.05), rgba(220, 95, 0, 0.05));
+  border: 1px solid var(--border-color);
+}
+
+.dark-mode .sidebar-profile {
+  background: linear-gradient(135deg, rgba(207, 10, 10, 0.15), rgba(220, 95, 0, 0.15));
+}
+
+.sidebar-profile-avatar {
+  position: relative;
+}
+
+.sidebar-profile-avatar::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 12px;
+  height: 12px;
+  background: #10B981;
+  border: 2px solid var(--bg-card);
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+}
+
+/* Divisores elegantes */
+.sidebar-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+  margin: 1.5rem 0;
+}
+
+/* Badge de notificación */
+.nav-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  min-width: 20px;
+  height: 20px;
+  background: linear-gradient(135deg, #EF4444, #DC2626);
+  color: white;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
+  animation: pulse-badge 2s ease-in-out infinite;
+}
+
+@keyframes pulse-badge {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.9;
+  }
+}
+
+/* Mejorar botón de dark mode en sidebar */
+.dark-mode-toggle-sidebar {
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.dark-mode-toggle-sidebar:hover {
+  background: linear-gradient(90deg, rgba(207, 10, 10, 0.08), rgba(220, 95, 0, 0.08));
+  border-color: var(--border-color);
   transform: translateX(4px);
 }
 
-.nav-item.active {
-  box-shadow: 0 4px 12px rgba(207, 10, 10, 0.3);
+/* Estilos de sección del sidebar */
+.sidebar-section-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+  margin-top: 1.5rem;
+  padding-left: 0.5rem;
 }
 
 /* Estilos responsivos para móviles */
