@@ -34,15 +34,15 @@
 <body class="min-h-screen">
     <!-- Navigation -->
     <nav class="bg-gradient-to-r from-purple-600 to-pink-700 text-white shadow-lg">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
+        <div class="container mx-auto px-4 md:px-6 py-3 md:py-4">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                <div class="flex items-center space-x-2 md:space-x-4">
                     <a href="../index.html" class="flex items-center space-x-2 hover:opacity-80 transition">
                         <i class="fas fa-trophy text-2xl"></i>
                         <span class="text-xl font-bold">QuinielaPro Admin</span>
                     </a>
                 </div>
-                <div class="flex items-center space-x-6">
+                <div class="flex items-center space-x-3 md:space-x-6">
                     <a href="#" class="hover:text-purple-200 transition">
                         <i class="fas fa-user-shield mr-2"></i>
                         <span>Admin</span>
@@ -103,10 +103,10 @@
         </aside>
 
         <!-- Main Content -->
-        <main class="flex-1 p-8">
+        <main class="flex-1 p-3 md:p-8 w-full">
             <div class="mb-8 flex items-center justify-between">
                 <div>
-                    <h1 class="text-3xl font-bold text-gray-800 mb-2">Gestión de Usuarios</h1>
+                    <h1 class="text-2xl md:text-3xl font-bold mb-2">Gestión de Usuarios</h1>
                     <p class="text-gray-600">Administra los usuarios del sistema</p>
                 </div>
                 <button class="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition font-semibold">
@@ -118,10 +118,10 @@
             <!-- Stats Cards -->
             <div class="grid md:grid-cols-4 gap-6 mb-8">
                 <div class="bg-white rounded-xl shadow p-6">
-                    <div class="flex items-center justify-between">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between">
                         <div>
                             <p class="text-gray-500 text-sm mb-1">Total Usuarios</p>
-                            <p class="text-3xl font-bold text-gray-800">1,248</p>
+                            <p class="text-2xl md:text-2xl md:text-3xl font-bold">1,248</p>
                         </div>
                         <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center">
                             <i class="fas fa-users text-blue-600 text-xl"></i>
@@ -129,10 +129,10 @@
                     </div>
                 </div>
                 <div class="bg-white rounded-xl shadow p-6">
-                    <div class="flex items-center justify-between">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between">
                         <div>
                             <p class="text-gray-500 text-sm mb-1">Activos Hoy</p>
-                            <p class="text-3xl font-bold text-gray-800">342</p>
+                            <p class="text-2xl md:text-2xl md:text-3xl font-bold">342</p>
                         </div>
                         <div class="bg-green-100 w-12 h-12 rounded-full flex items-center justify-center">
                             <i class="fas fa-user-check text-green-600 text-xl"></i>
@@ -140,10 +140,10 @@
                     </div>
                 </div>
                 <div class="bg-white rounded-xl shadow p-6">
-                    <div class="flex items-center justify-between">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between">
                         <div>
                             <p class="text-gray-500 text-sm mb-1">Nuevos (7d)</p>
-                            <p class="text-3xl font-bold text-gray-800">52</p>
+                            <p class="text-2xl md:text-2xl md:text-3xl font-bold">52</p>
                         </div>
                         <div class="bg-yellow-100 w-12 h-12 rounded-full flex items-center justify-center">
                             <i class="fas fa-user-plus text-yellow-600 text-xl"></i>
@@ -151,10 +151,10 @@
                     </div>
                 </div>
                 <div class="bg-white rounded-xl shadow p-6">
-                    <div class="flex items-center justify-between">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between">
                         <div>
                             <p class="text-gray-500 text-sm mb-1">VIP</p>
-                            <p class="text-3xl font-bold text-gray-800">89</p>
+                            <p class="text-2xl md:text-2xl md:text-3xl font-bold">89</p>
                         </div>
                         <div class="bg-purple-100 w-12 h-12 rounded-full flex items-center justify-center">
                             <i class="fas fa-crown text-purple-600 text-xl"></i>
@@ -211,18 +211,18 @@
                     <table class="w-full">
                         <thead class="bg-purple-50">
                             <tr>
-                                <th class="px-6 py-4 text-left text-sm font-semibold text-gray-700">Usuario</th>
-                                <th class="px-6 py-4 text-left text-sm font-semibold text-gray-700">Email</th>
-                                <th class="px-6 py-4 text-left text-sm font-semibold text-gray-700">Quinielas</th>
-                                <th class="px-6 py-4 text-left text-sm font-semibold text-gray-700">Ganado</th>
-                                <th class="px-6 py-4 text-left text-sm font-semibold text-gray-700">Registro</th>
-                                <th class="px-6 py-4 text-left text-sm font-semibold text-gray-700">Estado</th>
-                                <th class="px-6 py-4 text-left text-sm font-semibold text-gray-700">Acciones</th>
+                                <th class="px-3 md:px-6 py-2 md:py-4 text-left text-sm font-semibold text-gray-700">Usuario</th>
+                                <th class="px-3 md:px-6 py-2 md:py-4 text-left text-sm font-semibold text-gray-700">Email</th>
+                                <th class="px-3 md:px-6 py-2 md:py-4 text-left text-sm font-semibold text-gray-700">Quinielas</th>
+                                <th class="px-3 md:px-6 py-2 md:py-4 text-left text-sm font-semibold text-gray-700">Ganado</th>
+                                <th class="px-3 md:px-6 py-2 md:py-4 text-left text-sm font-semibold text-gray-700">Registro</th>
+                                <th class="px-3 md:px-6 py-2 md:py-4 text-left text-sm font-semibold text-gray-700">Estado</th>
+                                <th class="px-3 md:px-6 py-2 md:py-4 text-left text-sm font-semibold text-gray-700">Acciones</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-200">
                             <tr class="hover:bg-gray-50">
-                                <td class="px-6 py-4">
+                                <td class="px-3 md:px-6 py-2 md:py-4">
                                     <div class="flex items-center space-x-3">
                                         <div class="bg-blue-100 w-10 h-10 rounded-full flex items-center justify-center">
                                             <i class="fas fa-user text-blue-600"></i>
@@ -233,22 +233,22 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-3 md:px-6 py-2 md:py-4">
                                     <p class="text-sm text-gray-700">juan.perez@email.com</p>
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-3 md:px-6 py-2 md:py-4">
                                     <p class="font-semibold text-gray-800">15</p>
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-3 md:px-6 py-2 md:py-4">
                                     <p class="font-semibold text-green-600">$3,450</p>
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-3 md:px-6 py-2 md:py-4">
                                     <p class="text-sm text-gray-700">15/08/2024</p>
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-3 md:px-6 py-2 md:py-4">
                                     <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Activo</span>
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-3 md:px-6 py-2 md:py-4">
                                     <div class="flex space-x-2">
                                         <button class="text-blue-600 hover:text-blue-700" title="Ver Perfil">
                                             <i class="fas fa-eye"></i>
@@ -263,7 +263,7 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-50">
-                                <td class="px-6 py-4">
+                                <td class="px-3 md:px-6 py-2 md:py-4">
                                     <div class="flex items-center space-x-3">
                                         <div class="bg-purple-100 w-10 h-10 rounded-full flex items-center justify-center">
                                             <i class="fas fa-user text-purple-600"></i>
@@ -274,25 +274,25 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-3 md:px-6 py-2 md:py-4">
                                     <p class="text-sm text-gray-700">maria.gonzalez@email.com</p>
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-3 md:px-6 py-2 md:py-4">
                                     <p class="font-semibold text-gray-800">28</p>
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-3 md:px-6 py-2 md:py-4">
                                     <p class="font-semibold text-green-600">$8,750</p>
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-3 md:px-6 py-2 md:py-4">
                                     <p class="text-sm text-gray-700">10/07/2024</p>
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-3 md:px-6 py-2 md:py-4">
                                     <div class="flex items-center space-x-2">
                                         <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Activo</span>
                                         <i class="fas fa-crown text-yellow-500" title="Usuario VIP"></i>
                                     </div>
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-3 md:px-6 py-2 md:py-4">
                                     <div class="flex space-x-2">
                                         <button class="text-blue-600 hover:text-blue-700" title="Ver Perfil">
                                             <i class="fas fa-eye"></i>
@@ -307,7 +307,7 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-50">
-                                <td class="px-6 py-4">
+                                <td class="px-3 md:px-6 py-2 md:py-4">
                                     <div class="flex items-center space-x-3">
                                         <div class="bg-green-100 w-10 h-10 rounded-full flex items-center justify-center">
                                             <i class="fas fa-user text-green-600"></i>
@@ -318,22 +318,22 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-3 md:px-6 py-2 md:py-4">
                                     <p class="text-sm text-gray-700">carlos.r@email.com</p>
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-3 md:px-6 py-2 md:py-4">
                                     <p class="font-semibold text-gray-800">7</p>
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-3 md:px-6 py-2 md:py-4">
                                     <p class="font-semibold text-green-600">$1,200</p>
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-3 md:px-6 py-2 md:py-4">
                                     <p class="text-sm text-gray-700">12/10/2024</p>
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-3 md:px-6 py-2 md:py-4">
                                     <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Activo</span>
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-3 md:px-6 py-2 md:py-4">
                                     <div class="flex space-x-2">
                                         <button class="text-blue-600 hover:text-blue-700" title="Ver Perfil">
                                             <i class="fas fa-eye"></i>
@@ -348,7 +348,7 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-50 bg-red-50">
-                                <td class="px-6 py-4">
+                                <td class="px-3 md:px-6 py-2 md:py-4">
                                     <div class="flex items-center space-x-3">
                                         <div class="bg-red-100 w-10 h-10 rounded-full flex items-center justify-center">
                                             <i class="fas fa-user text-red-600"></i>
@@ -359,22 +359,22 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-3 md:px-6 py-2 md:py-4">
                                     <p class="text-sm text-gray-700">luis.m@email.com</p>
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-3 md:px-6 py-2 md:py-4">
                                     <p class="font-semibold text-gray-800">12</p>
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-3 md:px-6 py-2 md:py-4">
                                     <p class="font-semibold text-green-600">$2,100</p>
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-3 md:px-6 py-2 md:py-4">
                                     <p class="text-sm text-gray-700">05/09/2024</p>
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-3 md:px-6 py-2 md:py-4">
                                     <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm font-medium">Suspendido</span>
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-3 md:px-6 py-2 md:py-4">
                                     <div class="flex space-x-2">
                                         <button class="text-blue-600 hover:text-blue-700" title="Ver Perfil">
                                             <i class="fas fa-eye"></i>
