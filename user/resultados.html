@@ -34,15 +34,15 @@
 <body class="min-h-screen">
     <!-- Navigation -->
     <nav class="bg-gradient-custom text-white shadow-lg">
-        <div class="container mx-auto px-6 py-4">
+        <div class="container mx-auto px-4 md:px-6 py-3 md:py-4">
             <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-3 md:space-x-4">
                     <a href="../index.html" class="flex items-center space-x-2 hover:opacity-80 transition">
-                        <i class="fas fa-trophy text-2xl"></i>
-                        <span class="text-xl font-bold">QuinielaPro</span>
+                        <i class="fas fa-trophy text-xl md:text-2xl"></i>
+                        <span class="text-lg md:text-xl font-bold">QuinielaPro</span>
                     </a>
                 </div>
-                <div class="flex items-center space-x-6">
+                <div class="hidden md:flex items-center space-x-6">
                     <a href="#" class="hover:opacity-80 transition">
                         <i class="fas fa-user mr-2"></i>
                         <span>Mi Perfil</span>
@@ -55,6 +55,15 @@
                     <a href="../index.html" class="hover:opacity-80 transition">
                         <i class="fas fa-sign-out-alt mr-2"></i>
                         <span>Salir</span>
+                    </a>
+                </div>
+                <!-- Mobile Icons -->
+                <div class="flex md:hidden items-center space-x-3">
+                    <a href="#" class="hover:opacity-80 transition">
+                        <i class="fas fa-bell text-lg"></i>
+                    </a>
+                    <a href="#" class="hover:opacity-80 transition">
+                        <i class="fas fa-user text-lg"></i>
                     </a>
                 </div>
             </div>
@@ -100,123 +109,123 @@
         </aside>
 
         <!-- Main Content -->
-        <main class="flex-1 p-8">
-            <div class="mb-8">
-                <h1 class="text-3xl font-bold mb-2">Resultados</h1>
-                <p class="opacity-75">Consulta los resultados de tus quinielas</p>
+        <main class="flex-1 p-4 md:p-8">
+            <div class="mb-6 md:mb-8">
+                <h1 class="text-2xl md:text-3xl font-bold mb-2">Resultados</h1>
+                <p class="text-sm md:text-base opacity-75">Consulta los resultados de tus quinielas</p>
             </div>
 
             <!-- Results Summary -->
-            <div class="grid md:grid-cols-3 gap-6 mb-8">
-                <div class="bg-gradient-custom rounded-xl shadow-lg p-6 text-white">
-                    <div class="flex items-center justify-between mb-4">
-                        <i class="fas fa-trophy text-4xl opacity-80"></i>
-                        <span class="text-3xl font-bold">3</span>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
+                <div class="bg-gradient-custom rounded-xl shadow-lg p-4 md:p-6 text-white">
+                    <div class="flex items-center justify-between mb-3 md:mb-4">
+                        <i class="fas fa-trophy text-2xl md:text-4xl opacity-80"></i>
+                        <span class="text-2xl md:text-3xl font-bold">3</span>
                     </div>
-                    <p class="opacity-80">Quinielas Ganadas</p>
+                    <p class="text-sm md:text-base opacity-80">Quinielas Ganadas</p>
                 </div>
-                <div class="bg-gradient-custom rounded-xl shadow-lg p-6 text-white">
-                    <div class="flex items-center justify-between mb-4">
-                        <i class="fas fa-percentage text-4xl opacity-80"></i>
-                        <span class="text-3xl font-bold">68%</span>
+                <div class="bg-gradient-custom rounded-xl shadow-lg p-4 md:p-6 text-white">
+                    <div class="flex items-center justify-between mb-3 md:mb-4">
+                        <i class="fas fa-percentage text-2xl md:text-4xl opacity-80"></i>
+                        <span class="text-2xl md:text-3xl font-bold">68%</span>
                     </div>
-                    <p class="opacity-80">Tasa de Aciertos</p>
+                    <p class="text-sm md:text-base opacity-80">Tasa de Aciertos</p>
                 </div>
-                <div class="bg-gradient-custom rounded-xl shadow-lg p-6 text-white">
-                    <div class="flex items-center justify-between mb-4">
-                        <i class="fas fa-dollar-sign text-4xl opacity-80"></i>
-                        <span class="text-3xl font-bold">$8,450</span>
+                <div class="bg-gradient-custom rounded-xl shadow-lg p-4 md:p-6 text-white">
+                    <div class="flex items-center justify-between mb-3 md:mb-4">
+                        <i class="fas fa-dollar-sign text-2xl md:text-4xl opacity-80"></i>
+                        <span class="text-2xl md:text-3xl font-bold">$8,450</span>
                     </div>
-                    <p class="opacity-80">Total Ganado</p>
+                    <p class="text-sm md:text-base opacity-80">Total Ganado</p>
                 </div>
             </div>
 
             <!-- Leaderboard -->
-            <div class="card rounded-xl shadow-lg mb-8">
-                <div class="p-6 border-b" style="border-color: var(--border-color)">
-                    <h2 class="text-xl font-bold">Tabla de Posiciones - Liga MX Jornada 14</h2>
-                    <p class="text-sm opacity-70 mt-1">Última actualización: Hace 2 horas</p>
+            <div class="card rounded-xl shadow-lg mb-6 md:mb-8">
+                <div class="p-4 md:p-6 border-b" style="border-color: var(--border-color)">
+                    <h2 class="text-lg md:text-xl font-bold">Tabla de Posiciones - Liga MX Jornada 14</h2>
+                    <p class="text-xs md:text-sm opacity-70 mt-1">Última actualización: Hace 2 horas</p>
                 </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full">
+                <div class="overflow-x-auto -webkit-overflow-scrolling-touch">
+                    <table class="w-full min-w-[500px]">
                         <thead style="background-color: var(--bg-secondary)">
                             <tr>
-                                <th class="px-6 py-4 text-left text-sm font-semibold">Posición</th>
-                                <th class="px-6 py-4 text-left text-sm font-semibold">Usuario</th>
-                                <th class="px-6 py-4 text-left text-sm font-semibold">Aciertos</th>
-                                <th class="px-6 py-4 text-left text-sm font-semibold">Premio</th>
+                                <th class="px-3 md:px-6 py-3 md:py-4 text-left text-xs md:text-sm font-semibold">Posición</th>
+                                <th class="px-3 md:px-6 py-3 md:py-4 text-left text-xs md:text-sm font-semibold">Usuario</th>
+                                <th class="px-3 md:px-6 py-3 md:py-4 text-left text-xs md:text-sm font-semibold">Aciertos</th>
+                                <th class="px-3 md:px-6 py-3 md:py-4 text-left text-xs md:text-sm font-semibold">Premio</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y" style="border-color: var(--border-color)">
                             <tr style="cursor: pointer" onmouseover="this.style.backgroundColor='var(--bg-secondary)'" onmouseout="this.style.backgroundColor=''">
-                                <td class="px-6 py-4">
+                                <td class="px-3 md:px-6 py-3 md:py-4">
                                     <div class="flex items-center">
-                                        <i class="fas fa-crown text-yellow-500 text-xl mr-2"></i>
-                                        <span class="font-bold">1</span>
+                                        <i class="fas fa-crown text-yellow-500 text-base md:text-xl mr-1 md:mr-2"></i>
+                                        <span class="font-bold text-sm md:text-base">1</span>
                                     </div>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center space-x-3">
-                                        <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background-color: rgba(234, 179, 8, 0.2)">
-                                            <i class="fas fa-user text-yellow-600"></i>
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <div class="flex items-center space-x-2 md:space-x-3">
+                                        <div class="w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center" style="background-color: rgba(234, 179, 8, 0.2)">
+                                            <i class="fas fa-user text-yellow-600 text-xs md:text-sm"></i>
                                         </div>
-                                        <span class="font-medium">JuanPerez123</span>
+                                        <span class="font-medium text-xs md:text-base">JuanPerez123</span>
                                     </div>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <span class="font-bold text-green-600">9/9</span>
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <span class="font-bold text-green-600 text-sm md:text-base">9/9</span>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <span class="font-bold text-green-600">$5,000</span>
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <span class="font-bold text-green-600 text-sm md:text-base">$5,000</span>
                                 </td>
                             </tr>
                             <tr class="border-2 border-primary" style="background-color: rgba(207, 10, 10, 0.1)">
-                                <td class="px-6 py-4">
+                                <td class="px-3 md:px-6 py-3 md:py-4">
                                     <div class="flex items-center">
-                                        <i class="fas fa-medal opacity-50 text-xl mr-2"></i>
-                                        <span class="font-bold">12</span>
+                                        <i class="fas fa-medal opacity-50 text-base md:text-xl mr-1 md:mr-2"></i>
+                                        <span class="font-bold text-sm md:text-base">12</span>
                                     </div>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center space-x-3">
-                                        <div class="w-10 h-10 rounded-full flex items-center justify-center bg-gradient-custom">
-                                            <i class="fas fa-user text-white"></i>
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <div class="flex items-center space-x-2 md:space-x-3">
+                                        <div class="w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center bg-gradient-custom">
+                                            <i class="fas fa-user text-white text-xs md:text-sm"></i>
                                         </div>
-                                        <span class="font-medium">Usuario Demo (Tú)</span>
+                                        <span class="font-medium text-xs md:text-base">Usuario Demo (Tú)</span>
                                         <span class="px-2 py-1 bg-primary text-white text-xs rounded-full">TÚ</span>
                                     </div>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <span class="font-bold text-primary">7/9</span>
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <span class="font-bold text-primary text-sm md:text-base">7/9</span>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <span class="font-bold opacity-70">$0</span>
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <span class="font-bold opacity-70 text-sm md:text-base">$0</span>
                                 </td>
                             </tr>
                             <tr style="cursor: pointer" onmouseover="this.style.backgroundColor='var(--bg-secondary)'" onmouseout="this.style.backgroundColor=''">
-                                <td class="px-6 py-4">
-                                    <span class="font-bold">25</span>
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <span class="font-bold text-sm md:text-base">25</span>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center space-x-3">
-                                        <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background-color: var(--bg-secondary)">
-                                            <i class="fas fa-user opacity-70"></i>
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <div class="flex items-center space-x-2 md:space-x-3">
+                                        <div class="w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center" style="background-color: var(--bg-secondary)">
+                                            <i class="fas fa-user opacity-70 text-xs md:text-sm"></i>
                                         </div>
-                                        <span class="font-medium">MariaLopez</span>
+                                        <span class="font-medium text-xs md:text-base">MariaLopez</span>
                                     </div>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <span class="font-bold opacity-70">5/9</span>
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <span class="font-bold opacity-70 text-sm md:text-base">5/9</span>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <span class="font-bold opacity-70">$0</span>
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <span class="font-bold opacity-70 text-sm md:text-base">$0</span>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <div class="p-6 border-t" style="border-color: var(--border-color); background-color: var(--bg-secondary)">
-                    <button class="text-primary hover:opacity-80 font-medium">
+                <div class="p-4 md:p-6 border-t" style="border-color: var(--border-color); background-color: var(--bg-secondary)">
+                    <button class="text-primary hover:opacity-80 font-medium text-sm md:text-base">
                         Ver tabla completa <i class="fas fa-arrow-right ml-2"></i>
                     </button>
                 </div>
@@ -224,41 +233,43 @@
 
             <!-- Recent Results -->
             <div class="card rounded-xl shadow-lg">
-                <div class="p-6 border-b" style="border-color: var(--border-color)">
-                    <h2 class="text-xl font-bold">Resultados Recientes</h2>
+                <div class="p-4 md:p-6 border-b" style="border-color: var(--border-color)">
+                    <h2 class="text-lg md:text-xl font-bold">Resultados Recientes</h2>
                 </div>
-                <div class="p-6">
-                    <div class="space-y-6">
+                <div class="p-4 md:p-6">
+                    <div class="space-y-4 md:space-y-6">
                         <!-- Result 1 -->
                         <div class="border rounded-xl overflow-hidden" style="border-color: var(--border-color)">
-                            <div class="p-4 border-b border-green-200" style="background-color: rgba(34, 197, 94, 0.1)">
-                                <div class="flex items-center justify-between">
+                            <div class="p-3 md:p-4 border-b border-green-200" style="background-color: rgba(34, 197, 94, 0.1)">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-0">
                                     <div>
-                                        <h3 class="font-bold">NFL - Semana 6</h3>
-                                        <p class="text-sm opacity-70">Finalizada el 15/10/2024</p>
+                                        <h3 class="font-bold text-sm md:text-base">NFL - Semana 6</h3>
+                                        <p class="text-xs md:text-sm opacity-70">Finalizada el 15/10/2024</p>
                                     </div>
-                                    <div class="flex items-center space-x-4">
-                                        <div class="text-right">
-                                            <p class="text-sm opacity-70">Aciertos</p>
-                                            <p class="text-2xl font-bold text-green-600">14/16</p>
+                                    <div class="flex items-center space-x-3 md:space-x-4">
+                                        <div class="text-left md:text-right">
+                                            <p class="text-xs md:text-sm opacity-70">Aciertos</p>
+                                            <p class="text-xl md:text-2xl font-bold text-green-600">14/16</p>
                                         </div>
-                                        <div class="bg-green-600 w-16 h-16 rounded-full flex items-center justify-center">
-                                            <i class="fas fa-trophy text-white text-2xl"></i>
+                                        <div class="bg-green-600 w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-trophy text-white text-lg md:text-2xl"></i>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="p-4">
-                                <div class="flex items-center justify-between">
-                                    <div>
-                                        <p class="text-sm opacity-70">Ganancia</p>
-                                        <p class="text-xl font-bold text-green-600">+$2,500</p>
+                            <div class="p-3 md:p-4">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+                                    <div class="grid grid-cols-2 gap-3 md:flex md:space-x-8">
+                                        <div>
+                                            <p class="text-xs md:text-sm opacity-70">Ganancia</p>
+                                            <p class="text-base md:text-xl font-bold text-green-600">+$2,500</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs md:text-sm opacity-70">Posición</p>
+                                            <p class="text-base md:text-xl font-bold">#3 de 150</p>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <p class="text-sm opacity-70">Posición</p>
-                                        <p class="text-xl font-bold">#3 de 150</p>
-                                    </div>
-                                    <button class="btn-primary text-white px-4 py-2 rounded-lg">
+                                    <button class="btn-primary text-white px-4 py-2 rounded-lg text-sm md:text-base w-full md:w-auto">
                                         Ver Detalles
                                     </button>
                                 </div>
@@ -267,34 +278,36 @@
 
                         <!-- Result 2 -->
                         <div class="border rounded-xl overflow-hidden" style="border-color: var(--border-color)">
-                            <div class="p-4 border-b border-yellow-200" style="background-color: rgba(234, 179, 8, 0.1)">
-                                <div class="flex items-center justify-between">
+                            <div class="p-3 md:p-4 border-b border-yellow-200" style="background-color: rgba(234, 179, 8, 0.1)">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-0">
                                     <div>
-                                        <h3 class="font-bold">Liga MX - Jornada 13</h3>
-                                        <p class="text-sm opacity-70">Finalizada el 12/10/2024</p>
+                                        <h3 class="font-bold text-sm md:text-base">Liga MX - Jornada 13</h3>
+                                        <p class="text-xs md:text-sm opacity-70">Finalizada el 12/10/2024</p>
                                     </div>
-                                    <div class="flex items-center space-x-4">
-                                        <div class="text-right">
-                                            <p class="text-sm opacity-70">Aciertos</p>
-                                            <p class="text-2xl font-bold text-yellow-600">6/9</p>
+                                    <div class="flex items-center space-x-3 md:space-x-4">
+                                        <div class="text-left md:text-right">
+                                            <p class="text-xs md:text-sm opacity-70">Aciertos</p>
+                                            <p class="text-xl md:text-2xl font-bold text-yellow-600">6/9</p>
                                         </div>
-                                        <div class="bg-yellow-500 w-16 h-16 rounded-full flex items-center justify-center">
-                                            <i class="fas fa-star text-white text-2xl"></i>
+                                        <div class="bg-yellow-500 w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-star text-white text-lg md:text-2xl"></i>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="p-4">
-                                <div class="flex items-center justify-between">
-                                    <div>
-                                        <p class="text-sm opacity-70">Ganancia</p>
-                                        <p class="text-xl font-bold opacity-70">$0</p>
+                            <div class="p-3 md:p-4">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+                                    <div class="grid grid-cols-2 gap-3 md:flex md:space-x-8">
+                                        <div>
+                                            <p class="text-xs md:text-sm opacity-70">Ganancia</p>
+                                            <p class="text-base md:text-xl font-bold opacity-70">$0</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs md:text-sm opacity-70">Posición</p>
+                                            <p class="text-base md:text-xl font-bold">#45 de 200</p>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <p class="text-sm opacity-70">Posición</p>
-                                        <p class="text-xl font-bold">#45 de 200</p>
-                                    </div>
-                                    <button class="btn-primary text-white px-4 py-2 rounded-lg">
+                                    <button class="btn-primary text-white px-4 py-2 rounded-lg text-sm md:text-base w-full md:w-auto">
                                         Ver Detalles
                                     </button>
                                 </div>
@@ -303,34 +316,36 @@
 
                         <!-- Result 3 -->
                         <div class="border rounded-xl overflow-hidden" style="border-color: var(--border-color)">
-                            <div class="p-4 border-b border-red-200" style="background-color: rgba(239, 68, 68, 0.1)">
-                                <div class="flex items-center justify-between">
+                            <div class="p-3 md:p-4 border-b border-red-200" style="background-color: rgba(239, 68, 68, 0.1)">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-0">
                                     <div>
-                                        <h3 class="font-bold">NBA - Pretemporada</h3>
-                                        <p class="text-sm opacity-70">Finalizada el 08/10/2024</p>
+                                        <h3 class="font-bold text-sm md:text-base">NBA - Pretemporada</h3>
+                                        <p class="text-xs md:text-sm opacity-70">Finalizada el 08/10/2024</p>
                                     </div>
-                                    <div class="flex items-center space-x-4">
-                                        <div class="text-right">
-                                            <p class="text-sm opacity-70">Aciertos</p>
-                                            <p class="text-2xl font-bold text-red-600">4/10</p>
+                                    <div class="flex items-center space-x-3 md:space-x-4">
+                                        <div class="text-left md:text-right">
+                                            <p class="text-xs md:text-sm opacity-70">Aciertos</p>
+                                            <p class="text-xl md:text-2xl font-bold text-red-600">4/10</p>
                                         </div>
-                                        <div class="bg-red-500 w-16 h-16 rounded-full flex items-center justify-center">
-                                            <i class="fas fa-times text-white text-2xl"></i>
+                                        <div class="bg-red-500 w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-times text-white text-lg md:text-2xl"></i>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="p-4">
-                                <div class="flex items-center justify-between">
-                                    <div>
-                                        <p class="text-sm opacity-70">Ganancia</p>
-                                        <p class="text-xl font-bold text-red-600">-$100</p>
+                            <div class="p-3 md:p-4">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+                                    <div class="grid grid-cols-2 gap-3 md:flex md:space-x-8">
+                                        <div>
+                                            <p class="text-xs md:text-sm opacity-70">Ganancia</p>
+                                            <p class="text-base md:text-xl font-bold text-red-600">-$100</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs md:text-sm opacity-70">Posición</p>
+                                            <p class="text-base md:text-xl font-bold">#87 de 120</p>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <p class="text-sm opacity-70">Posición</p>
-                                        <p class="text-xl font-bold">#87 de 120</p>
-                                    </div>
-                                    <button class="btn-primary text-white px-4 py-2 rounded-lg">
+                                    <button class="btn-primary text-white px-4 py-2 rounded-lg text-sm md:text-base w-full md:w-auto">
                                         Ver Detalles
                                     </button>
                                 </div>
