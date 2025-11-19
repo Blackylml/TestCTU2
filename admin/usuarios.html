@@ -33,36 +33,54 @@
 </head>
 <body class="min-h-screen">
     <!-- Navigation -->
-    <nav class="bg-gradient-to-r from-purple-600 to-pink-700 text-white shadow-lg">
-        <div class="container mx-auto px-6 py-4">
+    <nav class="bg-gradient-custom text-white shadow-lg fixed top-0 left-0 right-0">
+        <div class="container mx-auto px-4 md:px-6 py-3 md:py-4">
             <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-3 md:space-x-4">
+                    <!-- Hamburger button integrado en navbar -->
+                    <button class="hamburger-btn-inline md:hidden" aria-label="Toggle menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
                     <a href="../index.html" class="flex items-center space-x-2 hover:opacity-80 transition">
-                        <i class="fas fa-trophy text-2xl"></i>
-                        <span class="text-xl font-bold">QuinielaPro Admin</span>
+                        <i class="fas fa-trophy text-xl md:text-2xl"></i>
+                        <span class="text-lg md:text-xl font-bold">QuinielaPro Admin</span>
                     </a>
                 </div>
-                <div class="flex items-center space-x-6">
-                    <a href="#" class="hover:text-purple-200 transition">
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#" class="hover:opacity-80 transition">
                         <i class="fas fa-user-shield mr-2"></i>
                         <span>Admin</span>
                     </a>
-                    <a href="#" class="hover:text-purple-200 transition">
+                    <a href="#" class="hover:opacity-80 transition">
                         <i class="fas fa-cog mr-2"></i>
                         <span>Configuración</span>
                     </a>
-                    <a href="../index.html" class="hover:text-purple-200 transition">
+                    <a href="../index.html" class="hover:opacity-80 transition">
                         <i class="fas fa-sign-out-alt mr-2"></i>
                         <span>Salir</span>
+                    </a>
+                </div>
+                <!-- Mobile Icons -->
+                <div class="flex md:hidden items-center space-x-3">
+                    <a href="#" class="hover:opacity-80 transition">
+                        <i class="fas fa-cog text-lg"></i>
+                    </a>
+                    <a href="#" class="hover:opacity-80 transition">
+                        <i class="fas fa-user-shield text-lg"></i>
                     </a>
                 </div>
             </div>
         </div>
     </nav>
 
+    <!-- Spacer para compensar el navbar fixed -->
+    <div class="h-[64px] md:h-[72px]"></div>
+
     <div class="flex">
         <!-- Sidebar -->
-        <aside class="card shadow-lg min-h-screen">
+        <aside class="card shadow-lg min-h-screen flex flex-col">
             <div class="p-6">
                 <div class="flex items-center space-x-3 mb-6 pb-6 border-b">
                     <div class="bg-purple-100 w-12 h-12 rounded-full flex items-center justify-center">
@@ -99,6 +117,20 @@
                         <span>Reportes</span>
                     </a>
                 </nav>
+            </div>
+
+            <!-- Sidebar Footer -->
+            <div class="mt-auto p-5 md:p-6 border-t" style="border-color: var(--border-color)">
+                <!-- Dark Mode Toggle -->
+                <button class="dark-mode-toggle-sidebar w-full flex items-center justify-between px-4 py-3 rounded-lg hover:bg-opacity-10 hover:bg-primary transition group">
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-moon text-lg w-5"></i>
+                        <span class="font-medium">Modo Oscuro</span>
+                    </div>
+                    <div class="toggle-switch">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </button>
             </div>
         </aside>
 
