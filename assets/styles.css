@@ -104,7 +104,7 @@ header, nav {
   border-bottom: 2px solid var(--color-primary);
   transition: background-color 0.3s ease;
   position: relative;
-  z-index: 100; /* Por encima de los botones flotantes */
+  z-index: 1020; /* Jerarquía: por encima del sidebar y overlay */
 }
 
 /* Footer */
@@ -219,7 +219,7 @@ a:hover {
     width: 85% !important;
     max-width: 320px;
     height: calc(100vh - 64px); /* Altura menos el navbar */
-    z-index: 40; /* Debajo del navbar pero encima del overlay */
+    z-index: 1000; /* Jerarquía: debajo del navbar (1020) pero encima del contenido */
     transition: left 0.3s ease;
     overflow-y: auto;
     background-color: var(--bg-card);
@@ -243,7 +243,7 @@ a:hover {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 998;
+    z-index: 1010; /* Jerarquía: por encima del sidebar (1000) pero debajo del navbar (1020) */
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
