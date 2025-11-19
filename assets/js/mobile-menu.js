@@ -14,10 +14,15 @@ class MobileMenuManager {
   }
 
   setup() {
+    console.log('MobileMenuManager: setup called');
     this.createHamburgerButton();
     this.createOverlay();
     this.setupSidebar();
     this.attachEventListeners();
+    console.log('MobileMenuManager: setup complete');
+    console.log('Hamburger button:', this.hamburgerBtn);
+    console.log('Overlay:', this.overlay);
+    console.log('Sidebar:', this.sidebar);
   }
 
   createHamburgerButton() {
@@ -84,7 +89,10 @@ class MobileMenuManager {
   }
 
   toggleMenu() {
+    console.log('toggleMenu called');
+    console.log('Sidebar:', this.sidebar);
     const isOpen = this.sidebar?.classList.contains('active');
+    console.log('Is open:', isOpen);
     if (isOpen) {
       this.closeMenu();
     } else {
@@ -93,15 +101,20 @@ class MobileMenuManager {
   }
 
   openMenu() {
+    console.log('openMenu called');
     if (this.sidebar) {
+      console.log('Adding active class to sidebar');
       this.sidebar.classList.add('active');
       this.overlay?.classList.add('active');
       this.hamburgerBtn?.classList.add('active');
       document.body.classList.add('sidebar-open');
+      console.log('Sidebar classes:', this.sidebar.className);
+      console.log('Sidebar computed left:', window.getComputedStyle(this.sidebar).left);
     }
   }
 
   closeMenu() {
+    console.log('closeMenu called');
     if (this.sidebar) {
       this.sidebar.classList.remove('active');
       this.overlay?.classList.remove('active');
