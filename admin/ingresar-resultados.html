@@ -33,32 +33,50 @@
 </head>
 <body class="min-h-screen">
     <!-- Navigation -->
-    <nav class="bg-gradient-to-r from-purple-600 to-pink-700 text-white shadow-lg">
-        <div class="container mx-auto px-6 py-4">
+    <nav class="bg-gradient-custom text-white shadow-lg fixed top-0 left-0 right-0">
+        <div class="container mx-auto px-4 md:px-6 py-3 md:py-4">
             <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-3 md:space-x-4">
+                    <!-- Hamburger button integrado en navbar -->
+                    <button class="hamburger-btn-inline md:hidden" aria-label="Toggle menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
                     <a href="../index.html" class="flex items-center space-x-2 hover:opacity-80 transition">
-                        <i class="fas fa-trophy text-2xl"></i>
-                        <span class="text-xl font-bold">QuinielaPro Admin</span>
+                        <i class="fas fa-trophy text-xl md:text-2xl"></i>
+                        <span class="text-lg md:text-xl font-bold">QuinielaPro Admin</span>
                     </a>
                 </div>
-                <div class="flex items-center space-x-6">
-                    <a href="#" class="hover:text-purple-200 transition">
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#" class="hover:opacity-80 transition">
                         <i class="fas fa-user-shield mr-2"></i>
                         <span>Admin</span>
                     </a>
-                    <a href="#" class="hover:text-purple-200 transition">
+                    <a href="#" class="hover:opacity-80 transition">
                         <i class="fas fa-cog mr-2"></i>
                         <span>Configuración</span>
                     </a>
-                    <a href="../index.html" class="hover:text-purple-200 transition">
+                    <a href="../index.html" class="hover:opacity-80 transition">
                         <i class="fas fa-sign-out-alt mr-2"></i>
                         <span>Salir</span>
+                    </a>
+                </div>
+                <!-- Mobile Icons -->
+                <div class="flex md:hidden items-center space-x-3">
+                    <a href="#" class="hover:opacity-80 transition">
+                        <i class="fas fa-cog text-lg"></i>
+                    </a>
+                    <a href="#" class="hover:opacity-80 transition">
+                        <i class="fas fa-user-shield text-lg"></i>
                     </a>
                 </div>
             </div>
         </div>
     </nav>
+
+    <!-- Spacer para compensar el navbar fixed -->
+    <div class="h-[64px] md:h-[72px]"></div>
 
     <div class="flex">
         <!-- Sidebar -->
