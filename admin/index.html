@@ -80,7 +80,7 @@
 
     <div class="flex">
         <!-- Sidebar -->
-        <aside class="card shadow-lg min-h-screen">
+        <aside class="card shadow-lg min-h-screen flex flex-col">
             <div class="p-6">
                 <div class="flex items-center space-x-3 mb-6 pb-6 border-b" style="border-color: var(--border-color)">
                     <div class="bg-gradient-custom w-12 h-12 rounded-full flex items-center justify-center">
@@ -117,6 +117,20 @@
                         <span>Reportes</span>
                     </a>
                 </nav>
+            </div>
+
+            <!-- Sidebar Footer -->
+            <div class="mt-auto p-5 md:p-6 border-t" style="border-color: var(--border-color)">
+                <!-- Dark Mode Toggle -->
+                <button class="dark-mode-toggle-sidebar w-full flex items-center justify-between px-4 py-3 rounded-lg hover:bg-opacity-10 hover:bg-primary transition group">
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-moon text-lg w-5"></i>
+                        <span class="font-medium">Modo Oscuro</span>
+                    </div>
+                    <div class="toggle-switch">
+                        <div class="toggle-slider"></div>
+                    </div>
+                </button>
             </div>
         </aside>
 
