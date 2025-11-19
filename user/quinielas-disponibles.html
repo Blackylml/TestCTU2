@@ -83,45 +83,86 @@
         <!-- Sidebar -->
         <aside class="card shadow-lg min-h-screen flex flex-col">
             <div class="p-5 md:p-6">
-                <div class="flex items-center space-x-3 mb-6 pb-5 border-b" style="border-color: var(--border-color)">
-                    <div class="w-14 h-14 rounded-full flex items-center justify-center bg-gradient-custom shadow-md">
-                        <i class="fas fa-user text-white text-xl"></i>
-                    </div>
-                    <div class="flex-1 min-w-0">
-                        <p class="font-semibold text-base truncate">Usuario Demo</p>
-                        <p class="text-xs opacity-70 truncate">usuario@email.com</p>
+                <!-- User Profile Section -->
+                <div class="sidebar-profile">
+                    <div class="flex items-center space-x-3">
+                        <div class="sidebar-profile-avatar w-14 h-14 rounded-full flex items-center justify-center bg-gradient-custom shadow-lg">
+                            <i class="fas fa-user text-white text-xl"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="font-bold text-base truncate">Usuario Demo</p>
+                            <p class="text-xs opacity-70 truncate">usuario@email.com</p>
+                            <span class="inline-block mt-1 px-2 py-0.5 text-xs font-semibold bg-gradient-custom text-white rounded-full">
+                                Premium
+                            </span>
+                        </div>
                     </div>
                 </div>
 
+                <!-- Divider -->
+                <div class="sidebar-divider"></div>
+
                 <!-- Main Navigation -->
-                <nav class="space-y-1">
-                    <a href="index.html" class="nav-item flex items-center space-x-3 hover:bg-opacity-10 hover:bg-primary px-4 py-3 rounded-lg transition group">
-                        <i class="fas fa-home text-lg w-5"></i>
+                <nav class="space-y-2">
+                    <a href="index.html" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg group">
+                        <i class="fas fa-home text-lg w-5 opacity-70 group-hover:opacity-100"></i>
                         <span class="font-medium">Inicio</span>
                     </a>
-                    <a href="quinielas-disponibles.html" class="nav-item flex items-center space-x-3 text-white px-4 py-3 rounded-lg transition bg-gradient-custom shadow-md">
+                    <a href="quinielas-disponibles.html" class="nav-item flex items-center space-x-3 text-white px-4 py-3 rounded-lg bg-gradient-custom">
                         <i class="fas fa-list text-lg w-5"></i>
-                        <span class="font-medium">Quinielas</span>
+                        <span class="font-medium">Quinielas Disponibles</span>
+                        <span class="ml-auto text-xs px-2 py-0.5 bg-white bg-opacity-20 text-white rounded-full font-semibold">
+                            12
+                        </span>
                     </a>
-                    <a href="mis-quinielas.html" class="nav-item flex items-center space-x-3 hover:bg-opacity-10 hover:bg-primary px-4 py-3 rounded-lg transition group">
-                        <i class="fas fa-file-alt text-lg w-5"></i>
+                    <a href="mis-quinielas.html" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg group">
+                        <i class="fas fa-file-alt text-lg w-5 opacity-70 group-hover:opacity-100"></i>
                         <span class="font-medium">Mis Quinielas</span>
+                        <span class="ml-auto text-xs px-2 py-0.5 bg-secondary bg-opacity-10 text-secondary rounded-full font-semibold">
+                            5
+                        </span>
                     </a>
-                    <a href="resultados.html" class="nav-item flex items-center space-x-3 hover:bg-opacity-10 hover:bg-primary px-4 py-3 rounded-lg transition group">
-                        <i class="fas fa-chart-line text-lg w-5"></i>
+                    <a href="resultados.html" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg group">
+                        <i class="fas fa-chart-line text-lg w-5 opacity-70 group-hover:opacity-100"></i>
                         <span class="font-medium">Resultados</span>
                     </a>
-                    <a href="historial.html" class="nav-item flex items-center space-x-3 hover:bg-opacity-10 hover:bg-primary px-4 py-3 rounded-lg transition group">
-                        <i class="fas fa-history text-lg w-5"></i>
+                    <a href="historial.html" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg group">
+                        <i class="fas fa-history text-lg w-5 opacity-70 group-hover:opacity-100"></i>
                         <span class="font-medium">Historial</span>
                     </a>
                 </nav>
+
+                <!-- Divider -->
+                <div class="sidebar-divider"></div>
+
+                <!-- Quick Stats -->
+                <div class="space-y-3">
+                    <p class="sidebar-section-title">Estadísticas Rápidas</p>
+                    <div class="flex items-center justify-between px-3 py-2 rounded-lg" style="background: var(--bg-primary);">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 rounded-lg bg-gradient-custom flex items-center justify-center">
+                                <i class="fas fa-trophy text-white text-sm"></i>
+                            </div>
+                            <span class="text-sm font-medium">Posición</span>
+                        </div>
+                        <span class="text-sm font-bold text-gradient-custom">#12</span>
+                    </div>
+                    <div class="flex items-center justify-between px-3 py-2 rounded-lg" style="background: var(--bg-primary);">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 rounded-lg bg-gradient-custom flex items-center justify-center">
+                                <i class="fas fa-check-circle text-white text-sm"></i>
+                            </div>
+                            <span class="text-sm font-medium">Aciertos</span>
+                        </div>
+                        <span class="text-sm font-bold text-gradient-custom">23</span>
+                    </div>
+                </div>
             </div>
 
             <!-- Sidebar Footer -->
             <div class="mt-auto p-5 md:p-6 border-t" style="border-color: var(--border-color)">
                 <!-- Dark Mode Toggle -->
-                <button class="dark-mode-toggle-sidebar w-full flex items-center justify-between px-4 py-3 rounded-lg hover:bg-opacity-10 hover:bg-primary transition group">
+                <button class="dark-mode-toggle-sidebar w-full flex items-center justify-between px-4 py-3 rounded-lg">
                     <div class="flex items-center space-x-3">
                         <i class="fas fa-moon text-lg w-5"></i>
                         <span class="font-medium">Modo Oscuro</span>
