@@ -35,15 +35,15 @@
 <body class="min-h-screen">
     <!-- Navigation -->
     <nav class="bg-gradient-custom text-white shadow-lg">
-        <div class="container mx-auto px-6 py-4">
+        <div class="container mx-auto px-4 md:px-6 py-3 md:py-4">
             <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-3 md:space-x-4">
                     <a href="../index.html" class="flex items-center space-x-2 hover:opacity-80 transition">
-                        <i class="fas fa-trophy text-2xl"></i>
-                        <span class="text-xl font-bold">QuinielaPro</span>
+                        <i class="fas fa-trophy text-xl md:text-2xl"></i>
+                        <span class="text-lg md:text-xl font-bold">QuinielaPro</span>
                     </a>
                 </div>
-                <div class="flex items-center space-x-6">
+                <div class="hidden md:flex items-center space-x-6">
                     <a href="#" class="hover:opacity-80 transition">
                         <i class="fas fa-user mr-2"></i>
                         <span>Mi Perfil</span>
@@ -56,6 +56,15 @@
                     <a href="../index.html" class="hover:opacity-80 transition">
                         <i class="fas fa-sign-out-alt mr-2"></i>
                         <span>Salir</span>
+                    </a>
+                </div>
+                <!-- Mobile Icons -->
+                <div class="flex md:hidden items-center space-x-3">
+                    <a href="#" class="hover:opacity-80 transition">
+                        <i class="fas fa-bell text-lg"></i>
+                    </a>
+                    <a href="#" class="hover:opacity-80 transition">
+                        <i class="fas fa-user text-lg"></i>
                     </a>
                 </div>
             </div>
@@ -101,70 +110,70 @@
         </aside>
 
         <!-- Main Content -->
-        <main class="flex-1 p-8">
-            <div class="mb-8">
-                <h1 class="text-3xl font-bold mb-2">Historial de Transacciones</h1>
-                <p class="opacity-75">Revisa todas tus actividades y transacciones</p>
+        <main class="flex-1 p-4 md:p-8">
+            <div class="mb-6 md:mb-8">
+                <h1 class="text-2xl md:text-3xl font-bold mb-2">Historial de Transacciones</h1>
+                <p class="text-sm md:text-base opacity-75">Revisa todas tus actividades y transacciones</p>
             </div>
 
             <!-- Stats Overview -->
-            <div class="grid md:grid-cols-4 gap-6 mb-8">
-                <div class="card rounded-xl shadow p-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 mb-6 md:mb-8">
+                <div class="card rounded-xl shadow p-3 md:p-6">
                     <div class="flex items-center justify-between mb-2">
-                        <span class="opacity-70 text-sm">Total Invertido</span>
-                        <i class="fas fa-dollar-sign text-primary"></i>
+                        <span class="opacity-70 text-xs md:text-sm">Total Invertido</span>
+                        <i class="fas fa-dollar-sign text-primary text-sm md:text-base"></i>
                     </div>
-                    <p class="text-2xl font-bold">$2,850</p>
+                    <p class="text-lg md:text-2xl font-bold">$2,850</p>
                     <p class="text-xs opacity-70 mt-1">23 quinielas</p>
                 </div>
-                <div class="card rounded-xl shadow p-6">
+                <div class="card rounded-xl shadow p-3 md:p-6">
                     <div class="flex items-center justify-between mb-2">
-                        <span class="opacity-70 text-sm">Total Ganado</span>
-                        <i class="fas fa-trophy text-green-500"></i>
+                        <span class="opacity-70 text-xs md:text-sm">Total Ganado</span>
+                        <i class="fas fa-trophy text-green-500 text-sm md:text-base"></i>
                     </div>
-                    <p class="text-2xl font-bold text-green-600">$8,450</p>
+                    <p class="text-lg md:text-2xl font-bold text-green-600">$8,450</p>
                     <p class="text-xs opacity-70 mt-1">8 premios</p>
                 </div>
-                <div class="card rounded-xl shadow p-6">
+                <div class="card rounded-xl shadow p-3 md:p-6">
                     <div class="flex items-center justify-between mb-2">
-                        <span class="opacity-70 text-sm">Balance Total</span>
-                        <i class="fas fa-chart-line text-purple-500"></i>
+                        <span class="opacity-70 text-xs md:text-sm">Balance Total</span>
+                        <i class="fas fa-chart-line text-purple-500 text-sm md:text-base"></i>
                     </div>
-                    <p class="text-2xl font-bold text-purple-600">+$5,600</p>
+                    <p class="text-lg md:text-2xl font-bold text-purple-600">+$5,600</p>
                     <p class="text-xs text-green-500 mt-1">+196% ROI</p>
                 </div>
-                <div class="card rounded-xl shadow p-6">
+                <div class="card rounded-xl shadow p-3 md:p-6">
                     <div class="flex items-center justify-between mb-2">
-                        <span class="opacity-70 text-sm">Efectividad</span>
-                        <i class="fas fa-percentage text-yellow-500"></i>
+                        <span class="opacity-70 text-xs md:text-sm">Efectividad</span>
+                        <i class="fas fa-percentage text-yellow-500 text-sm md:text-base"></i>
                     </div>
-                    <p class="text-2xl font-bold">68%</p>
+                    <p class="text-lg md:text-2xl font-bold">68%</p>
                     <p class="text-xs opacity-70 mt-1">Tasa de aciertos</p>
                 </div>
             </div>
 
             <!-- Filters -->
-            <div class="card rounded-xl shadow p-6 mb-8">
-                <div class="grid md:grid-cols-5 gap-4">
+            <div class="card rounded-xl shadow p-4 md:p-6 mb-6 md:mb-8">
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-3 md:gap-4">
                     <div>
-                        <label class="block text-sm font-medium mb-2">Tipo</label>
-                        <select class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" style="border-color: var(--border-color); background-color: var(--bg-card)">
+                        <label class="block text-xs md:text-sm font-medium mb-2">Tipo</label>
+                        <select class="w-full px-3 md:px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm md:text-base" style="border-color: var(--border-color); background-color: var(--bg-card)">
                             <option>Todos</option>
                             <option>Compras</option>
                             <option>Premios</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium mb-2">Fecha Desde</label>
-                        <input type="date" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" style="border-color: var(--border-color); background-color: var(--bg-card)">
+                        <label class="block text-xs md:text-sm font-medium mb-2">Fecha Desde</label>
+                        <input type="date" class="w-full px-3 md:px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm md:text-base" style="border-color: var(--border-color); background-color: var(--bg-card)">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium mb-2">Fecha Hasta</label>
-                        <input type="date" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" style="border-color: var(--border-color); background-color: var(--bg-card)">
+                        <label class="block text-xs md:text-sm font-medium mb-2">Fecha Hasta</label>
+                        <input type="date" class="w-full px-3 md:px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm md:text-base" style="border-color: var(--border-color); background-color: var(--bg-card)">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium mb-2">Monto</label>
-                        <select class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" style="border-color: var(--border-color); background-color: var(--bg-card)">
+                        <label class="block text-xs md:text-sm font-medium mb-2">Monto</label>
+                        <select class="w-full px-3 md:px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm md:text-base" style="border-color: var(--border-color); background-color: var(--bg-card)">
                             <option>Todos</option>
                             <option>$0 - $100</option>
                             <option>$100 - $500</option>
@@ -172,7 +181,7 @@
                         </select>
                     </div>
                     <div class="flex items-end">
-                        <button class="w-full btn-primary text-white px-4 py-2 rounded-lg">
+                        <button class="w-full btn-primary text-white px-4 py-2 rounded-lg text-sm md:text-base">
                             Filtrar
                         </button>
                     </div>
@@ -181,166 +190,166 @@
 
             <!-- Transaction History -->
             <div class="card rounded-xl shadow-lg">
-                <div class="p-6 border-b flex items-center justify-between" style="border-color: var(--border-color)">
-                    <h2 class="text-xl font-bold">Transacciones</h2>
-                    <button class="text-primary hover:opacity-80 font-medium">
+                <div class="p-4 md:p-6 border-b flex flex-col md:flex-row md:items-center md:justify-between gap-3" style="border-color: var(--border-color)">
+                    <h2 class="text-lg md:text-xl font-bold">Transacciones</h2>
+                    <button class="text-primary hover:opacity-80 font-medium text-sm md:text-base">
                         <i class="fas fa-download mr-2"></i>
                         Descargar Reporte
                     </button>
                 </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full">
+                <div class="overflow-x-auto -webkit-overflow-scrolling-touch">
+                    <table class="w-full min-w-[700px]">
                         <thead style="background-color: var(--bg-secondary)">
                             <tr>
-                                <th class="px-6 py-4 text-left text-sm font-semibold">Fecha</th>
-                                <th class="px-6 py-4 text-left text-sm font-semibold">Tipo</th>
-                                <th class="px-6 py-4 text-left text-sm font-semibold">Descripción</th>
-                                <th class="px-6 py-4 text-left text-sm font-semibold">Monto</th>
-                                <th class="px-6 py-4 text-left text-sm font-semibold">Estado</th>
-                                <th class="px-6 py-4 text-left text-sm font-semibold">Acciones</th>
+                                <th class="px-3 md:px-6 py-3 md:py-4 text-left text-xs md:text-sm font-semibold">Fecha</th>
+                                <th class="px-3 md:px-6 py-3 md:py-4 text-left text-xs md:text-sm font-semibold">Tipo</th>
+                                <th class="px-3 md:px-6 py-3 md:py-4 text-left text-xs md:text-sm font-semibold">Descripción</th>
+                                <th class="px-3 md:px-6 py-3 md:py-4 text-left text-xs md:text-sm font-semibold">Monto</th>
+                                <th class="px-3 md:px-6 py-3 md:py-4 text-left text-xs md:text-sm font-semibold">Estado</th>
+                                <th class="px-3 md:px-6 py-3 md:py-4 text-left text-xs md:text-sm font-semibold">Acciones</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y" style="border-color: var(--border-color)">
                             <tr style="cursor: pointer" onmouseover="this.style.backgroundColor='var(--bg-secondary)'" onmouseout="this.style.backgroundColor=''">
-                                <td class="px-6 py-4 text-sm opacity-70">
+                                <td class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm opacity-70">
                                     17/10/2024<br>
                                     <span class="text-xs opacity-50">14:30</span>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <span class="px-3 py-1 rounded-full text-sm font-medium" style="background-color: rgba(59, 130, 246, 0.2); color: #3b82f6">Compra</span>
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <span class="px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-medium" style="background-color: rgba(59, 130, 246, 0.2); color: #3b82f6">Compra</span>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <p class="font-medium">Quiniela NBA - Jornada 3</p>
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <p class="font-medium text-xs md:text-base">Quiniela NBA - Jornada 3</p>
                                     <p class="text-xs opacity-70">ID: QUI-2024-1234</p>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <span class="font-bold text-red-600">-$120</span>
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <span class="font-bold text-red-600 text-xs md:text-base">-$120</span>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <span class="px-3 py-1 rounded-full text-sm" style="background-color: rgba(34, 197, 94, 0.2); color: #22c55e">Completado</span>
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <span class="px-2 md:px-3 py-1 rounded-full text-xs md:text-sm" style="background-color: rgba(34, 197, 94, 0.2); color: #22c55e">Completado</span>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <button class="text-primary hover:opacity-80">
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <button class="text-primary hover:opacity-80 text-sm md:text-base">
                                         <i class="fas fa-eye"></i>
                                     </button>
                                 </td>
                             </tr>
                             <tr style="cursor: pointer" onmouseover="this.style.backgroundColor='var(--bg-secondary)'" onmouseout="this.style.backgroundColor=''">
-                                <td class="px-6 py-4 text-sm opacity-70">
+                                <td class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm opacity-70">
                                     15/10/2024<br>
                                     <span class="text-xs opacity-50">20:15</span>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <span class="px-3 py-1 rounded-full text-sm font-medium" style="background-color: rgba(34, 197, 94, 0.2); color: #22c55e">Premio</span>
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <span class="px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-medium" style="background-color: rgba(34, 197, 94, 0.2); color: #22c55e">Premio</span>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <p class="font-medium">Premio NFL - Semana 6</p>
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <p class="font-medium text-xs md:text-base">Premio NFL - Semana 6</p>
                                     <p class="text-xs opacity-70">Posición #3 - 14/16 aciertos</p>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <span class="font-bold text-green-600">+$2,500</span>
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <span class="font-bold text-green-600 text-xs md:text-base">+$2,500</span>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <span class="px-3 py-1 rounded-full text-sm" style="background-color: rgba(34, 197, 94, 0.2); color: #22c55e">Completado</span>
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <span class="px-2 md:px-3 py-1 rounded-full text-xs md:text-sm" style="background-color: rgba(34, 197, 94, 0.2); color: #22c55e">Completado</span>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <button class="text-primary hover:opacity-80">
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <button class="text-primary hover:opacity-80 text-sm md:text-base">
                                         <i class="fas fa-eye"></i>
                                     </button>
                                 </td>
                             </tr>
                             <tr style="cursor: pointer" onmouseover="this.style.backgroundColor='var(--bg-secondary)'" onmouseout="this.style.backgroundColor=''">
-                                <td class="px-6 py-4 text-sm opacity-70">
+                                <td class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm opacity-70">
                                     14/10/2024<br>
                                     <span class="text-xs opacity-50">16:45</span>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <span class="px-3 py-1 rounded-full text-sm font-medium" style="background-color: rgba(59, 130, 246, 0.2); color: #3b82f6">Compra</span>
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <span class="px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-medium" style="background-color: rgba(59, 130, 246, 0.2); color: #3b82f6">Compra</span>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <p class="font-medium">Quiniela NFL - Semana 7</p>
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <p class="font-medium text-xs md:text-base">Quiniela NFL - Semana 7</p>
                                     <p class="text-xs opacity-70">ID: QUI-2024-1233</p>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <span class="font-bold text-red-600">-$150</span>
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <span class="font-bold text-red-600 text-xs md:text-base">-$150</span>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <span class="px-3 py-1 rounded-full text-sm" style="background-color: rgba(34, 197, 94, 0.2); color: #22c55e">Completado</span>
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <span class="px-2 md:px-3 py-1 rounded-full text-xs md:text-sm" style="background-color: rgba(34, 197, 94, 0.2); color: #22c55e">Completado</span>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <button class="text-primary hover:opacity-80">
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <button class="text-primary hover:opacity-80 text-sm md:text-base">
                                         <i class="fas fa-eye"></i>
                                     </button>
                                 </td>
                             </tr>
                             <tr style="cursor: pointer" onmouseover="this.style.backgroundColor='var(--bg-secondary)'" onmouseout="this.style.backgroundColor=''">
-                                <td class="px-6 py-4 text-sm opacity-70">
+                                <td class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm opacity-70">
                                     12/10/2024<br>
                                     <span class="text-xs opacity-50">18:30</span>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <span class="px-3 py-1 rounded-full text-sm font-medium" style="background-color: rgba(59, 130, 246, 0.2); color: #3b82f6">Compra</span>
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <span class="px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-medium" style="background-color: rgba(59, 130, 246, 0.2); color: #3b82f6">Compra</span>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <p class="font-medium">Quiniela Liga MX - Jornada 14</p>
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <p class="font-medium text-xs md:text-base">Quiniela Liga MX - Jornada 14</p>
                                     <p class="text-xs opacity-70">ID: QUI-2024-1232</p>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <span class="font-bold text-red-600">-$100</span>
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <span class="font-bold text-red-600 text-xs md:text-base">-$100</span>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <span class="px-3 py-1 rounded-full text-sm" style="background-color: rgba(34, 197, 94, 0.2); color: #22c55e">Completado</span>
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <span class="px-2 md:px-3 py-1 rounded-full text-xs md:text-sm" style="background-color: rgba(34, 197, 94, 0.2); color: #22c55e">Completado</span>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <button class="text-primary hover:opacity-80">
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <button class="text-primary hover:opacity-80 text-sm md:text-base">
                                         <i class="fas fa-eye"></i>
                                     </button>
                                 </td>
                             </tr>
                             <tr style="cursor: pointer" onmouseover="this.style.backgroundColor='var(--bg-secondary)'" onmouseout="this.style.backgroundColor=''">
-                                <td class="px-6 py-4 text-sm opacity-70">
+                                <td class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm opacity-70">
                                     10/10/2024<br>
                                     <span class="text-xs opacity-50">21:00</span>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <span class="px-3 py-1 rounded-full text-sm font-medium" style="background-color: rgba(34, 197, 94, 0.2); color: #22c55e">Premio</span>
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <span class="px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-medium" style="background-color: rgba(34, 197, 94, 0.2); color: #22c55e">Premio</span>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <p class="font-medium">Premio Champions League</p>
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <p class="font-medium text-xs md:text-base">Premio Champions League</p>
                                     <p class="text-xs opacity-70">Posición #8 - 6/8 aciertos</p>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <span class="font-bold text-green-600">+$1,200</span>
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <span class="font-bold text-green-600 text-xs md:text-base">+$1,200</span>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <span class="px-3 py-1 rounded-full text-sm" style="background-color: rgba(34, 197, 94, 0.2); color: #22c55e">Completado</span>
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <span class="px-2 md:px-3 py-1 rounded-full text-xs md:text-sm" style="background-color: rgba(34, 197, 94, 0.2); color: #22c55e">Completado</span>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <button class="text-primary hover:opacity-80">
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <button class="text-primary hover:opacity-80 text-sm md:text-base">
                                         <i class="fas fa-eye"></i>
                                     </button>
                                 </td>
                             </tr>
                             <tr style="cursor: pointer" onmouseover="this.style.backgroundColor='var(--bg-secondary)'" onmouseout="this.style.backgroundColor=''">
-                                <td class="px-6 py-4 text-sm opacity-70">
+                                <td class="px-3 md:px-6 py-3 md:py-4 text-xs md:text-sm opacity-70">
                                     08/10/2024<br>
                                     <span class="text-xs opacity-50">15:20</span>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <span class="px-3 py-1 rounded-full text-sm font-medium" style="background-color: rgba(59, 130, 246, 0.2); color: #3b82f6">Compra</span>
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <span class="px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-medium" style="background-color: rgba(59, 130, 246, 0.2); color: #3b82f6">Compra</span>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <p class="font-medium">Quiniela Champions League</p>
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <p class="font-medium text-xs md:text-base">Quiniela Champions League</p>
                                     <p class="text-xs opacity-70">ID: QUI-2024-1231</p>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <span class="font-bold text-red-600">-$200</span>
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <span class="font-bold text-red-600 text-xs md:text-base">-$200</span>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <span class="px-3 py-1 rounded-full text-sm" style="background-color: rgba(34, 197, 94, 0.2); color: #22c55e">Completado</span>
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <span class="px-2 md:px-3 py-1 rounded-full text-xs md:text-sm" style="background-color: rgba(34, 197, 94, 0.2); color: #22c55e">Completado</span>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <button class="text-primary hover:opacity-80">
+                                <td class="px-3 md:px-6 py-3 md:py-4">
+                                    <button class="text-primary hover:opacity-80 text-sm md:text-base">
                                         <i class="fas fa-eye"></i>
                                     </button>
                                 </td>
@@ -348,11 +357,11 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="p-6 border-t flex items-center justify-between" style="background-color: var(--bg-secondary); border-color: var(--border-color)">
-                    <p class="text-sm opacity-70">Mostrando 6 de 23 transacciones</p>
+                <div class="p-4 md:p-6 border-t flex flex-col md:flex-row md:items-center md:justify-between gap-3" style="background-color: var(--bg-secondary); border-color: var(--border-color)">
+                    <p class="text-xs md:text-sm opacity-70">Mostrando 6 de 23 transacciones</p>
                     <div class="flex space-x-2">
-                        <button class="px-4 py-2 border rounded-lg hover:opacity-80 transition" style="border-color: var(--border-color)">Anterior</button>
-                        <button class="px-4 py-2 btn-primary text-white rounded-lg">Siguiente</button>
+                        <button class="px-3 md:px-4 py-2 border rounded-lg hover:opacity-80 transition text-sm md:text-base" style="border-color: var(--border-color)">Anterior</button>
+                        <button class="px-3 md:px-4 py-2 btn-primary text-white rounded-lg text-sm md:text-base">Siguiente</button>
                     </div>
                 </div>
             </div>
