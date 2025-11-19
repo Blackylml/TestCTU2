@@ -36,33 +36,43 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Toggle de modo oscuro */
-.dark-mode-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 50; /* Menor que el header pero visible */
-  background: var(--color-primary);
-  border: none;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* Toggle de modo oscuro en sidebar */
+.dark-mode-toggle-sidebar {
   cursor: pointer;
-  box-shadow: 0 4px 6px var(--shadow);
-  transition: all 0.3s ease;
 }
 
-.dark-mode-toggle:hover {
-  background: var(--color-secondary);
-  transform: scale(1.1);
+.toggle-switch {
+  position: relative;
+  width: 48px;
+  height: 24px;
+  background-color: var(--border-color);
+  border-radius: 24px;
+  transition: background-color 0.3s ease;
 }
 
-.dark-mode-toggle i {
-  color: white;
-  font-size: 1.5rem;
+.dark-mode .toggle-switch {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+}
+
+.toggle-slider {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .toggle-slider {
+  transform: translateX(24px);
+}
+
+/* Botón de modo oscuro antiguo (ocultar) */
+.dark-mode-toggle {
+  display: none !important;
 }
 
 /* Estilos para cards */
@@ -150,30 +160,66 @@ a:hover {
   background-clip: text;
 }
 
+/* Botón hamburguesa integrado en navbar */
+.hamburger-btn-inline {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  transition: all 0.3s ease;
+}
+
+.hamburger-btn-inline span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger-btn-inline.active span:nth-child(1) {
+  transform: rotate(45deg) translateY(10px);
+}
+
+.hamburger-btn-inline.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-btn-inline.active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-10px);
+}
+
+/* Mejorar estilos de nav-items */
+.nav-item {
+  position: relative;
+}
+
+.nav-item:not(.active):hover {
+  transform: translateX(4px);
+}
+
+.nav-item.active {
+  box-shadow: 0 4px 12px rgba(207, 10, 10, 0.3);
+}
+
 /* Estilos responsivos para móviles */
 @media (max-width: 768px) {
-  /* Ajustar el botón de modo oscuro para móviles */
-  .dark-mode-toggle {
-    width: 45px;
-    height: 45px;
-    top: 80px; /* Debajo del header */
-    right: 15px;
-    z-index: 50;
-  }
-
-  .dark-mode-toggle i {
-    font-size: 1.2rem;
-  }
-
   /* Sidebar responsive */
   aside {
     position: fixed !important;
-    top: 0;
+    top: 64px; /* Debajo del navbar fixed */
     left: -100% !important;
-    width: 80% !important;
-    max-width: 300px;
-    height: 100vh;
-    z-index: 1000; /* Debajo del botón hamburguesa pero encima del overlay */
+    width: 85% !important;
+    max-width: 320px;
+    height: calc(100vh - 64px); /* Altura menos el navbar */
+    z-index: 40; /* Debajo del navbar pero encima del overlay */
     transition: left 0.3s ease;
     overflow-y: auto;
     background-color: var(--bg-card);
@@ -208,44 +254,9 @@ a:hover {
     visibility: visible;
   }
 
-  /* Botón hamburguesa */
+  /* Ocultar botón hamburguesa flotante antiguo */
   .hamburger-btn {
-    position: fixed;
-    top: 80px; /* Debajo de la navegación */
-    left: 15px;
-    z-index: 1002; /* Por encima del sidebar */
-    background: var(--color-primary);
-    border: none;
-    border-radius: 8px;
-    width: 45px;
-    height: 45px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 4px 6px var(--shadow);
-    transition: all 0.3s ease;
-  }
-
-  .hamburger-btn span {
-    width: 25px;
-    height: 2px;
-    background: white;
-    margin: 3px 0;
-    transition: all 0.3s ease;
-  }
-
-  .hamburger-btn.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-  }
-
-  .hamburger-btn.active span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .hamburger-btn.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -7px);
+    display: none !important;
   }
 
   /* Ajustar padding del contenido principal en móviles */
@@ -344,16 +355,17 @@ a:hover {
   /* Resetear sidebar para desktop */
   aside {
     position: static !important;
+    top: auto !important;
     left: auto !important;
-    width: 16rem !important; /* w-64 */
+    width: 18rem !important; /* Más ancho en desktop */
     max-width: none !important;
     height: auto !important;
-    min-height: 100vh;
-    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1) !important;
+    min-height: calc(100vh - 72px);
+    box-shadow: 2px 0 8px var(--shadow) !important;
   }
 
-  /* Ocultar botón hamburguesa en desktop */
-  .hamburger-btn {
+  /* Ocultar botón hamburguesa inline en desktop */
+  .hamburger-btn-inline {
     display: none !important;
   }
 

@@ -26,18 +26,14 @@ class MobileMenuManager {
   }
 
   createHamburgerButton() {
-    // Solo crear en móviles (viewport < 768px)
-    const button = document.createElement('button');
-    button.className = 'hamburger-btn md:hidden';
-    button.setAttribute('aria-label', 'Toggle menu');
-    button.innerHTML = `
-      <span></span>
-      <span></span>
-      <span></span>
-    `;
-
-    document.body.appendChild(button);
-    this.hamburgerBtn = button;
+    // Buscar el botón hamburguesa inline en el navbar
+    const button = document.querySelector('.hamburger-btn-inline');
+    if (button) {
+      this.hamburgerBtn = button;
+      console.log('Hamburger button found:', button);
+    } else {
+      console.warn('Hamburger button not found!');
+    }
   }
 
   createOverlay() {

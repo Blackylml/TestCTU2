@@ -43,15 +43,15 @@ class DarkModeManager {
   }
 
   createToggleButton() {
-    const button = document.createElement('button');
-    button.className = 'dark-mode-toggle';
-    button.setAttribute('aria-label', 'Toggle dark mode');
-    button.innerHTML = '<i class="fas fa-moon"></i>';
-
-    button.addEventListener('click', () => this.toggle());
-
-    document.body.appendChild(button);
-    this.updateToggleButton();
+    // Buscar el botón de dark mode en el sidebar
+    const button = document.querySelector('.dark-mode-toggle-sidebar');
+    if (button) {
+      button.addEventListener('click', () => this.toggle());
+      this.updateToggleButton();
+      console.log('Dark mode toggle button found and initialized');
+    } else {
+      console.warn('Dark mode toggle button not found in sidebar');
+    }
   }
 
   toggle() {
@@ -79,14 +79,14 @@ class DarkModeManager {
   }
 
   updateToggleButton() {
-    const button = document.querySelector('.dark-mode-toggle');
+    const button = document.querySelector('.dark-mode-toggle-sidebar');
     if (!button) return;
 
     const icon = button.querySelector('i');
     if (document.body.classList.contains('dark-mode')) {
-      icon.className = 'fas fa-sun';
+      icon.className = 'fas fa-sun text-lg w-5';
     } else {
-      icon.className = 'fas fa-moon';
+      icon.className = 'fas fa-moon text-lg w-5';
     }
   }
 
