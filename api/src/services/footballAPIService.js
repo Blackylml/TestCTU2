@@ -4,6 +4,7 @@
  */
 
 const axios = require('axios');
+const cacheService = require('./cacheService');
 
 // Configuración de RapidAPI Football
 const FOOTBALL_API_CONFIG = {
@@ -80,50 +81,65 @@ const findLeague = (searchTerm) => {
  * @param {string} season - Temporada (ej: "2024")
  * @param {string} from - Fecha desde (YYYY-MM-DD)
  * @param {string} to - Fecha hasta (YYYY-MM-DD)
+ * @param {boolean} useCache - Usar caché (default: true)
  */
-const getFixtures = async (leagueId, season = null, from = null, to = null) => {
-  try {
-    const params = {
-      league: leagueId,
-    };
+const getFixtures = async (leagueId, season = null, from = null, to = null, useCache = true) => {
+  const params = {
+    league: leagueId,
+  };
 
-    // Si no se especifica temporada, usar año actual
-    if (season) {
-      params.season = season;
-    } else {
-      params.season = new Date().getFullYear();
+  // Si no se especifica temporada, usar año actual
+  if (season) {
+    params.season = season;
+  } else {
+    params.season = new Date().getFullYear();
+  }
+
+  // Filtros de fecha
+  if (from) params.from = from;
+  if (to) params.to = to;
+
+  // Si no hay filtros de fecha, obtener próximos 30 días
+  if (!from && !to) {
+    const today = new Date();
+    const nextMonth = new Date(today);
+    nextMonth.setDate(today.getDate() + 30);
+
+    params.from = today.toISOString().split('T')[0];
+    params.to = nextMonth.toISOString().split('T')[0];
+  }
+
+  // Clave única de caché
+  const cacheKey = `fixtures:${leagueId}:${params.season}:${params.from}:${params.to}`;
+
+  // Función que consulta la API
+  const fetchFromAPI = async () => {
+    try {
+      console.log('📡 Consultando RapidAPI Football:', params);
+
+      const response = await footballAPIClient.get('/fixtures', { params });
+
+      if (response.data.errors && Object.keys(response.data.errors).length > 0) {
+        throw new Error(`API Error: ${JSON.stringify(response.data.errors)}`);
+      }
+
+      return {
+        success: true,
+        fixtures: response.data.response || [],
+        count: response.data.results || 0,
+      };
+    } catch (error) {
+      console.error('❌ Error obteniendo fixtures:', error.message);
+      throw new Error(`Error al consultar API de fútbol: ${error.message}`);
     }
+  };
 
-    // Filtros de fecha
-    if (from) params.from = from;
-    if (to) params.to = to;
-
-    // Si no hay filtros de fecha, obtener próximos 30 días
-    if (!from && !to) {
-      const today = new Date();
-      const nextMonth = new Date(today);
-      nextMonth.setDate(today.getDate() + 30);
-
-      params.from = today.toISOString().split('T')[0];
-      params.to = nextMonth.toISOString().split('T')[0];
-    }
-
-    console.log('📡 Consultando RapidAPI Football:', params);
-
-    const response = await footballAPIClient.get('/fixtures', { params });
-
-    if (response.data.errors && Object.keys(response.data.errors).length > 0) {
-      throw new Error(`API Error: ${JSON.stringify(response.data.errors)}`);
-    }
-
-    return {
-      success: true,
-      fixtures: response.data.response || [],
-      count: response.data.results || 0,
-    };
-  } catch (error) {
-    console.error('❌ Error obteniendo fixtures:', error.message);
-    throw new Error(`Error al consultar API de fútbol: ${error.message}`);
+  // Usar caché o consultar API
+  if (useCache) {
+    // Caché de 1 hora (3600 segundos)
+    return cacheService.getOrSet(cacheKey, fetchFromAPI, 3600);
+  } else {
+    return fetchFromAPI();
   }
 };
 
