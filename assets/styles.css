@@ -888,3 +888,299 @@ aside::-webkit-scrollbar-thumb:hover {
 body.sidebar-open {
   overflow: hidden;
 }
+
+/* ========================================
+   MODO OSCURO - SOBRESCRITURA DE TAILWIND
+   ======================================== */
+
+/* Títulos y textos principales */
+.dark-mode .text-gray-800,
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3 {
+  color: var(--text-primary) !important;
+}
+
+.dark-mode .text-gray-700 {
+  color: var(--text-secondary) !important;
+}
+
+.dark-mode .text-gray-600,
+.dark-mode .text-gray-500 {
+  color: var(--text-muted) !important;
+}
+
+/* Fondos blancos y grises */
+.dark-mode .bg-white {
+  background-color: var(--bg-card) !important;
+}
+
+.dark-mode .bg-gray-50 {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+}
+
+.dark-mode .bg-gray-100 {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Fondos de estado con mejor contraste en modo oscuro */
+.dark-mode .bg-green-50 {
+  background-color: rgba(16, 185, 129, 0.15) !important;
+}
+
+.dark-mode .bg-yellow-50 {
+  background-color: rgba(245, 158, 11, 0.15) !important;
+}
+
+.dark-mode .bg-blue-50 {
+  background-color: rgba(59, 130, 246, 0.15) !important;
+}
+
+.dark-mode .bg-purple-50 {
+  background-color: rgba(168, 85, 247, 0.15) !important;
+}
+
+.dark-mode .bg-red-50 {
+  background-color: rgba(239, 68, 68, 0.15) !important;
+}
+
+/* Badges de estado */
+.dark-mode .bg-green-100 {
+  background-color: rgba(16, 185, 129, 0.2) !important;
+}
+
+.dark-mode .text-green-800 {
+  color: #6ee7b7 !important;
+}
+
+.dark-mode .bg-blue-100 {
+  background-color: rgba(59, 130, 246, 0.2) !important;
+}
+
+.dark-mode .text-blue-800 {
+  color: #93c5fd !important;
+}
+
+.dark-mode .bg-yellow-100 {
+  background-color: rgba(245, 158, 11, 0.2) !important;
+}
+
+.dark-mode .text-yellow-800 {
+  color: #fcd34d !important;
+}
+
+.dark-mode .bg-gray-100 {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark-mode .text-gray-800.rounded-full {
+  color: var(--text-secondary) !important;
+}
+
+/* Bordes */
+.dark-mode .border-gray-300,
+.dark-mode .border-gray-200 {
+  border-color: var(--border-color) !important;
+}
+
+.dark-mode .divide-gray-200 > * {
+  border-color: var(--border-color) !important;
+}
+
+.dark-mode .border-l-4.border-green-500 {
+  border-left-color: #10b981 !important;
+}
+
+.dark-mode .border-l-4.border-yellow-500 {
+  border-left-color: #f59e0b !important;
+}
+
+.dark-mode .border-l-4.border-blue-500 {
+  border-left-color: #3b82f6 !important;
+}
+
+.dark-mode .border-l-4.border-gray-300 {
+  border-left-color: var(--border-color) !important;
+}
+
+/* Inputs, selects y textareas */
+.dark-mode input[type="text"],
+.dark-mode input[type="email"],
+.dark-mode input[type="password"],
+.dark-mode input[type="number"],
+.dark-mode input[type="date"],
+.dark-mode input[type="time"],
+.dark-mode select,
+.dark-mode textarea {
+  background-color: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+.dark-mode input::placeholder,
+.dark-mode textarea::placeholder {
+  color: var(--text-muted) !important;
+}
+
+.dark-mode input:focus,
+.dark-mode select:focus,
+.dark-mode textarea:focus {
+  background-color: var(--bg-card) !important;
+  border-color: rgba(207, 10, 10, 0.5) !important;
+}
+
+/* Inputs con bordes específicos de color */
+.dark-mode input.border-2.border-gray-300,
+.dark-mode input.border-2.border-blue-300 {
+  background-color: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Tablas */
+.dark-mode table thead {
+  background-color: rgba(207, 10, 10, 0.1) !important;
+}
+
+.dark-mode table thead th {
+  color: var(--text-primary) !important;
+}
+
+.dark-mode table tbody tr {
+  border-bottom-color: var(--border-color) !important;
+}
+
+.dark-mode table tbody tr:hover,
+.dark-mode .hover\:bg-gray-50:hover {
+  background-color: rgba(207, 10, 10, 0.05) !important;
+}
+
+.dark-mode table tbody td {
+  color: var(--text-primary) !important;
+}
+
+.dark-mode table tbody .text-sm {
+  color: var(--text-secondary) !important;
+}
+
+.dark-mode table tbody .text-xs {
+  color: var(--text-muted) !important;
+}
+
+/* Paginación */
+.dark-mode .bg-gray-50.border-t {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+  border-top-color: var(--border-color) !important;
+}
+
+/* Botones con border */
+.dark-mode button.border-gray-300,
+.dark-mode a.border-gray-300 {
+  border-color: var(--border-color) !important;
+  background-color: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+}
+
+.dark-mode button.border-gray-300:hover,
+.dark-mode a.border-gray-300:hover {
+  background-color: rgba(207, 10, 10, 0.1) !important;
+}
+
+/* Labels y textos de formularios */
+.dark-mode label {
+  color: var(--text-secondary) !important;
+}
+
+/* Iconos específicos con colores */
+.dark-mode .text-blue-500 {
+  color: #60a5fa !important;
+}
+
+.dark-mode .text-purple-500 {
+  color: #a78bfa !important;
+}
+
+.dark-mode .text-green-500 {
+  color: #34d399 !important;
+}
+
+/* Colores de texto en badges/pills con fondo de color */
+.dark-mode .text-green-600 {
+  color: #6ee7b7 !important;
+}
+
+.dark-mode .text-blue-600 {
+  color: #93c5fd !important;
+}
+
+.dark-mode .text-purple-600 {
+  color: #c084fc !important;
+}
+
+.dark-mode .text-red-600 {
+  color: #fca5a5 !important;
+}
+
+/* Mantener colores en botones de estado que ya tienen buen contraste */
+.dark-mode .bg-green-600,
+.dark-mode .bg-blue-600,
+.dark-mode .bg-purple-600,
+.dark-mode .bg-yellow-600,
+.dark-mode .bg-red-600 {
+  /* Mantener colores originales - ya tienen buen contraste */
+}
+
+/* Shadows más visibles en modo oscuro */
+.dark-mode .shadow,
+.dark-mode .shadow-lg {
+  box-shadow: 0 10px 25px rgba(207, 10, 10, 0.2) !important;
+}
+
+/* Dividers */
+.dark-mode .border-t {
+  border-top-color: var(--border-color) !important;
+}
+
+/* Asegurar que los gradientes se mantengan */
+.dark-mode .bg-gradient-to-r,
+.dark-mode .bg-gradient-custom {
+  /* Los gradientes no necesitan cambios */
+}
+
+/* Texto sobre gradientes - asegurar que sea blanco */
+.dark-mode .bg-gradient-to-r *,
+.dark-mode .bg-gradient-custom * {
+  color: white !important;
+}
+
+/* Mejorar contraste en cards de progreso */
+.dark-mode .bg-gradient-to-r.from-purple-500 {
+  background: linear-gradient(to right, rgba(168, 85, 247, 0.9), rgba(236, 72, 153, 0.9)) !important;
+}
+
+/* Asegurar visibilidad de placeholders y textos de ayuda */
+.dark-mode .text-sm.text-gray-600,
+.dark-mode .text-xs.text-gray-500,
+.dark-mode .text-xs.text-gray-600 {
+  color: var(--text-muted) !important;
+}
+
+/* Fix para spans dentro de badges */
+.dark-mode span.px-3.py-1 {
+  color: inherit !important;
+}
+
+/* Mejorar visibilidad de estados de partidos */
+.dark-mode .bg-green-600.text-white,
+.dark-mode .bg-yellow-600.text-white,
+.dark-mode .bg-blue-600.text-white,
+.dark-mode .bg-gray-400.text-white {
+  /* Mantener colores - ya tienen buen contraste */
+}
+
+/* Asegurar que los iconos mantengan sus colores en contextos específicos */
+.dark-mode .text-blue-600 i,
+.dark-mode .text-purple-600 i,
+.dark-mode .text-green-600 i,
+.dark-mode .text-red-600 i {
+  color: inherit !important;
+}
