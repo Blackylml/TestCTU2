@@ -84,15 +84,16 @@
             <div class="p-5 md:p-6">
                 <!-- Admin Profile Section -->
                 <div class="sidebar-profile">
-                    <div class="flex items-center space-x-3">
-                        <div class="sidebar-profile-avatar w-14 h-14 rounded-full flex items-center justify-center bg-gradient-custom shadow-lg">
-                            <i class="fas fa-user-shield text-white text-xl"></i>
+                    <div class="flex items-center gap-3">
+                        <div class="sidebar-profile-avatar w-16 h-16 rounded-full flex items-center justify-center bg-gradient-custom shadow-lg relative">
+                            <i class="fas fa-user-shield text-white text-2xl"></i>
                         </div>
                         <div class="flex-1 min-w-0">
-                            <p class="font-bold text-base truncate">Admin</p>
-                            <p class="text-xs opacity-70 truncate">admin@quinielapro.com</p>
-                            <span class="inline-block mt-1 px-2 py-0.5 text-xs font-semibold bg-gradient-custom text-white rounded-full">
-                                Administrador
+                            <p class="font-bold text-lg truncate">Admin</p>
+                            <p class="text-xs opacity-70 truncate mb-2">admin@quinielapro.com</p>
+                            <span class="badge-role">
+                                <i class="fas fa-shield-alt text-xs"></i>
+                                <span>Administrador</span>
                             </span>
                         </div>
                     </div>
@@ -141,23 +142,23 @@
                 <!-- Quick Stats -->
                 <div class="space-y-3">
                     <p class="sidebar-section-title">Panel de Control</p>
-                    <div class="flex items-center justify-between px-3 py-2 rounded-lg" style="background: var(--bg-primary);">
-                        <div class="flex items-center space-x-3">
-                            <div class="w-8 h-8 rounded-lg bg-gradient-custom flex items-center justify-center">
+                    <div class="sidebar-stat-card">
+                        <div class="flex items-center gap-3">
+                            <div class="sidebar-stat-icon">
                                 <i class="fas fa-file-alt text-white text-sm"></i>
                             </div>
                             <span class="text-sm font-medium">Activas</span>
                         </div>
-                        <span class="text-sm font-bold text-gradient-custom">12</span>
+                        <span class="sidebar-stat-value">12</span>
                     </div>
-                    <div class="flex items-center justify-between px-3 py-2 rounded-lg" style="background: var(--bg-primary);">
-                        <div class="flex items-center space-x-3">
-                            <div class="w-8 h-8 rounded-lg bg-gradient-custom flex items-center justify-center">
+                    <div class="sidebar-stat-card">
+                        <div class="flex items-center gap-3">
+                            <div class="sidebar-stat-icon">
                                 <i class="fas fa-users text-white text-sm"></i>
                             </div>
                             <span class="text-sm font-medium">Usuarios</span>
                         </div>
-                        <span class="text-sm font-bold text-gradient-custom">1,248</span>
+                        <span class="sidebar-stat-value">1,248</span>
                     </div>
                 </div>
             </div>

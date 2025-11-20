@@ -270,32 +270,91 @@ aside::-webkit-scrollbar-thumb:hover {
 /* Mejorar sección de perfil en sidebar */
 .sidebar-profile {
   position: relative;
-  padding: 1.25rem;
-  margin-bottom: 1rem;
-  border-radius: 12px;
-  background: linear-gradient(135deg, rgba(207, 10, 10, 0.05), rgba(220, 95, 0, 0.05));
-  border: 1px solid var(--border-color);
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(207, 10, 10, 0.08), rgba(220, 95, 0, 0.08));
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  transition: all 0.3s ease;
+}
+
+.sidebar-profile::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 16px;
+  padding: 2px;
+  background: linear-gradient(135deg, rgba(207, 10, 10, 0.3), rgba(220, 95, 0, 0.3));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.5;
 }
 
 .dark-mode .sidebar-profile {
-  background: linear-gradient(135deg, rgba(207, 10, 10, 0.15), rgba(220, 95, 0, 0.15));
+  background: linear-gradient(135deg, rgba(207, 10, 10, 0.18), rgba(220, 95, 0, 0.18));
+  box-shadow: 0 4px 12px rgba(207, 10, 10, 0.15);
+}
+
+.dark-mode .sidebar-profile::before {
+  opacity: 0.8;
 }
 
 .sidebar-profile-avatar {
   position: relative;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-profile-avatar:hover {
+  transform: scale(1.05);
 }
 
 .sidebar-profile-avatar::after {
   content: '';
   position: absolute;
-  bottom: 2px;
-  right: 2px;
-  width: 12px;
-  height: 12px;
-  background: #10B981;
-  border: 2px solid var(--bg-card);
+  bottom: 3px;
+  right: 3px;
+  width: 14px;
+  height: 14px;
+  background: linear-gradient(135deg, #10B981, #059669);
+  border: 3px solid var(--bg-card);
   border-radius: 50%;
-  box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.6);
+  animation: pulse-online 2s ease-in-out infinite;
+}
+
+@keyframes pulse-online {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(16, 185, 129, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.9);
+  }
+}
+
+/* Badge mejorado */
+.sidebar-profile .badge-role {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.75rem;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: white;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  box-shadow: 0 2px 8px rgba(207, 10, 10, 0.3);
+  transition: all 0.3s ease;
+}
+
+.sidebar-profile .badge-role:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(207, 10, 10, 0.4);
 }
 
 /* Divisores elegantes */
@@ -339,25 +398,115 @@ aside::-webkit-scrollbar-thumb:hover {
 /* Mejorar botón de dark mode en sidebar */
 .dark-mode-toggle-sidebar {
   transition: all 0.3s ease;
-  border: 1px solid transparent;
+  border: 2px solid var(--border-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.dark-mode-toggle-sidebar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(207, 10, 10, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.dark-mode-toggle-sidebar:hover::before {
+  left: 100%;
 }
 
 .dark-mode-toggle-sidebar:hover {
-  background: linear-gradient(90deg, rgba(207, 10, 10, 0.08), rgba(220, 95, 0, 0.08));
-  border-color: var(--border-color);
+  border-color: rgba(207, 10, 10, 0.4);
   transform: translateX(4px);
+  box-shadow: 0 2px 8px var(--shadow);
+}
+
+.dark-mode .dark-mode-toggle-sidebar {
+  background: linear-gradient(90deg, rgba(207, 10, 10, 0.1), rgba(220, 95, 0, 0.1));
+  border-color: rgba(207, 10, 10, 0.3);
+}
+
+.dark-mode-toggle-sidebar i {
+  transition: transform 0.3s ease;
+}
+
+.dark-mode .dark-mode-toggle-sidebar i {
+  transform: rotate(180deg);
+  color: var(--color-secondary);
 }
 
 /* Estilos de sección del sidebar */
 .sidebar-section-title {
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
   color: var(--text-muted);
-  margin-bottom: 0.75rem;
-  margin-top: 1.5rem;
+  margin-bottom: 1rem;
   padding-left: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sidebar-section-title::before {
+  content: '';
+  width: 3px;
+  height: 16px;
+  background: linear-gradient(180deg, var(--color-primary), var(--color-secondary));
+  border-radius: 2px;
+}
+
+/* Stats cards en sidebar */
+.sidebar-stat-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 1rem;
+  border-radius: 12px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.sidebar-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--shadow);
+  border-color: rgba(207, 10, 10, 0.3);
+}
+
+.dark-mode .sidebar-stat-card:hover {
+  background: rgba(207, 10, 10, 0.05);
+}
+
+.sidebar-stat-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 8px rgba(207, 10, 10, 0.25);
+  transition: transform 0.3s ease;
+}
+
+.sidebar-stat-card:hover .sidebar-stat-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.sidebar-stat-value {
+  font-size: 1.125rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* Estilos responsivos para móviles */
