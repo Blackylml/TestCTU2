@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - QuinielaPro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#CF0A0A',
+                        secondary: '#DC5F00',
+                        dark: '#000000',
+                        light: '#EEEEEE',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Prevenir parpadeo de modo oscuro -->
+    <script>
+        (function() {
+            const darkMode = localStorage.getItem('quinielaPro_darkMode');
+            if (darkMode === 'dark' || (!darkMode && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark-mode');
+            }
+        })();
+    </script>
+    <style>
+        .register-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 2rem 0;
+        }
+        .dark-mode .register-container {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+        .register-card {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        .dark-mode .register-card {
+            background: rgba(30, 30, 30, 0.95);
+        }
+        .google-btn {
+            transition: all 0.3s ease;
+        }
+        .google-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .input-field {
+            transition: all 0.3s ease;
+        }
+        .input-field:focus {
+            transform: translateY(-2px);
+        }
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .dark-mode .divider::before,
+        .dark-mode .divider::after {
+            border-bottom-color: #4b5563;
+        }
+        .divider span {
+            padding: 0 1rem;
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+        .password-strength {
+            height: 4px;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            margin-top: 0.5rem;
+        }
+        .strength-weak { width: 33%; background: #ef4444; }
+        .strength-medium { width: 66%; background: #f59e0b; }
+        .strength-strong { width: 100%; background: #10b981; }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <div class="register-card w-full max-w-md mx-4 p-8 md:p-10">
+            <!-- Logo y Título -->
+            <div class="text-center mb-8">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-custom rounded-full mb-4">
+                    <i class="fas fa-user-plus text-3xl text-white"></i>
+                </div>
+                <h1 class="text-3xl font-bold mb-2">Crear Cuenta</h1>
+                <p class="opacity-70">Únete a QuinielaPro hoy</p>
+            </div>
+
+            <!-- Google Sign-In Button -->
+            <div id="google-signin-button" class="mb-6"></div>
+
+            <!-- Divider -->
+            <div class="divider">
+                <span>o regístrate con email</span>
+            </div>
+
+            <!-- Register Form -->
+            <form id="register-form" class="space-y-4">
+                <!-- Nombre -->
+                <div>
+                    <label for="nombre" class="block text-sm font-semibold mb-2">
+                        <i class="fas fa-user mr-2 text-primary"></i>Nombre Completo
+                    </label>
+                    <input
+                        type="text"
+                        id="nombre"
+                        name="nombre"
+                        required
+                        autocomplete="name"
+                        class="input-field w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-primary focus:outline-none transition-all"
+                        placeholder="Juan Pérez"
+                    />
+                </div>
+
+                <!-- Email -->
+                <div>
+                    <label for="email" class="block text-sm font-semibold mb-2">
+                        <i class="fas fa-envelope mr-2 text-primary"></i>Email
+                    </label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        autocomplete="email"
+                        class="input-field w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-primary focus:outline-none transition-all"
+                        placeholder="tu@email.com"
+                    />
+                </div>
+
+                <!-- Contraseña -->
+                <div>
+                    <label for="password" class="block text-sm font-semibold mb-2">
+                        <i class="fas fa-lock mr-2 text-primary"></i>Contraseña
+                    </label>
+                    <div class="relative">
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            required
+                            autocomplete="new-password"
+                            class="input-field w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-primary focus:outline-none transition-all"
+                            placeholder="Mínimo 6 caracteres"
+                        />
+                        <button
+                            type="button"
+                            id="toggle-password"
+                            class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-primary transition-colors"
+                        >
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <!-- Password Strength Indicator -->
+                    <div id="password-strength" class="password-strength"></div>
+                    <p id="password-hint" class="text-xs mt-1 opacity-70"></p>
+                </div>
+
+                <!-- Confirmar Contraseña -->
+                <div>
+                    <label for="password-confirm" class="block text-sm font-semibold mb-2">
+                        <i class="fas fa-lock mr-2 text-primary"></i>Confirmar Contraseña
+                    </label>
+                    <div class="relative">
+                        <input
+                            type="password"
+                            id="password-confirm"
+                            name="password-confirm"
+                            required
+                            autocomplete="new-password"
+                            class="input-field w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-primary focus:outline-none transition-all"
+                            placeholder="Repite tu contraseña"
+                        />
+                        <button
+                            type="button"
+                            id="toggle-password-confirm"
+                            class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-primary transition-colors"
+                        >
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Términos y Condiciones -->
+                <div class="flex items-start">
+                    <input
+                        type="checkbox"
+                        id="terms"
+                        required
+                        class="mt-1 mr-3 rounded"
+                    />
+                    <label for="terms" class="text-sm cursor-pointer">
+                        Acepto los <a href="#" class="text-primary hover:underline font-semibold">Términos y Condiciones</a>
+                        y la <a href="#" class="text-primary hover:underline font-semibold">Política de Privacidad</a>
+                    </label>
+                </div>
+
+                <!-- Submit Button -->
+                <button
+                    type="submit"
+                    id="register-btn"
+                    class="w-full btn-primary text-white py-3 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 mt-6"
+                >
+                    <i class="fas fa-user-plus mr-2"></i>Crear Cuenta
+                </button>
+            </form>
+
+            <!-- Login -->
+            <p class="mt-6 text-center text-sm">
+                ¿Ya tienes cuenta?
+                <a href="login.html" class="text-primary font-bold hover:underline text-base">
+                    Inicia sesión aquí
+                </a>
+            </p>
+
+            <!-- Volver al inicio -->
+            <div class="mt-6 text-center">
+                <a href="index.html" class="text-sm opacity-70 hover:opacity-100 transition-opacity">
+                    <i class="fas fa-arrow-left mr-2"></i>Volver al inicio
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/api-client.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script>
+        // Configurar API
+        const APP_CONFIG = {
+            API_URL: 'http://localhost:3000',
+            GOOGLE_CLIENT_ID: '548408750723-r8d4cb8i5vq5abgfl31f5b88k4ecuu8e.apps.googleusercontent.com',
+        };
+
+        api.setBaseUrl(APP_CONFIG.API_URL);
+
+        // Si ya está autenticado, redirigir
+        if (authManager.isAuthenticated()) {
+            const user = authManager.getCurrentUser();
+            if (user && user.role === 'admin') {
+                window.location.href = '/admin/index.html';
+            } else {
+                window.location.href = '/user/index.html';
+            }
+        }
+
+        // Inicializar Google Sign-In
+        authManager.initGoogleSignIn().then(() => {
+            authManager.renderGoogleButton('google-signin-button', {
+                theme: 'outline',
+                size: 'large',
+                text: 'signup_with',
+                shape: 'rectangular',
+                width: document.getElementById('google-signin-button').offsetWidth,
+            });
+        }).catch(error => {
+            console.error('Error inicializando Google Sign-In:', error);
+            document.getElementById('google-signin-button').innerHTML =
+                '<p class="text-sm text-red-500 text-center">Error cargando Google Sign-In</p>';
+        });
+
+        // Password strength checker
+        const passwordInput = document.getElementById('password');
+        const strengthIndicator = document.getElementById('password-strength');
+        const passwordHint = document.getElementById('password-hint');
+
+        passwordInput.addEventListener('input', () => {
+            const password = passwordInput.value;
+            const strength = checkPasswordStrength(password);
+
+            strengthIndicator.className = 'password-strength';
+
+            if (password.length === 0) {
+                passwordHint.textContent = '';
+                return;
+            }
+
+            if (strength === 'weak') {
+                strengthIndicator.classList.add('strength-weak');
+                passwordHint.textContent = 'Contraseña débil';
+                passwordHint.style.color = '#ef4444';
+            } else if (strength === 'medium') {
+                strengthIndicator.classList.add('strength-medium');
+                passwordHint.textContent = 'Contraseña media';
+                passwordHint.style.color = '#f59e0b';
+            } else {
+                strengthIndicator.classList.add('strength-strong');
+                passwordHint.textContent = 'Contraseña fuerte';
+                passwordHint.style.color = '#10b981';
+            }
+        });
+
+        function checkPasswordStrength(password) {
+            if (password.length < 6) return 'weak';
+
+            let strength = 0;
+            if (password.length >= 8) strength++;
+            if (/[a-z]/.test(password)) strength++;
+            if (/[A-Z]/.test(password)) strength++;
+            if (/[0-9]/.test(password)) strength++;
+            if (/[^a-zA-Z0-9]/.test(password)) strength++;
+
+            if (strength <= 2) return 'weak';
+            if (strength <= 4) return 'medium';
+            return 'strong';
+        }
+
+        // Manejar submit del formulario
+        document.getElementById('register-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const nombre = document.getElementById('nombre').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const passwordConfirm = document.getElementById('password-confirm').value;
+            const termsAccepted = document.getElementById('terms').checked;
+
+            // Validaciones
+            if (!nombre || !email || !password || !passwordConfirm) {
+                showError('Por favor completa todos los campos');
+                return;
+            }
+
+            if (password.length < 6) {
+                showError('La contraseña debe tener al menos 6 caracteres');
+                return;
+            }
+
+            if (password !== passwordConfirm) {
+                showError('Las contraseñas no coinciden');
+                return;
+            }
+
+            if (!termsAccepted) {
+                showError('Debes aceptar los términos y condiciones');
+                return;
+            }
+
+            // Deshabilitar botón
+            const btn = document.getElementById('register-btn');
+            const originalText = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Creando cuenta...';
+
+            try {
+                const userData = {
+                    nombre: nombre,
+                    email: email,
+                    password: password,
+                };
+
+                await authManager.register(userData);
+
+                // Si llegamos aquí, el registro fue exitoso
+                // authManager.onLoginSuccess maneja la redirección
+            } catch (error) {
+                // authManager.onLoginError ya muestra el error
+                console.error('Error en registro:', error);
+            } finally {
+                // Restaurar botón
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+            }
+        });
+
+        // Toggle mostrar/ocultar contraseña
+        document.getElementById('toggle-password').addEventListener('click', () => {
+            togglePasswordVisibility('password', 'toggle-password');
+        });
+
+        document.getElementById('toggle-password-confirm').addEventListener('click', () => {
+            togglePasswordVisibility('password-confirm', 'toggle-password-confirm');
+        });
+
+        function togglePasswordVisibility(inputId, buttonId) {
+            const input = document.getElementById(inputId);
+            const icon = document.querySelector(`#${buttonId} i`);
+
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        // Función helper para mostrar errores
+        function showError(message) {
+            const errorEl = document.createElement('div');
+            errorEl.className = 'fixed top-4 right-4 bg-red-500 text-white px-6 py-4 rounded-lg shadow-xl z-50 max-w-md animate-pulse';
+            errorEl.innerHTML = `
+                <div class="flex items-center">
+                    <i class="fas fa-exclamation-circle mr-3 text-xl"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+            document.body.appendChild(errorEl);
+
+            setTimeout(() => {
+                errorEl.remove();
+            }, 5000);
+        }
+
+        // Auto-focus en nombre al cargar
+        window.addEventListener('load', () => {
+            document.getElementById('nombre').focus();
+        });
+    </script>
+    <script src="assets/js/dark-mode.js"></script>
+</body>
+</html>
