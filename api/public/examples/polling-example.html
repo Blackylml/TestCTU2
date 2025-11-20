@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejemplo de Polling - QuinielaPro</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    h1, h2 {
+      color: #333;
+    }
+    .status {
+      padding: 10px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+    .status.running {
+      background: #d4edda;
+      border: 1px solid #c3e6cb;
+      color: #155724;
+    }
+    .status.stopped {
+      background: #f8d7da;
+      border: 1px solid #f5c6cb;
+      color: #721c24;
+    }
+    .controls {
+      margin: 20px 0;
+    }
+    button {
+      padding: 10px 20px;
+      margin-right: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    button.primary {
+      background: #007bff;
+      color: white;
+    }
+    button.danger {
+      background: #dc3545;
+      color: white;
+    }
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .log {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 4px;
+      max-height: 300px;
+      overflow-y: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+    }
+    .log-entry {
+      margin: 5px 0;
+      padding: 5px;
+      border-left: 3px solid #007bff;
+      padding-left: 10px;
+    }
+    .log-entry.success {
+      border-color: #28a745;
+      background: #d4edda;
+    }
+    .log-entry.error {
+      border-color: #dc3545;
+      background: #f8d7da;
+    }
+    .log-entry.info {
+      border-color: #17a2b8;
+      background: #d1ecf1;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background: #f8f9fa;
+      font-weight: 600;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .badge.gold {
+      background: #ffd700;
+      color: #000;
+    }
+    .badge.silver {
+      background: #c0c0c0;
+      color: #000;
+    }
+    .badge.bronze {
+      background: #cd7f32;
+      color: #fff;
+    }
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #28a745;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 4px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      display: none;
+      animation: slideIn 0.3s ease-out;
+    }
+    @keyframes slideIn {
+      from {
+        transform: translateX(400px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin: 20px 0;
+    }
+    .stat-card {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 4px;
+      text-align: center;
+    }
+    .stat-value {
+      font-size: 24px;
+      font-weight: bold;
+      color: #007bff;
+    }
+    .stat-label {
+      font-size: 14px;
+      color: #666;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎯 Ejemplo de Polling en Tiempo Real</h1>
+
+  <div class="container">
+    <h2>Estado del Polling</h2>
+    <div id="status" class="status stopped">
+      ⏸️ Detenido
+    </div>
+
+    <div class="controls">
+      <button id="startBtn" class="primary" onclick="startPolling()">▶️ Iniciar</button>
+      <button id="stopBtn" class="danger" onclick="stopPolling()" disabled>⏹️ Detener</button>
+      <label>
+        Intervalo:
+        <select id="intervalSelect" onchange="changeInterval()">
+          <option value="5000">5 segundos (rápido)</option>
+          <option value="10000" selected>10 segundos (normal)</option>
+          <option value="15000">15 segundos (lento)</option>
+          <option value="30000">30 segundos (muy lento)</option>
+        </select>
+      </label>
+      <label>
+        <input type="checkbox" id="adaptiveCheck" checked onchange="toggleAdaptive()">
+        Adaptativo
+      </label>
+    </div>
+
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-value" id="requestCount">0</div>
+        <div class="stat-label">Requests Realizados</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="cacheHits">0</div>
+        <div class="stat-label">Cache Hits (304)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="currentInterval">10</div>
+        <div class="stat-label">Intervalo Actual (s)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="lastUpdate">-</div>
+        <div class="stat-label">Última Actualización</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>📊 Tabla de Posiciones en Vivo</h2>
+    <div id="tabla"></div>
+  </div>
+
+  <div class="container">
+    <h2>📝 Log de Actividad</h2>
+    <button onclick="clearLog()" style="margin-bottom: 10px;">🗑️ Limpiar Log</button>
+    <div id="log" class="log"></div>
+  </div>
+
+  <div id="notification" class="notification"></div>
+
+  <!-- Copiar el archivo polling-helper.js a tu proyecto -->
+  <script src="../src/utils/polling-helper.js"></script>
+
+  <script>
+    // Configuración
+    const API_BASE_URL = 'http://localhost:3000';
+    const QUINIELA_ID = '123'; // Cambiar por ID real
+
+    // Estado
+    let poller = null;
+    let requestCount = 0;
+    let cacheHits = 0;
+    let lastTableData = null;
+
+    // Inicializar
+    function startPolling() {
+      if (poller) {
+        log('⚠️ Polling ya está corriendo', 'info');
+        return;
+      }
+
+      const interval = parseInt(document.getElementById('intervalSelect').value);
+      const adaptive = document.getElementById('adaptiveCheck').checked;
+
+      log(`▶️ Iniciando polling (${interval / 1000}s, adaptativo: ${adaptive})`, 'success');
+
+      poller = new TablaPosicionesPoller(QUINIELA_ID, {
+        baseUrl: API_BASE_URL,
+        interval: interval,
+        adaptive: adaptive,
+      });
+
+      poller.start(
+        // Success callback
+        (data) => {
+          requestCount++;
+          updateStats();
+
+          log(`✅ Datos recibidos (${data.data?.length || 0} participantes)`, 'success');
+
+          // Detectar cambios importantes
+          if (lastTableData) {
+            detectImportantChanges(lastTableData, data.data);
+          }
+
+          lastTableData = data.data;
+          renderTabla(data.data);
+        },
+        // Error callback
+        (error) => {
+          log(`❌ Error: ${error.message}`, 'error');
+        }
+      );
+
+      // Interceptar 304 Not Modified
+      const originalFetch = poller.fetch.bind(poller);
+      poller.fetch = async function() {
+        try {
+          await originalFetch();
+        } catch (error) {
+          if (error.response?.status === 304) {
+            cacheHits++;
+            updateStats();
+          }
+          throw error;
+        }
+      };
+
+      updateStatus(true);
+    }
+
+    function stopPolling() {
+      if (!poller) return;
+
+      log('⏹️ Deteniendo polling', 'info');
+      poller.stop();
+      poller = null;
+      updateStatus(false);
+    }
+
+    function changeInterval() {
+      if (!poller) return;
+
+      const newInterval = parseInt(document.getElementById('intervalSelect').value);
+      poller.setInterval(newInterval);
+      log(`⏱️ Intervalo cambiado a ${newInterval / 1000}s`, 'info');
+    }
+
+    function toggleAdaptive() {
+      if (!poller) return;
+
+      const adaptive = document.getElementById('adaptiveCheck').checked;
+      poller.adaptiveInterval = adaptive;
+      log(`🔄 Modo adaptativo: ${adaptive ? 'activado' : 'desactivado'}`, 'info');
+    }
+
+    function detectImportantChanges(oldData, newData) {
+      if (!Array.isArray(oldData) || !Array.isArray(newData)) return;
+
+      newData.forEach((newItem, index) => {
+        const oldItem = oldData[index];
+
+        if (oldItem) {
+          // Cambio en aciertos
+          if (oldItem.aciertos !== newItem.aciertos) {
+            showNotification(`🎯 ${newItem.usuario?.nombre} tiene ${newItem.aciertos} aciertos!`);
+            log(`🎯 Cambio de aciertos: ${oldItem.usuario?.nombre} (${oldItem.aciertos} → ${newItem.aciertos})`, 'success');
+          }
+
+          // Cambio en posición
+          if (oldItem.posicion !== newItem.posicion) {
+            const direction = newItem.posicion < oldItem.posicion ? '⬆️' : '⬇️';
+            log(`${direction} ${newItem.usuario?.nombre} cambió de posición ${oldItem.posicion} → ${newItem.posicion}`, 'info');
+          }
+        }
+      });
+    }
+
+    function renderTabla(data) {
+      if (!data || !Array.isArray(data)) {
+        document.getElementById('tabla').innerHTML = '<p>Sin datos disponibles</p>';
+        return;
+      }
+
+      let html = '<table><thead><tr>';
+      html += '<th>Posición</th>';
+      html += '<th>Usuario</th>';
+      html += '<th>Aciertos</th>';
+      html += '<th>Picks Completados</th>';
+      html += '<th>% Aciertos</th>';
+      html += '<th>Premio</th>';
+      html += '</tr></thead><tbody>';
+
+      data.forEach((item, index) => {
+        let badge = '';
+        if (index === 0) badge = '<span class="badge gold">🥇</span>';
+        else if (index === 1) badge = '<span class="badge silver">🥈</span>';
+        else if (index === 2) badge = '<span class="badge bronze">🥉</span>';
+
+        html += '<tr>';
+        html += `<td>${item.posicion || index + 1} ${badge}</td>`;
+        html += `<td>${item.usuario?.nombre || 'Usuario'}</td>`;
+        html += `<td><strong>${item.aciertos || 0}</strong></td>`;
+        html += `<td>${item.picks_completados || 0}/${item.total_picks || 0}</td>`;
+        html += `<td>${item.porcentaje_aciertos?.toFixed(1) || 0}%</td>`;
+        html += `<td>$${item.premio_ganado || 0}</td>`;
+        html += '</tr>';
+      });
+
+      html += '</tbody></table>';
+      document.getElementById('tabla').innerHTML = html;
+    }
+
+    function updateStatus(isRunning) {
+      const status = document.getElementById('status');
+      const startBtn = document.getElementById('startBtn');
+      const stopBtn = document.getElementById('stopBtn');
+
+      if (isRunning) {
+        status.className = 'status running';
+        status.textContent = '▶️ Corriendo';
+        startBtn.disabled = true;
+        stopBtn.disabled = false;
+      } else {
+        status.className = 'status stopped';
+        status.textContent = '⏸️ Detenido';
+        startBtn.disabled = false;
+        stopBtn.disabled = true;
+      }
+    }
+
+    function updateStats() {
+      document.getElementById('requestCount').textContent = requestCount;
+      document.getElementById('cacheHits').textContent = cacheHits;
+
+      if (poller) {
+        document.getElementById('currentInterval').textContent = (poller.interval / 1000).toFixed(1);
+      }
+
+      document.getElementById('lastUpdate').textContent = new Date().toLocaleTimeString();
+    }
+
+    function log(message, type = 'info') {
+      const logDiv = document.getElementById('log');
+      const entry = document.createElement('div');
+      entry.className = `log-entry ${type}`;
+      entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+      logDiv.insertBefore(entry, logDiv.firstChild);
+
+      // Limitar a 50 entradas
+      while (logDiv.children.length > 50) {
+        logDiv.removeChild(logDiv.lastChild);
+      }
+    }
+
+    function clearLog() {
+      document.getElementById('log').innerHTML = '';
+    }
+
+    function showNotification(message) {
+      const notification = document.getElementById('notification');
+      notification.textContent = message;
+      notification.style.display = 'block';
+
+      setTimeout(() => {
+        notification.style.display = 'none';
+      }, 3000);
+    }
+
+    // Limpiar al cerrar
+    window.addEventListener('beforeunload', () => {
+      if (poller) {
+        poller.stop();
+      }
+    });
+
+    // Auto-iniciar (comentar si no quieres)
+    // setTimeout(startPolling, 1000);
+  </script>
+</body>
+</html>
