@@ -18,6 +18,7 @@ const { apiLimiter } = require('./middleware/rateLimiter');
 const authRoutes = require('./routes/auth');
 const quinielasRoutes = require('./routes/quinielas');
 const partidosRoutes = require('./routes/partidos');
+const footballRoutes = require('./routes/football');
 
 // Crear app
 const app = express();
@@ -67,6 +68,7 @@ app.get('/', (req, res) => {
       auth: `/api/${API_VERSION}/auth`,
       quinielas: `/api/${API_VERSION}/quinielas`,
       partidos: `/api/${API_VERSION}/partidos`,
+      football: `/api/${API_VERSION}/football`,
     },
     docs: '/api/docs',
   });
@@ -86,6 +88,7 @@ app.get('/health', (req, res) => {
 app.use(`/api/${API_VERSION}/auth`, authRoutes);
 app.use(`/api/${API_VERSION}/quinielas`, quinielasRoutes);
 app.use(`/api/${API_VERSION}/partidos`, partidosRoutes);
+app.use(`/api/${API_VERSION}/football`, footballRoutes);
 
 /**
  * Error handling

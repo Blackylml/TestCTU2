@@ -47,15 +47,19 @@ const User = sequelize.define('User', {
   },
   password: {
     type: DataTypes.STRING(255),
-    allowNull: false,
+    allowNull: true, // Permitir null para usuarios OAuth
     validate: {
-      notEmpty: {
-        msg: 'La contraseña es requerida',
-      },
       len: {
         args: [6, 255],
         msg: 'La contraseña debe tener al menos 6 caracteres',
       },
+    },
+  },
+  google_id: {
+    type: DataTypes.STRING(255),
+    allowNull: true,
+    unique: {
+      msg: 'Esta cuenta de Google ya está registrada',
     },
   },
   rol: {
