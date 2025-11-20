@@ -1,6 +1,7 @@
-// Sistema de menú móvil (hamburguesa)
+// Sistema de menú móvil (hamburguesa) y sidebar colapsable
 class MobileMenuManager {
   constructor() {
+    this.sidebarCollapsedKey = 'quinielaPro_sidebarCollapsed';
     this.init();
   }
 
@@ -18,7 +19,9 @@ class MobileMenuManager {
     this.createHamburgerButton();
     this.createOverlay();
     this.setupSidebar();
+    this.createDesktopToggle();
     this.attachEventListeners();
+    this.restoreSidebarState();
     console.log('MobileMenuManager: setup complete');
     console.log('Hamburger button:', this.hamburgerBtn);
     console.log('Overlay:', this.overlay);
@@ -53,6 +56,26 @@ class MobileMenuManager {
     }
   }
 
+  createDesktopToggle() {
+    // Crear botón toggle para desktop
+    const toggleBtn = document.createElement('button');
+    toggleBtn.className = 'sidebar-toggle-desktop';
+    toggleBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+    toggleBtn.setAttribute('aria-label', 'Toggle sidebar');
+    document.body.appendChild(toggleBtn);
+    this.desktopToggleBtn = toggleBtn;
+  }
+
+  restoreSidebarState() {
+    // Restaurar estado colapsado del sidebar en desktop
+    if (window.innerWidth >= 768) {
+      const isCollapsed = localStorage.getItem(this.sidebarCollapsedKey) === 'true';
+      if (isCollapsed) {
+        this.collapseSidebar();
+      }
+    }
+  }
+
   attachEventListeners() {
     // Click en el botón hamburguesa
     if (this.hamburgerBtn) {
@@ -62,6 +85,11 @@ class MobileMenuManager {
     // Click en el overlay para cerrar
     if (this.overlay) {
       this.overlay.addEventListener('click', () => this.closeMenu());
+    }
+
+    // Click en el botón toggle de desktop
+    if (this.desktopToggleBtn) {
+      this.desktopToggleBtn.addEventListener('click', () => this.toggleDesktopSidebar());
     }
 
     // Cerrar menú al hacer clic en enlaces de navegación (solo en móvil)
@@ -121,6 +149,51 @@ class MobileMenuManager {
 
   isMenuOpen() {
     return this.sidebar?.classList.contains('active') || false;
+  }
+
+  toggleDesktopSidebar() {
+    const isCollapsed = this.sidebar?.classList.contains('collapsed');
+    if (isCollapsed) {
+      this.expandSidebar();
+    } else {
+      this.collapseSidebar();
+    }
+  }
+
+  collapseSidebar() {
+    if (this.sidebar) {
+      this.sidebar.classList.add('collapsed');
+      const mainContent = document.querySelector('main');
+      if (mainContent) {
+        mainContent.classList.add('sidebar-collapsed');
+      }
+      if (this.desktopToggleBtn) {
+        this.desktopToggleBtn.classList.add('collapsed');
+        const icon = this.desktopToggleBtn.querySelector('i');
+        if (icon) {
+          icon.className = 'fas fa-chevron-right';
+        }
+      }
+      localStorage.setItem(this.sidebarCollapsedKey, 'true');
+    }
+  }
+
+  expandSidebar() {
+    if (this.sidebar) {
+      this.sidebar.classList.remove('collapsed');
+      const mainContent = document.querySelector('main');
+      if (mainContent) {
+        mainContent.classList.remove('sidebar-collapsed');
+      }
+      if (this.desktopToggleBtn) {
+        this.desktopToggleBtn.classList.remove('collapsed');
+        const icon = this.desktopToggleBtn.querySelector('i');
+        if (icon) {
+          icon.className = 'fas fa-chevron-left';
+        }
+      }
+      localStorage.setItem(this.sidebarCollapsedKey, 'false');
+    }
   }
 }
 

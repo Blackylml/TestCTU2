@@ -107,6 +107,18 @@ header, nav {
   z-index: 1020; /* Jerarquía: por encima del sidebar y overlay */
 }
 
+/* Navbar en modo oscuro - mantener gradiente */
+.dark-mode nav.bg-gradient-custom {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)) !important;
+}
+
+/* Asegurar que los elementos del navbar sean visibles en modo oscuro */
+.dark-mode nav a,
+.dark-mode nav span,
+.dark-mode nav i {
+  color: white !important;
+}
+
 /* Footer */
 footer {
   background-color: var(--color-dark);
@@ -489,18 +501,104 @@ aside::-webkit-scrollbar-thumb:hover {
   }
 }
 
+/* Botón toggle para sidebar en desktop */
+.sidebar-toggle-desktop {
+  display: none;
+  position: fixed;
+  left: 16rem; /* Ancho del sidebar - 2rem */
+  top: 80px;
+  width: 40px;
+  height: 40px;
+  background: var(--bg-card);
+  border: 2px solid var(--border-color);
+  border-radius: 0 8px 8px 0;
+  border-left: none;
+  cursor: pointer;
+  z-index: 1005;
+  transition: all 0.3s ease;
+  box-shadow: 2px 2px 8px var(--shadow);
+}
+
+.sidebar-toggle-desktop:hover {
+  background: linear-gradient(135deg, rgba(207, 10, 10, 0.1), rgba(220, 95, 0, 0.1));
+}
+
+.sidebar-toggle-desktop i {
+  color: var(--text-primary);
+  font-size: 18px;
+  transition: transform 0.3s ease;
+}
+
 /* Estilos para tablets y desktop */
 @media (min-width: 768px) {
   /* Resetear sidebar para desktop */
   aside {
-    position: static !important;
-    top: auto !important;
-    left: auto !important;
+    position: fixed !important;
+    top: 72px !important;
+    left: 0 !important;
     width: 18rem !important; /* Más ancho en desktop */
     max-width: none !important;
-    height: auto !important;
-    min-height: calc(100vh - 72px);
+    height: calc(100vh - 72px) !important;
     box-shadow: 2px 0 8px var(--shadow) !important;
+    transition: all 0.3s ease;
+    z-index: 1000;
+  }
+
+  /* Sidebar colapsado en desktop */
+  aside.collapsed {
+    width: 5rem !important;
+  }
+
+  aside.collapsed .sidebar-profile {
+    padding: 1rem 0.5rem;
+  }
+
+  aside.collapsed .sidebar-profile .flex-1,
+  aside.collapsed .nav-item span,
+  aside.collapsed .sidebar-section-title,
+  aside.collapsed .sidebar-divider,
+  aside.collapsed .dark-mode-toggle-sidebar span,
+  aside.collapsed .nav-item .ml-auto {
+    display: none;
+  }
+
+  aside.collapsed .sidebar-profile {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  aside.collapsed .nav-item {
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  aside.collapsed .dark-mode-toggle-sidebar {
+    justify-content: center;
+  }
+
+  aside.collapsed .nav-item i {
+    margin: 0;
+  }
+
+  /* Main content con sidebar */
+  main {
+    margin-left: 18rem;
+    transition: margin-left 0.3s ease;
+  }
+
+  main.sidebar-collapsed {
+    margin-left: 5rem;
+  }
+
+  /* Botón toggle visible en desktop */
+  .sidebar-toggle-desktop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sidebar-toggle-desktop.collapsed {
+    left: 3rem; /* 5rem - 2rem */
   }
 
   /* Ocultar botón hamburguesa inline en desktop */
